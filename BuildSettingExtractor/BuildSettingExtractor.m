@@ -133,7 +133,10 @@ static NSString * const XcodeCompatibilityVersionString = @"Xcode 3.2";
 - (NSString *)stringRepresentationOfBuildSettings:(NSDictionary *)buildSettings {
     NSMutableString *string = [[NSMutableString alloc] init];
 
-    for (NSString *key in [[buildSettings allKeys] sortedArrayUsingSelector:@selector(localizedStandardCompare:)]) {
+    // Sort build settings by name for easier reading and testing. Case insensitive compare should stay stable regardess of locale.
+    NSArray *sortedKeys = [[buildSettings allKeys] sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
+
+    for (NSString *key in sortedKeys) {
         id value = buildSettings[key];
 
         if ([value isKindOfClass:[NSString class]]) {
