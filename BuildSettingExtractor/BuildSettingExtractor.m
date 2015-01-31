@@ -100,17 +100,18 @@ static NSString * const XcodeCompatibilityVersionString = @"Xcode 3.2";
  */
 - (void)writeConfigFilesToDestinationFolder:(NSURL *)destinationURL {
 
-    NSString *commonConfigName = self.sharedConfigName;
-
     [self.buildSettingsByTarget enumerateKeysAndObjectsUsingBlock:^(id targetName, id obj, BOOL *stop) {
         [obj enumerateKeysAndObjectsUsingBlock:^(id configName, id settings, BOOL *stop) {
 
-            // If the config name is not the common config, we need to import the common config
-            if (![configName isEqualToString:commonConfigName]) {
-                NSString *configFilename = [self configFilenameWithTargetName:targetName configName:commonConfigName];
+            // If the config name is not the shared config, we need to import the shared config
+            if (![configName isEqualToString:self.sharedConfigName]) {
+                NSString *configFilename = [self configFilenameWithTargetName:targetName configName:self.sharedConfigName];
                 NSString *includeDirective = [NSString stringWithFormat:@"#include \"%@\"\n\n", configFilename];
                 settings = [includeDirective stringByAppendingString:settings];
             }
+
+            // Trim whitespace and newlines
+            settings = [settings stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 
             NSString *filename = [self configFilenameWithTargetName:targetName configName:configName];
 
