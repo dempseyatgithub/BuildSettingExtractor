@@ -23,7 +23,7 @@ Using the app:
 **Version History**
 
 *Version 1.0*  
-*January 30, 2015*
+*January 31, 2015*
 
 – Initial version of BuildSettingExtractor.  
 – Generates xcconfig files from the build settings in an Xcode project.
