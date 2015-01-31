@@ -128,4 +128,11 @@
     [invoke invokeWithTarget:delegate];
 }
 
+#pragma mark - NSApplicationDelegate
+
+- (BOOL)applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)sender {
+    return YES;
+}
+
+
 @end
