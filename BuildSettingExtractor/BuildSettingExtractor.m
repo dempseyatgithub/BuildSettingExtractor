@@ -40,7 +40,6 @@ static NSString * const XcodeCompatibilityVersionString = @"Xcode 3.2";
 }
 
 - (void)extractBuildSettingsFromProject:(NSURL *)projectWrapperURL toDestinationFolder:(NSURL *)folderURL {
-    NSLog(@"Extract from: %@, put files in: %@", projectWrapperURL, folderURL);
 
     [self.buildSettingsByTarget removeAllObjects];
 
