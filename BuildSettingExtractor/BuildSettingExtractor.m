@@ -120,6 +120,15 @@ static NSString * const XcodeCompatibilityVersionString = @"Xcode 3.2";
                 configFileString = [configFileString stringByAppendingString:includeDirective];
             }
 
+            // If there are no settings at all, add a comment that the lack of settings is on purpose
+            if ([settings isEqualToString:@""]) {
+                settings = [settings stringByAppendingString:@"//********************************************//\n"];
+                settings = [settings stringByAppendingString:@"//* Currently no build settings in this file *//\n"];
+                settings = [settings stringByAppendingString:@"//********************************************//"];
+
+                ;
+            }
+
             configFileString = [configFileString stringByAppendingString:settings];
 
             // Trim whitespace and newlines

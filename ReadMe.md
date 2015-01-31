@@ -17,7 +17,7 @@ Using the app:
 
 - BuildSettingExtractor does not alter the original Xcode project file.
 - BuildSettingExtractor does not update existing xcconfig files, it does a one-time extraction.
-- BuildSettingExtractor does not hoist common target build settings to the project level.
+- BuildSettingExtractor does not hoist shared target build settings to the project level.
 - Do not taunt BuildSettingExtractor.
 
 **Version History**
