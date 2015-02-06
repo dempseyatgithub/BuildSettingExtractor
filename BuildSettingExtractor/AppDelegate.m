@@ -19,24 +19,11 @@
 @property (assign) IBOutlet NSWindow *window;
 @property (weak) IBOutlet DragFileView *dragFileView;
 
-@property BuildSettingExtractor *buildSettingExtractor;
 @property BOOL shouldOverwriteFiles;
-
-
-@property (strong, nonatomic) NSDictionary *buildSettingHelpStringsFile;
 
 @end
 
 @implementation AppDelegate
-
-- (instancetype)init {
-    self = [super init];
-    if (self) {
-        _buildSettingExtractor = [[BuildSettingExtractor alloc] init];
-
-    }
-    return self;
-}
 
 - (void)awakeFromNib {
     self.dragFileView.target = self;
@@ -68,7 +55,16 @@
         [openPanel beginSheetModalForWindow:self.window completionHandler:^(NSInteger result) {
             if (result == NSModalResponseOK) {
                 NSURL *destinationURL = openPanel.URL;
-                [self.buildSettingExtractor extractBuildSettingsFromProject:fileURL toDestinationFolder:destinationURL];
+
+                BuildSettingExtractor *buildSettingExtractor = [[BuildSettingExtractor alloc] init];
+                buildSettingExtractor.includeBuildSettingInfoComments = [[NSUserDefaults standardUserDefaults] boolForKey:TPSIncludeBuildSettingInfoComments];
+
+                [buildSettingExtractor extractBuildSettingsFromProject:fileURL toDestinationFolder:destinationURL];
+
+                BOOL openInFinder = [[NSUserDefaults standardUserDefaults] boolForKey:TPSOpenDirectoryInFinder];
+                if (openInFinder) {
+                    [[NSWorkspace sharedWorkspace] openURL:destinationURL];
+                }
             }
 
         }];
@@ -132,6 +128,11 @@
 
 - (BOOL)applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)sender {
     return YES;
+}
+
+- (void)applicationDidFinishLaunching:(NSNotification *)notification {
+    NSDictionary *defaults = @{TPSOpenDirectoryInFinder:@(YES), TPSIncludeBuildSettingInfoComments:@(YES)};
+    [[NSUserDefaults standardUserDefaults] registerDefaults:defaults];
 }
 
 

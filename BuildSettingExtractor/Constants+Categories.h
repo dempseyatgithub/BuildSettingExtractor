@@ -13,6 +13,10 @@ typedef NS_ENUM(NSUInteger, AppErrorCodes) {
     DirectoryContainsBuildConfigFiles = 101,
 };
 
+extern NSString *const TPSOpenDirectoryInFinder;
+extern NSString *const TPSIncludeBuildSettingInfoComments;
+
+
 #pragma mark -
 
 @interface NSPasteboard (TPS_XcodeProjectURLAdditions)
@@ -26,4 +30,8 @@ typedef NS_ENUM(NSUInteger, AppErrorCodes) {
 + (NSString *)tps_projectBundleTypeIdentifier;
 + (NSString *)tps_buildConfigurationFileTypeIdentifier;
 + (NSString *)tps_preferredTypeIdentifierForFileExtension:(NSString *)string;
+@end
+
+@interface NSString (TPS_BuildSettingAdditions)
+- (NSString *)tps_baseBuildSettingName; // Removes any conditional section of a build setting
 @end

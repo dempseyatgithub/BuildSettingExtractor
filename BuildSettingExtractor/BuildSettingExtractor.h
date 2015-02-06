@@ -17,6 +17,9 @@
 // The name that will be used to name the project configuration. Default is "Project".
 @property (copy) NSString *projectConfigName;
 
+// Should each build setting be commented with title and description, if available. 
+@property (assign) BOOL includeBuildSettingInfoComments;
+
 - (void)extractBuildSettingsFromProject:(NSURL *)projectWrapperURL toDestinationFolder:(NSURL *)folderURL;
 
 @end

@@ -18,6 +18,8 @@
 		53719EB319BF4C6D005D3DE0 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53719E9219BF4C6D005D3DE0 /* Cocoa.framework */; };
 		53719EBB19BF4C6D005D3DE0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 53719EB919BF4C6D005D3DE0 /* InfoPlist.strings */; };
 		53719EBD19BF4C6D005D3DE0 /* BuildSettingExtractorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 53719EBC19BF4C6D005D3DE0 /* BuildSettingExtractorTests.m */; };
+		538196C51A851BB40033CB65 /* BuildSettingInfoSubpaths.plist in Resources */ = {isa = PBXBuildFile; fileRef = 538196C41A851BB40033CB65 /* BuildSettingInfoSubpaths.plist */; };
+		53BC11311A817447005E2FD2 /* BuildSettingInfoSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 53BC11301A817447005E2FD2 /* BuildSettingInfoSource.m */; };
 		53F372ED1A7BC6A7006118CB /* DragFileView.m in Sources */ = {isa = PBXBuildFile; fileRef = 53F372EC1A7BC6A7006118CB /* DragFileView.m */; };
 		53F372F01A7C042F006118CB /* BuildSettingExtractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 53F372EF1A7C042F006118CB /* BuildSettingExtractor.m */; };
 		53F372F41A7C0CBE006118CB /* ThreeBuildConfigs.plist in Resources */ = {isa = PBXBuildFile; fileRef = 53F372F31A7C0CBE006118CB /* ThreeBuildConfigs.plist */; };
@@ -55,7 +57,10 @@
 		53719EB819BF4C6D005D3DE0 /* BuildSettingExtractorTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BuildSettingExtractorTests-Info.plist"; sourceTree = "<group>"; };
 		53719EBA19BF4C6D005D3DE0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		53719EBC19BF4C6D005D3DE0 /* BuildSettingExtractorTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BuildSettingExtractorTests.m; sourceTree = "<group>"; };
+		538196C41A851BB40033CB65 /* BuildSettingInfoSubpaths.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = BuildSettingInfoSubpaths.plist; sourceTree = "<group>"; };
 		5395AF4D1A7C6BB60028BE88 /* ReadMe.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = ReadMe.md; sourceTree = "<group>"; };
+		53BC112F1A817447005E2FD2 /* BuildSettingInfoSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuildSettingInfoSource.h; sourceTree = "<group>"; };
+		53BC11301A817447005E2FD2 /* BuildSettingInfoSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuildSettingInfoSource.m; sourceTree = "<group>"; };
 		53F372EB1A7BC6A7006118CB /* DragFileView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DragFileView.h; sourceTree = "<group>"; };
 		53F372EC1A7BC6A7006118CB /* DragFileView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DragFileView.m; sourceTree = "<group>"; };
 		53F372EE1A7C042F006118CB /* BuildSettingExtractor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuildSettingExtractor.h; sourceTree = "<group>"; };
@@ -133,12 +138,15 @@
 				53719EA519BF4C6D005D3DE0 /* AppDelegate.m */,
 				53F372EE1A7C042F006118CB /* BuildSettingExtractor.h */,
 				53F372EF1A7C042F006118CB /* BuildSettingExtractor.m */,
+				53BC112F1A817447005E2FD2 /* BuildSettingInfoSource.h */,
+				53BC11301A817447005E2FD2 /* BuildSettingInfoSource.m */,
 				53F372EB1A7BC6A7006118CB /* DragFileView.h */,
 				53F372EC1A7BC6A7006118CB /* DragFileView.m */,
 				53F372F91A7C5803006118CB /* Constants+Categories.h */,
 				53F372FA1A7C5803006118CB /* Constants+Categories.m */,
 				53719EA719BF4C6D005D3DE0 /* MainMenu.xib */,
 				53719EAA19BF4C6D005D3DE0 /* Images.xcassets */,
+				538196C41A851BB40033CB65 /* BuildSettingInfoSubpaths.plist */,
 				53719E9919BF4C6D005D3DE0 /* Supporting Files */,
 			);
 			path = BuildSettingExtractor;
@@ -260,6 +268,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				53719E9D19BF4C6D005D3DE0 /* InfoPlist.strings in Resources */,
+				538196C51A851BB40033CB65 /* BuildSettingInfoSubpaths.plist in Resources */,
 				53719EAB19BF4C6D005D3DE0 /* Images.xcassets in Resources */,
 				53719EA319BF4C6D005D3DE0 /* Credits.rtf in Resources */,
 				53719EA919BF4C6D005D3DE0 /* MainMenu.xib in Resources */,
@@ -286,6 +295,7 @@
 				53F372F01A7C042F006118CB /* BuildSettingExtractor.m in Sources */,
 				53719EA619BF4C6D005D3DE0 /* AppDelegate.m in Sources */,
 				53F372ED1A7BC6A7006118CB /* DragFileView.m in Sources */,
+				53BC11311A817447005E2FD2 /* BuildSettingInfoSource.m in Sources */,
 				53719E9F19BF4C6D005D3DE0 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

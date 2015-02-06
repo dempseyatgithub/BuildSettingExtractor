@@ -8,6 +8,11 @@
 
 #import "Constants+Categories.h"
 
+NSString *const TPSOpenDirectoryInFinder = @"TPSOpenDirectoryInFinder";
+NSString *const TPSIncludeBuildSettingInfoComments = @"TPSIncludeBuildSettingInfoComments";
+
+#pragma mark -
+
 @implementation NSPasteboard (TPS_XcodeProjectURLAdditions)
 
 - (NSURL *)tps_readXcodeProjectFileURL {
@@ -52,6 +57,21 @@
 + (NSString *)tps_preferredTypeIdentifierForFileExtension:(NSString *)string {
     NSString *identifier = CFBridgingRelease(UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, (__bridge CFStringRef)string, NULL));
     return identifier;
+}
+
+@end
+
+#pragma mark -
+
+@implementation NSString (TPS_BuildSettingAdditions)
+
+- (NSString *)tps_baseBuildSettingName {
+    NSString *baseBuildSettingName = [self copy];
+    NSRange range = [baseBuildSettingName rangeOfString:@"["]; // delimeter for a conditional build setting
+    if (range.location != NSNotFound) {
+        baseBuildSettingName = [baseBuildSettingName substringToIndex:range.location];
+    }
+    return baseBuildSettingName;
 }
 
 @end
