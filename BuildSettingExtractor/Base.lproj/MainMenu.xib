@@ -15,6 +15,7 @@
         <customObject id="Voe-Tx-rLC" customClass="AppDelegate">
             <connections>
                 <outlet property="dragFileView" destination="THh-eD-rRa" id="zXq-Cy-fLL"/>
+                <outlet property="preferencesWindow" destination="fKt-mn-0WB" id="QZi-jp-8Bf"/>
                 <outlet property="window" destination="QvC-M9-y7g" id="gIp-Ho-8D9"/>
             </connections>
         </customObject>
@@ -32,7 +33,11 @@
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="VOq-y0-SEH"/>
-                            <menuItem title="Preferences…" keyEquivalent="," id="BOF-NM-1cW"/>
+                            <menuItem title="Preferences…" keyEquivalent="," id="BOF-NM-1cW">
+                                <connections>
+                                    <action selector="presentPreferencesWindow:" target="-1" id="X0T-tK-MSL"/>
+                                </connections>
+                            </menuItem>
                             <menuItem isSeparatorItem="YES" id="wFC-TO-SCJ"/>
                             <menuItem title="Services" id="NMo-om-nkz">
                                 <modifierMask key="keyEquivalentModifierMask"/>
@@ -668,7 +673,7 @@
                 </menuItem>
             </items>
         </menu>
-        <window title="Build Setting Extractor" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" animationBehavior="default" id="QvC-M9-y7g">
+        <window title="Build Setting Extractor" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" frameAutosaveName="BuildSettingExtractor" animationBehavior="default" id="QvC-M9-y7g">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="335" y="390" width="436" height="210"/>
@@ -705,7 +710,66 @@
                     <constraint firstItem="THh-eD-rRa" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" constant="20" symbolic="YES" id="yY4-bH-zCm"/>
                 </constraints>
             </view>
-            <point key="canvasLocation" x="451" y="300"/>
+            <point key="canvasLocation" x="-298" y="59"/>
+        </window>
+        <userDefaultsController representsSharedInstance="YES" id="Czo-a1-luY"/>
+        <window title="Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="Preferences" animationBehavior="default" id="fKt-mn-0WB">
+            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
+            <rect key="contentRect" x="985" y="795" width="320" height="122"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1417"/>
+            <value key="minSize" type="size" width="320" height="122"/>
+            <value key="maxSize" type="size" width="320" height="122"/>
+            <view key="contentView" id="1kK-jA-VrG">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="122"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <button translatesAutoresizingMaskIntoConstraints="NO" id="jJF-zo-xje">
+                        <rect key="frame" x="18" y="86" width="260" height="18"/>
+                        <buttonCell key="cell" type="check" title="Open destination folder when finished " bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="bOl-XK-mYp">
+                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <binding destination="Czo-a1-luY" name="value" keyPath="values.TPSOpenDirectoryInFinder" id="tYf-ps-faC"/>
+                        </connections>
+                    </button>
+                    <button translatesAutoresizingMaskIntoConstraints="NO" id="PO3-kF-2C5">
+                        <rect key="frame" x="18" y="59" width="242" height="18"/>
+                        <buttonCell key="cell" type="check" title="Include build setting info comments" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="Miy-u0-wrI">
+                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <binding destination="Czo-a1-luY" name="value" keyPath="values.TPSIncludeBuildSettingInfoComments" id="UHb-Q1-xEE"/>
+                        </connections>
+                    </button>
+                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Hfn-iA-xua">
+                        <rect key="frame" x="224" y="13" width="82" height="32"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="70" id="Mhi-36-XF6"/>
+                        </constraints>
+                        <buttonCell key="cell" type="push" title="Done" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="STv-vC-Etq">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                            <string key="keyEquivalent" base64-UTF8="YES">
+DQ
+</string>
+                        </buttonCell>
+                        <connections>
+                            <action selector="dismissPreferencesWindow:" target="Voe-Tx-rLC" id="yFB-dd-ies"/>
+                        </connections>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="Hfn-iA-xua" secondAttribute="bottom" constant="20" symbolic="YES" id="4qv-Vd-eta"/>
+                    <constraint firstItem="PO3-kF-2C5" firstAttribute="top" secondItem="jJF-zo-xje" secondAttribute="bottom" constant="13" id="SBZ-jh-KMn"/>
+                    <constraint firstItem="jJF-zo-xje" firstAttribute="leading" secondItem="PO3-kF-2C5" secondAttribute="leading" id="Tk0-KE-6NX"/>
+                    <constraint firstAttribute="trailing" secondItem="Hfn-iA-xua" secondAttribute="trailing" constant="20" symbolic="YES" id="lga-uZ-nGU"/>
+                    <constraint firstItem="jJF-zo-xje" firstAttribute="top" secondItem="1kK-jA-VrG" secondAttribute="top" constant="20" symbolic="YES" id="tW5-wZ-DRa"/>
+                    <constraint firstItem="jJF-zo-xje" firstAttribute="leading" secondItem="1kK-jA-VrG" secondAttribute="leading" constant="20" symbolic="YES" id="tlz-a7-foM"/>
+                </constraints>
+            </view>
+            <point key="canvasLocation" x="196" y="42"/>
         </window>
     </objects>
 </document>

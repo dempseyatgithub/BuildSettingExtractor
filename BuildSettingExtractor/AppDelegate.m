@@ -16,8 +16,9 @@
 
 @interface AppDelegate () <NSOpenSavePanelDelegate>
 
-@property (assign) IBOutlet NSWindow *window;
+@property (weak) IBOutlet NSWindow *window;
 @property (weak) IBOutlet DragFileView *dragFileView;
+@property (weak) IBOutlet NSWindow *preferencesWindow;
 
 @property BOOL shouldOverwriteFiles;
 
@@ -69,6 +70,14 @@
 
         }];
     }
+}
+
+- (IBAction)presentPreferencesWindow:(id)sender {
+    [self.window beginSheet:self.preferencesWindow completionHandler:nil];
+}
+
+- (IBAction)dismissPreferencesWindow:(id)sender {
+    [self.window endSheet:self.preferencesWindow];
 }
 
 #pragma mark - NSOpenSavePanelDelegate
