@@ -79,6 +79,9 @@
 }
 
 - (IBAction)dismissPreferencesWindow:(id)sender {
+    // make sure current edit field gets bound
+    [self.preferencesWindow makeFirstResponder:nil];
+    
     [self.window endSheet:self.preferencesWindow];
 }
 
@@ -142,7 +145,13 @@
 }
 
 - (void)applicationDidFinishLaunching:(NSNotification *)notification {
-    NSDictionary *defaults = @{TPSOpenDirectoryInFinder:@(YES), TPSIncludeBuildSettingInfoComments:@(YES)};
+    NSDictionary *defaults = @{
+        TPSOpenDirectoryInFinder:@(YES),
+        TPSIncludeBuildSettingInfoComments:@(YES),
+        TPSOutputFileNameProject:@"Project",
+        TPSOutputFileNameShared:@"Shared",
+        TPSOutputFileNameSeparator:@"-",
+    };
     [[NSUserDefaults standardUserDefaults] registerDefaults:defaults];
 }
 

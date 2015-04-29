@@ -24,8 +24,10 @@ static NSString * const XcodeCompatibilityVersionString = @"Xcode 3.2";
 - (instancetype)init {
     self = [super init];
     if (self) {
-        _sharedConfigName = @"Shared";
-        _projectConfigName = @"Project";
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        _sharedConfigName = [defaults stringForKey:TPSOutputFileNameShared];
+        _projectConfigName = [defaults stringForKey:TPSOutputFileNameProject];
+        _nameSeparator = [defaults stringForKey:TPSOutputFileNameSeparator];
         _buildSettingsByTarget = [[NSMutableDictionary alloc] init];
         _buildSettingInfoSource = [[BuildSettingInfoSource alloc] init];
     }
@@ -150,7 +152,8 @@ static NSString * const XcodeCompatibilityVersionString = @"Xcode 3.2";
 
 // Given the target name and config name returns the xcconfig filename to be used.
 - (NSString *)configFilenameWithTargetName:(NSString *)targetName configName:(NSString *)configName {
-    return [NSString stringWithFormat:@"%@-%@.xcconfig", targetName, configName];
+    NSString *separator = configName.length ? self.nameSeparator: @"";
+    return [NSString stringWithFormat:@"%@%@%@.xcconfig", targetName, separator, configName];
 }
 
 // Given the filename generate the header comment

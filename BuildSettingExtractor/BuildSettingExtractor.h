@@ -17,6 +17,9 @@
 // The name that will be used to name the project configuration. Default is "Project".
 @property (copy) NSString *projectConfigName;
 
+// The string that will separate filename components. Default is  "-" hyphen-case.
+@property (copy) NSString *nameSeparator;
+
 // Should each build setting be commented with title and description, if available. 
 @property (assign) BOOL includeBuildSettingInfoComments;
 
