@@ -60,6 +60,10 @@
                 // Perform the extraction in the background.
                 dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0), ^{
                     BuildSettingExtractor *buildSettingExtractor = [[BuildSettingExtractor alloc] init];
+                    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+                    buildSettingExtractor.sharedConfigName = [defaults stringForKey:TPSOutputFileNameShared];
+                    buildSettingExtractor.projectConfigName = [defaults stringForKey:TPSOutputFileNameProject];
+                    buildSettingExtractor.nameSeparator = [defaults stringForKey:TPSOutputFileNameSeparator];
                     buildSettingExtractor.includeBuildSettingInfoComments = [[NSUserDefaults standardUserDefaults] boolForKey:TPSIncludeBuildSettingInfoComments];
 
                     [buildSettingExtractor extractBuildSettingsFromProject:fileURL toDestinationFolder:destinationURL];
@@ -148,9 +152,9 @@
     NSDictionary *defaults = @{
         TPSOpenDirectoryInFinder:@(YES),
         TPSIncludeBuildSettingInfoComments:@(YES),
-        TPSOutputFileNameProject:@"Project",
-        TPSOutputFileNameShared:@"Shared",
-        TPSOutputFileNameSeparator:@"-",
+        TPSOutputFileNameShared:BuildSettingExtractor.sharedConfigNameDefault,
+        TPSOutputFileNameProject:BuildSettingExtractor.projectConfigNameDefault,
+        TPSOutputFileNameSeparator:BuildSettingExtractor.nameSeparatorDefault,
     };
     [[NSUserDefaults standardUserDefaults] registerDefaults:defaults];
 }
