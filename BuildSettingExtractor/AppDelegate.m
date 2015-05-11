@@ -57,18 +57,15 @@
             if (result == NSModalResponseOK) {
                 NSURL *destinationURL = openPanel.URL;
 
-                // Perform the extraction in the background.
-                dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0), ^{
-                    BuildSettingExtractor *buildSettingExtractor = [[BuildSettingExtractor alloc] init];
-                    buildSettingExtractor.includeBuildSettingInfoComments = [[NSUserDefaults standardUserDefaults] boolForKey:TPSIncludeBuildSettingInfoComments];
+                BuildSettingExtractor *buildSettingExtractor = [[BuildSettingExtractor alloc] init];
+                buildSettingExtractor.includeBuildSettingInfoComments = [[NSUserDefaults standardUserDefaults] boolForKey:TPSIncludeBuildSettingInfoComments];
 
-                    [buildSettingExtractor extractBuildSettingsFromProject:fileURL toDestinationFolder:destinationURL];
+                [buildSettingExtractor extractBuildSettingsFromProject:fileURL toDestinationFolder:destinationURL];
 
-                    BOOL openInFinder = [[NSUserDefaults standardUserDefaults] boolForKey:TPSOpenDirectoryInFinder];
-                    if (openInFinder) {
-                        [[NSWorkspace sharedWorkspace] openURL:destinationURL];
-                    }
-                });
+                BOOL openInFinder = [[NSUserDefaults standardUserDefaults] boolForKey:TPSOpenDirectoryInFinder];
+                if (openInFinder) {
+                    [[NSWorkspace sharedWorkspace] openURL:destinationURL];
+                }
             }
         }];
     }
