@@ -51,6 +51,11 @@ These comments can be turned off in the Preferences sheet for a more compact fil
 
 ###Version History###
 
+*Version 1.1.1*  
+*May 12, 2015*
+
+– Fixed crash on Mavericks.  
+
 *Version 1.1*  
 *February 7, 2015*
 
