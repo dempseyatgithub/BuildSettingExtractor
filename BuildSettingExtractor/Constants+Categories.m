@@ -10,6 +10,9 @@
 
 NSString *const TPSOpenDirectoryInFinder = @"TPSOpenDirectoryInFinder";
 NSString *const TPSIncludeBuildSettingInfoComments = @"TPSIncludeBuildSettingInfoComments";
+NSString *const TPSOutputFileNameProject = @"TPSOutputFileNameProject";
+NSString *const TPSOutputFileNameShared = @"TPSOutputFileNameShared";
+NSString *const TPSOutputFileNameSeparator = @"TPSOutputFileNameSeparator";
 
 #pragma mark -
 
