@@ -51,6 +51,11 @@ These comments can be turned off in the Preferences sheet for a more compact fil
 
 ###Version History###
 
+*Version 1.2*  
+*May 16, 2015*
+
+– Added options for generated file names in Preferences. (Thank you [Alex Curylo](https://github.com/alexcurylo)!)
+
 *Version 1.1.1*  
 *May 12, 2015*
 
