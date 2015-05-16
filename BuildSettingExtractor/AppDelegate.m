@@ -154,9 +154,9 @@
     NSDictionary *defaults = @{
         TPSOpenDirectoryInFinder:@(YES),
         TPSIncludeBuildSettingInfoComments:@(YES),
-        TPSOutputFileNameShared:BuildSettingExtractor.sharedConfigNameDefault,
-        TPSOutputFileNameProject:BuildSettingExtractor.projectConfigNameDefault,
-        TPSOutputFileNameSeparator:BuildSettingExtractor.nameSeparatorDefault,
+        TPSOutputFileNameShared:BuildSettingExtractor.defaultSharedConfigName,
+        TPSOutputFileNameProject:BuildSettingExtractor.defaultProjectConfigName,
+        TPSOutputFileNameSeparator:BuildSettingExtractor.defaultNameSeparator,
     };
     [[NSUserDefaults standardUserDefaults] registerDefaults:defaults];
 }

@@ -21,24 +21,24 @@ static NSString * const XcodeCompatibilityVersionString = @"Xcode 3.2";
 
 @implementation BuildSettingExtractor
 
-+ (NSString *)sharedConfigNameDefault {
++ (NSString *)defaultSharedConfigName {
     return @"Shared";
 }
 
-+ (NSString *)projectConfigNameDefault {
++ (NSString *)defaultProjectConfigName {
     return @"Project";
 }
 
-+ (NSString *)nameSeparatorDefault {
++ (NSString *)defaultNameSeparator {
     return @"-";
 }
 
 - (instancetype)init {
     self = [super init];
     if (self) {
-        _sharedConfigName = BuildSettingExtractor.sharedConfigNameDefault;
-        _projectConfigName = BuildSettingExtractor.projectConfigNameDefault;
-        _nameSeparator = BuildSettingExtractor.nameSeparatorDefault;
+        _sharedConfigName = [[self class] defaultSharedConfigName];
+        _projectConfigName = [[self class] defaultProjectConfigName];
+        _nameSeparator = [[self class] defaultNameSeparator];
         _buildSettingsByTarget = [[NSMutableDictionary alloc] init];
         _buildSettingInfoSource = [[BuildSettingInfoSource alloc] init];
     }
