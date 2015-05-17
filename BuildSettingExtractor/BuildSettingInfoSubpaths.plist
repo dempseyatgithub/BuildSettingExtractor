@@ -4,22 +4,55 @@
 <dict>
 	<key>subpaths</key>
 	<array>
-		<string>Contents/PlugIns/Xcode3Core.ideplugin/Contents/Frameworks/DevToolsCore.framework/Versions/Current/Resources/English.lproj/CoreBuildSystem.strings</string>
-		<string>Contents/PlugIns/Xcode3Core.ideplugin/Contents/SharedSupport/Developer/Library/Xcode/Plug-ins/Clang LLVM 1.0.xcplugin/Contents/Resources/English.lproj/Apple LLVM 6.0.strings</string>
-		<string>Contents/PlugIns/Xcode3Core.ideplugin/Contents/SharedSupport/Developer/Library/Xcode/Plug-ins/XCLanguageSupport.xcplugin/Contents/Resources/en.lproj/Swift Compiler.strings</string>
-		<string>Contents/PlugIns/Xcode3Core.ideplugin/Contents/SharedSupport/Developer/Library/Xcode/Plug-ins/XCLanguageSupport.xcplugin/Contents/Resources/SwiftBuildSettings.strings</string>
-		<string>Contents/PlugIns/Xcode3Core.ideplugin/Contents/SharedSupport/Developer/Library/Xcode/Plug-ins/Metal.xcplugin/Contents/Resources/Metal Compiler.strings</string>
-		<string>Contents/PlugIns/Xcode3Core.ideplugin/Contents/SharedSupport/Developer/Library/Xcode/Plug-ins/Core Data.xcplugin/Contents/Resources/English.lproj/com.apple.compilers.model.coredata.strings</string>
-		<string>Contents/PlugIns/Xcode3Core.ideplugin/Contents/SharedSupport/Developer/Library/Xcode/Plug-ins/Core Data.xcplugin/Contents/Resources/English.lproj/com.apple.compilers.model.coredatamapping.strings</string>
-		<string>Contents/PlugIns/Xcode3Core.ideplugin/Contents/SharedSupport/Developer/Library/Xcode/Plug-ins/Core Data.xcplugin/Contents/Resources/English.lproj/com.apple.compilers.model.persistence.strings</string>
-		<string>Contents/PlugIns/Xcode3Core.ideplugin/Contents/SharedSupport/Developer/Library/Xcode/Plug-ins/IBCompilerPlugin.xcplugin/Contents/Resources/English.lproj/com.apple.compilers.assetcatalog.strings</string>
-		<string>Contents/PlugIns/Xcode3Core.ideplugin/Contents/SharedSupport/Developer/Library/Xcode/Plug-ins/IBCompilerPlugin.xcplugin/Contents/Resources/English.lproj/com.apple.xcode.tools.ibtool.compiler.strings</string>
-		<string>Contents/PlugIns/Xcode3Core.ideplugin/Contents/SharedSupport/Developer/Library/Xcode/Plug-ins/IBCompilerPlugin.xcplugin/Contents/Resources/English.lproj/com.apple.xcode.tools.ibtool.postprocessor.strings</string>
-		<string>Contents/PlugIns/Xcode3Core.ideplugin/Contents/SharedSupport/Developer/Library/Xcode/Plug-ins/IBCompilerPlugin.xcplugin/Contents/Resources/English.lproj/Interface Builder Storyboard Compiler.strings</string>
-		<string>Contents/PlugIns/Xcode3Core.ideplugin/Contents/SharedSupport/Developer/Library/Xcode/Plug-ins/IBCompilerPlugin.xcplugin/Contents/Resources/English.lproj/Interface Builder Storyboard Postprocessor.strings</string>
-		<string>Contents/Developer/Platforms/iPhoneOS.platform/Developer/Library/Xcode/Specifications/English.lproj/Native Build System.strings</string>
-		<string>Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Xcode/Specifications/Native Build System.strings</string>
-		<string>Contents/PlugIns/Xcode3Core.ideplugin/Contents/SharedSupport/Developer/Library/Xcode/Plug-ins/CoreBuildTasks.xcplugin/Contents/Resources/en.lproj/OpenCL.strings</string>
+		<array>
+			<string>Contents/PlugIns/Xcode3Core.ideplugin/Contents/Frameworks/DevToolsCore.framework/Versions/Current/Resources/English.lproj/CoreBuildSystem.strings</string>
+		</array>
+		<array>
+			<string>Contents/PlugIns/Xcode3Core.ideplugin/Contents/SharedSupport/Developer/Library/Xcode/Plug-ins/Clang LLVM 1.0.xcplugin/Contents/Resources/English.lproj/Apple LLVM 6.0.strings</string>
+			<string>Contents/PlugIns/Xcode3Core.ideplugin/Contents/SharedSupport/Developer/Library/Xcode/Plug-ins/Clang LLVM 1.0.xcplugin/Contents/Resources/English.lproj/Apple LLVM 6.1.strings</string>
+		</array>
+		<array>
+			<string>Contents/PlugIns/Xcode3Core.ideplugin/Contents/SharedSupport/Developer/Library/Xcode/Plug-ins/XCLanguageSupport.xcplugin/Contents/Resources/en.lproj/Swift Compiler.strings</string>
+		</array>
+		<array>
+			<string>Contents/PlugIns/Xcode3Core.ideplugin/Contents/SharedSupport/Developer/Library/Xcode/Plug-ins/XCLanguageSupport.xcplugin/Contents/Resources/SwiftBuildSettings.strings</string>
+		</array>
+		<array>
+			<string>Contents/PlugIns/Xcode3Core.ideplugin/Contents/SharedSupport/Developer/Library/Xcode/Plug-ins/Metal.xcplugin/Contents/Resources/Metal Compiler.strings</string>
+		</array>
+		<array>
+			<string>Contents/PlugIns/Xcode3Core.ideplugin/Contents/SharedSupport/Developer/Library/Xcode/Plug-ins/Core Data.xcplugin/Contents/Resources/English.lproj/com.apple.compilers.model.coredata.strings</string>
+		</array>
+		<array>
+			<string>Contents/PlugIns/Xcode3Core.ideplugin/Contents/SharedSupport/Developer/Library/Xcode/Plug-ins/Core Data.xcplugin/Contents/Resources/English.lproj/com.apple.compilers.model.coredatamapping.strings</string>
+		</array>
+		<array>
+			<string>Contents/PlugIns/Xcode3Core.ideplugin/Contents/SharedSupport/Developer/Library/Xcode/Plug-ins/Core Data.xcplugin/Contents/Resources/English.lproj/com.apple.compilers.model.persistence.strings</string>
+		</array>
+		<array>
+			<string>Contents/PlugIns/Xcode3Core.ideplugin/Contents/SharedSupport/Developer/Library/Xcode/Plug-ins/IBCompilerPlugin.xcplugin/Contents/Resources/English.lproj/com.apple.compilers.assetcatalog.strings</string>
+		</array>
+		<array>
+			<string>Contents/PlugIns/Xcode3Core.ideplugin/Contents/SharedSupport/Developer/Library/Xcode/Plug-ins/IBCompilerPlugin.xcplugin/Contents/Resources/English.lproj/com.apple.xcode.tools.ibtool.compiler.strings</string>
+		</array>
+		<array>
+			<string>Contents/PlugIns/Xcode3Core.ideplugin/Contents/SharedSupport/Developer/Library/Xcode/Plug-ins/IBCompilerPlugin.xcplugin/Contents/Resources/English.lproj/com.apple.xcode.tools.ibtool.postprocessor.strings</string>
+		</array>
+		<array>
+			<string>Contents/PlugIns/Xcode3Core.ideplugin/Contents/SharedSupport/Developer/Library/Xcode/Plug-ins/IBCompilerPlugin.xcplugin/Contents/Resources/English.lproj/Interface Builder Storyboard Compiler.strings</string>
+		</array>
+		<array>
+			<string>Contents/PlugIns/Xcode3Core.ideplugin/Contents/SharedSupport/Developer/Library/Xcode/Plug-ins/IBCompilerPlugin.xcplugin/Contents/Resources/English.lproj/Interface Builder Storyboard Postprocessor.strings</string>
+		</array>
+		<array>
+			<string>Contents/Developer/Platforms/iPhoneOS.platform/Developer/Library/Xcode/Specifications/English.lproj/Native Build System.strings</string>
+		</array>
+		<array>
+			<string>Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Xcode/Specifications/Native Build System.strings</string>
+		</array>
+		<array>
+			<string>Contents/PlugIns/Xcode3Core.ideplugin/Contents/SharedSupport/Developer/Library/Xcode/Plug-ins/CoreBuildTasks.xcplugin/Contents/Resources/en.lproj/OpenCL.strings</string>
+		</array>
 	</array>
 	<key>backstopSettingInfo</key>
 	<dict>

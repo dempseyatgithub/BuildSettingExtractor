@@ -51,6 +51,11 @@ These comments can be turned off in the Preferences sheet for a more compact fil
 
 ###Version History###
 
+*Version 1.2.1*  
+*May 16, 2015*
+
+– Updated list of build setting description files to include new LLDB 6.1 file.
+
 *Version 1.2*  
 *May 16, 2015*
 

@@ -127,7 +127,6 @@
     return processedString;
 }
 
-
 - (void)loadBuildSettingInfo {
     NSString *defaultXcodePath = @"/Applications/Xcode.app";
     NSURL *buildSettingInfoPlistURL = [[NSBundle mainBundle] URLForResource:@"BuildSettingInfoSubpaths" withExtension:@"plist"];
@@ -140,13 +139,29 @@
     NSDictionary *backstopSettingsInfo = buildSettingInfoDict[@"backstopSettingInfo"];
     [infoStringFile addEntriesFromDictionary:backstopSettingsInfo];
 
-    for (NSString *subpath in buildSettingInfoSubpaths) {
-        NSString *fullpath = [defaultXcodePath stringByAppendingPathComponent:subpath];
-        NSDictionary *dictionary = [NSDictionary dictionaryWithContentsOfFile:fullpath];
-        if (!dictionary) NSLog(@"Could not read dictionary at path: %@", fullpath);
-        [infoStringFile addEntriesFromDictionary:dictionary];
+    // Rather than track exactly what Xcode versions contain which files, group versions of an expected file in an array.
+    // Log if no file in the group can be read in.
+    for (NSArray *buildSettingInfoSubpathList in buildSettingInfoSubpaths) {
+        BOOL foundOne = NO;
+        for (NSString *subpath in buildSettingInfoSubpathList) {
+            NSString *fullpath = [defaultXcodePath stringByAppendingPathComponent:subpath];
+            NSDictionary *dictionary = [NSDictionary dictionaryWithContentsOfFile:fullpath];
+            [infoStringFile addEntriesFromDictionary:dictionary];
+            if (dictionary || foundOne) {
+                foundOne = YES;
+            }
+        }
+        if (!foundOne) {
+            if (buildSettingInfoSubpathList.count == 0) {
+                NSLog(@"Empty array of subpaths at index %lu", [buildSettingInfoSubpaths indexOfObject:buildSettingInfoSubpathList]);
+            } else if (buildSettingInfoSubpathList.count == 1) {
+                NSLog(@"Could not read settings strings at path: %@", buildSettingInfoSubpathList[0]);
+            } else {
+                NSLog(@"Could not read settings strings at these paths: %@", buildSettingInfoSubpathList);
+            }
+        }
     }
-    
+
     _buildSettingInfoDictionary = infoStringFile;
 }
 
