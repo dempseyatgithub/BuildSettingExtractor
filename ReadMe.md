@@ -54,7 +54,7 @@ These comments can be turned off in the Preferences sheet for a more compact fil
 *Version 1.2.2*  
 *May 25, 2015*
 
-– Added brand new app icon.
+– Added brand new app icon.  
 - Removed default Credits.rtf file.
 
 *Version 1.2.1*  
