@@ -206,10 +206,10 @@ static NSString * const XcodeCompatibilityVersionString = @"Xcode 3.2";
         }
 
         if ([value isKindOfClass:[NSString class]]) {
-            [string appendFormat:@"%@ = %@\r", key, value];
+            [string appendFormat:@"%@ = %@\n", key, value];
 
         } else if ([value isKindOfClass:[NSArray class]]) {
-            [string appendFormat:@"%@ = %@\r", key, [value componentsJoinedByString:@" "]];
+            [string appendFormat:@"%@ = %@\n", key, [value componentsJoinedByString:@" "]];
         } else {
             [NSException raise:@"Should not get here!" format:@"Unexpected class: %@ in %s", [value class], __PRETTY_FUNCTION__];
         }
