@@ -51,6 +51,12 @@ These comments can be turned off in the Preferences sheet for a more compact fil
 
 ###Version History###
 
+*Version 1.2.3*  
+*Nov 9, 2015*
+  
+– Updated list of build setting description files to include new LLDB 7.0 file.
+- No longer inexplicably using return instead of newline character in two spots.
+
 *Version 1.2.2*  
 *May 25, 2015*
 
