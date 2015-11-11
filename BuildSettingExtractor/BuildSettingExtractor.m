@@ -97,17 +97,32 @@ static NSString * const XcodeCompatibilityVersionString = @"Xcode 3.2";
             // Get project targets
             NSArray *targets = [self objectArrayForDictionary:rootObject key:@"targets"];
 
+            NSError *nameCollisionError = nil;
+
             // Add project targets
             for (NSDictionary *target in targets) {
                 NSString *targetName = target[@"name"];
-                buildConfigurationListID = target[@"buildConfigurationList"];
-                NSDictionary *targetSettings = [self buildSettingStringsByConfigurationForBuildConfigurationListID:buildConfigurationListID];
 
-                self.buildSettingsByTarget[targetName] = targetSettings;
+                if ([targetName isEqualToString:self.projectConfigName]) {
+                    NSString *description = [NSString stringWithFormat:@"Target named \"%@\" shares its name with the Project output file setting. Either this Target's or the Project's xcconfig files would be overwritten, so none of the files were written. Resolve this collision by changing the project name in Preferences.", targetName];
+                    NSDictionary *errorUserInfo = @{NSLocalizedDescriptionKey:@"Name Collision", NSLocalizedRecoverySuggestionErrorKey: description};
+                    nameCollisionError = [NSError errorWithDomain:[[NSBundle mainBundle] bundleIdentifier] code:NameCollisionDetected userInfo:errorUserInfo];
+                    break;
+                } else {
+                    buildConfigurationListID = target[@"buildConfigurationList"];
+                    NSDictionary *targetSettings = [self buildSettingStringsByConfigurationForBuildConfigurationListID:buildConfigurationListID];
 
+                    self.buildSettingsByTarget[targetName] = targetSettings;
+                }
             }
-            
-            [self writeConfigFilesToDestinationFolder:folderURL];
+
+            if (nameCollisionError) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [NSApp presentError:nameCollisionError];
+                });
+            } else {
+                [self writeConfigFilesToDestinationFolder:folderURL];
+            }
         }
     }
 }
