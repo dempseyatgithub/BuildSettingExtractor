@@ -196,6 +196,10 @@ static NSString * const XcodeCompatibilityVersionString = @"Xcode 3.2";
     // Sort build settings by name for easier reading and testing. Case insensitive compare should stay stable regardess of locale.
     NSArray *sortedKeys = [[buildSettings allKeys] sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
 
+    NSUInteger maxKeyLen = 8;
+    for (NSString* key in sortedKeys)
+        maxKeyLen = MAX(maxKeyLen, key.length);
+
     BOOL firstKey = YES;
     for (NSString *key in sortedKeys) {
         id value = buildSettings[key];
@@ -210,11 +214,14 @@ static NSString * const XcodeCompatibilityVersionString = @"Xcode 3.2";
             }
         }
 
-        if ([value isKindOfClass:[NSString class]]) {
-            [string appendFormat:@"%@ = %@\n", key, value];
+        [string appendString: key];
+        for (NSUInteger len = key.length; len < maxKeyLen; len++)
+            [string appendString: @" "];
 
+        if ([value isKindOfClass:[NSString class]]) {
+            [string appendFormat:@" = %@\n", value];
         } else if ([value isKindOfClass:[NSArray class]]) {
-            [string appendFormat:@"%@ = %@\n", key, [value componentsJoinedByString:@" "]];
+            [string appendFormat:@" = %@\n", [value componentsJoinedByString:@" "]];
         } else {
             [NSException raise:@"Should not get here!" format:@"Unexpected class: %@ in %s", [value class], __PRETTY_FUNCTION__];
         }
