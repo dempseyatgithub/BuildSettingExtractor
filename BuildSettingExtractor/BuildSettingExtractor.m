@@ -69,7 +69,7 @@ static NSString * const XcodeCompatibilityVersionString = @"Xcode 3.2";
         [NSApp presentError:error];
     } else {
 
-        NSDictionary *projectPlist = [NSPropertyListSerialization propertyListWithData:fileData options:kCFPropertyListImmutable format:NULL error:&error];
+        NSDictionary *projectPlist = [NSPropertyListSerialization propertyListWithData:fileData options:NSPropertyListImmutable format:NULL error:&error];
 
         if (!projectPlist) {
             [NSApp presentError:error];
@@ -133,6 +133,7 @@ static NSString * const XcodeCompatibilityVersionString = @"Xcode 3.2";
             // If the config name is not the shared config, we need to import the shared config
             if (![configName isEqualToString:self.sharedConfigName]) {
                 NSString *configFilename = [self configFilenameWithTargetName:targetName configName:self.sharedConfigName];
+                configFilename = configFilename.lastPathComponent;  // in case separator is "/"
                 NSString *includeDirective = [NSString stringWithFormat:@"\n\n#include \"%@\"", configFilename];
                 configFileString = [configFileString stringByAppendingString:includeDirective];
             }
@@ -154,7 +155,11 @@ static NSString * const XcodeCompatibilityVersionString = @"Xcode 3.2";
 
 
             NSURL *fileURL = [destinationURL URLByAppendingPathComponent:filename];
-
+            if ([filename containsString: @"/"]) {
+                [[NSFileManager defaultManager] createDirectoryAtURL: fileURL.URLByDeletingLastPathComponent
+                                         withIntermediateDirectories: NO attributes: nil error: nil];
+            }
+            
             BOOL success = [configFileString writeToURL:fileURL atomically:YES encoding:NSUTF8StringEncoding error:nil];
             if (!success) NSLog(@"No success with %@", fileURL);
         }];
