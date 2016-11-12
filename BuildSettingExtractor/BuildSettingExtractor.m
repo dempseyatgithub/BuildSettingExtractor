@@ -69,7 +69,7 @@ static NSString * const XcodeCompatibilityVersionString = @"Xcode 3.2";
         [NSApp presentError:error];
     } else {
 
-        NSDictionary *projectPlist = [NSPropertyListSerialization propertyListWithData:fileData options:kCFPropertyListImmutable format:NULL error:&error];
+        NSDictionary *projectPlist = [NSPropertyListSerialization propertyListWithData:fileData options:NSPropertyListImmutable format:NULL error:&error];
 
         if (!projectPlist) {
             [NSApp presentError:error];
