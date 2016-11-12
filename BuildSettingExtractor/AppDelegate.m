@@ -68,10 +68,10 @@
                     buildSettingExtractor.nameSeparator = [defaults stringForKey:TPSOutputFileNameSeparator];
                     buildSettingExtractor.includeBuildSettingInfoComments = [[NSUserDefaults standardUserDefaults] boolForKey:TPSIncludeBuildSettingInfoComments];
 
-                    [buildSettingExtractor extractBuildSettingsFromProject:fileURL toDestinationFolder:destinationURL];
+                    BOOL success = [buildSettingExtractor extractBuildSettingsFromProject:fileURL toDestinationFolder:destinationURL];
 
                     BOOL openInFinder = [[NSUserDefaults standardUserDefaults] boolForKey:TPSOpenDirectoryInFinder];
-                    if (openInFinder) {
+                    if (success && openInFinder) {
                         [[NSWorkspace sharedWorkspace] openURL:destinationURL];
                     }
                 });

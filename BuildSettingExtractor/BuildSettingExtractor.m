@@ -56,16 +56,18 @@ static NSString * const XcodeCompatibilityVersionString = @"Xcode 3.2";
     return objectArray;
 }
 
-- (void)extractBuildSettingsFromProject:(NSURL *)projectWrapperURL toDestinationFolder:(NSURL *)folderURL {
+- (BOOL)extractBuildSettingsFromProject:(NSURL *)projectWrapperURL toDestinationFolder:(NSURL *)folderURL {
 
     [self.buildSettingsByTarget removeAllObjects];
 
     NSError *error = nil;
+    BOOL success = YES;
 
     NSURL *projectFileURL = [projectWrapperURL URLByAppendingPathComponent:@"project.pbxproj"];
 
     NSData *fileData = [NSData dataWithContentsOfURL:projectFileURL options:0 error:&error];
     if (!fileData) {
+        success = NO;
         dispatch_async(dispatch_get_main_queue(), ^{
             [NSApp presentError:error];
         });
@@ -74,6 +76,7 @@ static NSString * const XcodeCompatibilityVersionString = @"Xcode 3.2";
         NSDictionary *projectPlist = [NSPropertyListSerialization propertyListWithData:fileData options:NSPropertyListImmutable format:NULL error:&error];
 
         if (!projectPlist) {
+            success = NO;
             dispatch_async(dispatch_get_main_queue(), ^{
                 [NSApp presentError:error];
             });
@@ -88,10 +91,11 @@ static NSString * const XcodeCompatibilityVersionString = @"Xcode 3.2";
             if (![compatibilityVersion isEqualToString:XcodeCompatibilityVersionString]) {
                 NSDictionary *userInfo = @{NSLocalizedDescriptionKey:[NSString stringWithFormat:@"Unable to extract build settings from project ‘%@’.", [[projectWrapperURL lastPathComponent] stringByDeletingPathExtension]], NSLocalizedRecoverySuggestionErrorKey: [NSString stringWithFormat:@"Project file format version ‘%@’ is not supported.", compatibilityVersion]};
                 NSError *error = [NSError errorWithDomain:[[NSBundle mainBundle] bundleIdentifier] code:UnsupportedXcodeVersion userInfo:userInfo];
+                success = NO;
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [NSApp presentError:error];
                 });
-                return;
+                return success;
             }
 
             // Get project settings
@@ -116,6 +120,7 @@ static NSString * const XcodeCompatibilityVersionString = @"Xcode 3.2";
             [self writeConfigFilesToDestinationFolder:folderURL];
         }
     }
+    return success;
 }
 
 

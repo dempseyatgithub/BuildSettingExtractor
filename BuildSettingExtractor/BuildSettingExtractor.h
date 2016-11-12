@@ -44,6 +44,7 @@
 // Should each build setting be commented with title and description, if available. 
 @property (assign) BOOL includeBuildSettingInfoComments;
 
-- (void)extractBuildSettingsFromProject:(NSURL *)projectWrapperURL toDestinationFolder:(NSURL *)folderURL;
+// Returns whether extraction of build settings was successful
+- (BOOL)extractBuildSettingsFromProject:(NSURL *)projectWrapperURL toDestinationFolder:(NSURL *)folderURL;
 
 @end
