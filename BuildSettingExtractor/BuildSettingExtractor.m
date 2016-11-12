@@ -66,13 +66,17 @@ static NSString * const XcodeCompatibilityVersionString = @"Xcode 3.2";
 
     NSData *fileData = [NSData dataWithContentsOfURL:projectFileURL options:0 error:&error];
     if (!fileData) {
-        [NSApp presentError:error];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [NSApp presentError:error];
+        });
     } else {
 
         NSDictionary *projectPlist = [NSPropertyListSerialization propertyListWithData:fileData options:NSPropertyListImmutable format:NULL error:&error];
 
         if (!projectPlist) {
-            [NSApp presentError:error];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [NSApp presentError:error];
+            });
         } else {
 
             // Get root object (project)
@@ -84,7 +88,9 @@ static NSString * const XcodeCompatibilityVersionString = @"Xcode 3.2";
             if (![compatibilityVersion isEqualToString:XcodeCompatibilityVersionString]) {
                 NSDictionary *userInfo = @{NSLocalizedDescriptionKey:[NSString stringWithFormat:@"Unable to extract build settings from project ‘%@’.", [[projectWrapperURL lastPathComponent] stringByDeletingPathExtension]], NSLocalizedRecoverySuggestionErrorKey: [NSString stringWithFormat:@"Project file format version ‘%@’ is not supported.", compatibilityVersion]};
                 NSError *error = [NSError errorWithDomain:[[NSBundle mainBundle] bundleIdentifier] code:UnsupportedXcodeVersion userInfo:userInfo];
-                [NSApp presentError:error];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [NSApp presentError:error];
+                });
                 return;
             }
 
