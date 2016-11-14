@@ -10,7 +10,14 @@
 #import "BuildSettingInfoSource.h"
 #import "Constants+Categories.h"
 
-static NSString * const XcodeCompatibilityVersionString = @"Xcode 3.2";
+static NSSet *XcodeCompatibilityVersionStringSet() {
+    static NSSet *_compatibilityVersionStringSet;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        _compatibilityVersionStringSet = [NSSet setWithObjects:@"Xcode 3.2", @"Xcode 6.3", @"Xcode 8.0", nil];
+    });
+    return _compatibilityVersionStringSet;
+}
 
 @interface BuildSettingExtractor ()
 @property (strong) NSMutableDictionary *buildSettingsByTarget;
@@ -88,7 +95,7 @@ static NSString * const XcodeCompatibilityVersionString = @"Xcode 3.2";
 
             // Check compatibility version
             NSString *compatibilityVersion = rootObject[@"compatibilityVersion"];
-            if (![compatibilityVersion isEqualToString:XcodeCompatibilityVersionString]) {
+            if (![XcodeCompatibilityVersionStringSet() containsObject:compatibilityVersion]) {
                 NSDictionary *userInfo = @{NSLocalizedDescriptionKey:[NSString stringWithFormat:@"Unable to extract build settings from project ‘%@’.", [[projectWrapperURL lastPathComponent] stringByDeletingPathExtension]], NSLocalizedRecoverySuggestionErrorKey: [NSString stringWithFormat:@"Project file format version ‘%@’ is not supported.", compatibilityVersion]};
                 NSError *error = [NSError errorWithDomain:[[NSBundle mainBundle] bundleIdentifier] code:UnsupportedXcodeVersion userInfo:userInfo];
                 success = NO;
