@@ -56,7 +56,7 @@ These comments can be turned off in the Preferences sheet for a more compact fil
 
 – Updated list of build setting description files to include LLDB 7.1 file.  
 – Updated list of build setting description files to include LLDB 8.0 file.  
-- Added support for reading build setting descriptions from xcspec files.  
+– Added support for reading build setting descriptions from xcspec files.  
 – Updated to extract builds settings from Xcode 6.3-compatible project files.  
 – Updated to extract builds settings from Xcode 8.0-compatible project files.
 
