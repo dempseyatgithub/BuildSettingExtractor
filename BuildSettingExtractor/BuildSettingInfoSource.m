@@ -56,7 +56,7 @@
 
     NSString *processedKey = [key tps_baseBuildSettingName]; // strip any conditional part of build setting
 
-    processedKey = [NSString stringWithFormat:@"[%@]-name", processedKey];
+    processedKey = [self displayNameKeyForSetting:processedKey];
     return self.buildSettingInfoDictionary[processedKey];
 }
 
@@ -67,7 +67,7 @@
 
     NSString *processedKey = [key tps_baseBuildSettingName]; // strip any conditional part of build setting
 
-    processedKey = [NSString stringWithFormat:@"[%@]-description", processedKey];
+    processedKey = [self descriptionKeyForSetting:processedKey];
     return self.buildSettingInfoDictionary[processedKey];
 }
 
@@ -144,9 +144,17 @@
     for (NSArray *buildSettingInfoSubpathList in buildSettingInfoSubpaths) {
         BOOL foundOne = NO;
         for (NSString *subpath in buildSettingInfoSubpathList) {
+            NSString *pathExtension = [subpath pathExtension];
             NSString *fullpath = [defaultXcodePath stringByAppendingPathComponent:subpath];
-            NSDictionary *dictionary = [NSDictionary dictionaryWithContentsOfFile:fullpath];
-            [infoStringFile addEntriesFromDictionary:dictionary];
+            NSDictionary *dictionary = nil;
+            if ([pathExtension isEqualToString:@"strings"]) {
+                dictionary = [NSDictionary dictionaryWithContentsOfFile:fullpath];
+            } else if ([pathExtension isEqualToString:@"xcspec"]) {
+                dictionary = [self xcspecFileBuildSettingInfoForPath:fullpath];
+            }
+            if (dictionary) {
+                [infoStringFile addEntriesFromDictionary:dictionary];
+            }
             if (dictionary || foundOne) {
                 foundOne = YES;
             }
@@ -165,5 +173,52 @@
     _buildSettingInfoDictionary = infoStringFile;
 }
 
+- (NSDictionary *)xcspecFileBuildSettingInfoForPath:(NSString *)path {
+    NSURL *fileURL = [NSURL fileURLWithPath:path];
+    NSMutableDictionary *buildSettingInfo = [NSMutableDictionary dictionary];
+    NSError *error = nil;
+    NSData *plistData = [[NSData alloc] initWithContentsOfURL:fileURL];
+    id plist = [NSPropertyListSerialization propertyListWithData:plistData options:NSPropertyListImmutable format:nil error:&error];
+    if ([plist isKindOfClass:[NSArray class]]) {
+        NSArray *specs = (NSArray *)plist;
+        for (id spec in specs) {
+            if ([spec isKindOfClass:[NSDictionary class]]) {
+                NSDictionary *specDict = (NSDictionary *)spec;
+                NSString *specType = specDict[@"Type"];
+                if ([specType isEqualToString:@"BuildSystem"]) {
+                    
+                    id options = specDict[@"Options"];
+                    if (!options) options = specDict[@"Properties"];
+                    
+                    if ([options isKindOfClass:[NSArray class]]) {
+                        for (id option in options) {
+                            if ([option isKindOfClass:[NSDictionary class]]) {
+                                NSString *name = option[@"Name"];
+                                NSString *desc = option[@"Description"];
+                                NSString *displayName = option[@"DisplayName"];
+                                
+                                if (name && desc && displayName) {
+                                    [buildSettingInfo setValue:displayName forKey:[self displayNameKeyForSetting:name]];
+                                    [buildSettingInfo setValue:desc forKey:[self descriptionKeyForSetting:name]];
+                                }
+                            }
+                        }
+                    }
+                }
+                
+            }
+        }
+    }
+    
+    return buildSettingInfo;
+}
+
+- (NSString *)displayNameKeyForSetting:(NSString *)settingName {
+    return [NSString stringWithFormat:@"[%@]-name", settingName];
+}
+
+- (NSString *)descriptionKeyForSetting:(NSString *)settingName {
+    return [NSString stringWithFormat:@"[%@]-description", settingName];
+}
 
 @end
