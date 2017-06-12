@@ -15,14 +15,14 @@ Using the app:
 
 Choose Preferences… (Command-,) from the BuildSettingExtractor menu to set generation options.
 
-###Notes###
+### Notes ###
 
 - BuildSettingExtractor does not alter the original Xcode project file.
 - BuildSettingExtractor does not update existing xcconfig files, it does a one-time extraction.
 - BuildSettingExtractor does not hoist shared target build settings to the project level.
 - Do not taunt BuildSettingExtractor.
 
-###Generated Files###
+### Generated Files ###
 
 The generated xcconfig files include build setting explanations gleaned from Xcode:
  
@@ -49,7 +49,14 @@ These comments can be turned off in the Preferences sheet for a more compact fil
 	FRAMEWORK_SEARCH_PATHS = $(DEVELOPER_FRAMEWORKS_DIR) $(inherited)
 	INFOPLIST_FILE = BuildSettingExtractorTests/BuildSettingExtractorTests-Info.plist
 
-###Version History###
+### Version History ###
+
+*Version 1.2.5*  
+*Jun 12, 2017*
+
+– Updated list of build setting description files to include LLDB 8.1 file.  
+– Updated list of build setting description files to include LLDB 9.0 file.  
+– Fixed incorrect Markdown in the ReadMe file.  
 
 *Version 1.2.4*  
 *Nov 14, 2016*
