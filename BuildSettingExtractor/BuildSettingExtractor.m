@@ -104,15 +104,19 @@ static NSSet *XcodeCompatibilityVersionStringSet() {
                 });
                 return success;
             }
+            
+            // Get project targets
+            NSArray *targets = [self objectArrayForDictionary:rootObject key:@"targets"];
+            
+            // Validate project config name to guard against name conflicts with target names
+            NSArray *targetNames = [targets valueForKeyPath:@"name"];
+            NSString *validatedProjectConfigName = [self validatedProjectConfigNameWithTargetNames:targetNames];
 
             // Get project settings
             NSString *buildConfigurationListID = rootObject[@"buildConfigurationList"];
             NSDictionary *projectSettings = [self buildSettingStringsByConfigurationForBuildConfigurationListID:buildConfigurationListID];
 
-            self.buildSettingsByTarget[self.projectConfigName] = projectSettings;
-
-            // Get project targets
-            NSArray *targets = [self objectArrayForDictionary:rootObject key:@"targets"];
+            self.buildSettingsByTarget[validatedProjectConfigName] = projectSettings;
 
             // Add project targets
             for (NSDictionary *target in targets) {
@@ -130,6 +134,31 @@ static NSSet *XcodeCompatibilityVersionStringSet() {
     return success;
 }
 
+// This will return a validated project config name to guard against naming conflicts with targets
+// If a conflict is found, the project config files will have "-Project-Settings" appended to the
+// provided project config name, using the user-specified name separator between words.
+- (NSString *)validatedProjectConfigNameWithTargetNames:(NSArray *)targetNames {
+    NSString *validatedProjectConfigName = self.projectConfigName;
+    if ([targetNames containsObject:self.projectConfigName]) {
+        validatedProjectConfigName = [validatedProjectConfigName stringByAppendingFormat:@"%@Project%@Settings", self.nameSeparator, self.nameSeparator];
+        [self presentErrorForNameConflictWithName:self.projectConfigName validatedName:validatedProjectConfigName];
+    }
+    return validatedProjectConfigName;
+}
+
+// Notify the user we are not using the exact name for the project settings provided in Preferences
+- (void)presentErrorForNameConflictWithName:(NSString *)conflictedName validatedName:(NSString *)validatedName {
+    NSString *errorDescription = [NSString stringWithFormat:@"Project settings filename conflict."];
+    NSString *errorRecoverySuggestion = [NSString stringWithFormat:@"The target \'%@\' has the same name as the project name set in Preferences.\n\nThe generated project settings files will use the name \'%@\' to avoid a conflict.", conflictedName, validatedName];
+    NSDictionary *errorUserInfo = @{NSLocalizedDescriptionKey:errorDescription, NSLocalizedRecoverySuggestionErrorKey: errorRecoverySuggestion};
+    
+    NSError *error = [NSError errorWithDomain:[[NSBundle mainBundle] bundleIdentifier] code:ProjectSettingsNamingConflict userInfo:errorUserInfo];
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [NSApp presentError:error];
+    });
+
+}
 
 /* Writes an xcconfig file for each target / configuration combination to the specified directory.
  */

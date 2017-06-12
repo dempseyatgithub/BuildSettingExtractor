@@ -11,6 +11,7 @@
 typedef NS_ENUM(NSUInteger, AppErrorCodes) {
     UnsupportedXcodeVersion = 100,
     DirectoryContainsBuildConfigFiles = 101,
+    ProjectSettingsNamingConflict = 102,
 };
 
 extern NSString *const TPSOpenDirectoryInFinder;
