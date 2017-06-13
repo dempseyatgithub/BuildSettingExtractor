@@ -52,8 +52,9 @@ These comments can be turned off in the Preferences sheet for a more compact fil
 ### Version History ###
 
 *Version 1.2.5*  
-*Jun 12, 2017*
+*Jun 13, 2017*
 
+– Resolve possible naming conflict between generated project and target files.  
 – Updated list of build setting description files to include LLDB 8.1 file.  
 – Updated list of build setting description files to include LLDB 9.0 file.  
 – Fixed incorrect Markdown in the ReadMe file.  
