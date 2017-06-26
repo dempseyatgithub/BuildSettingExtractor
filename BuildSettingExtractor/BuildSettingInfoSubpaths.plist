@@ -71,6 +71,9 @@
 		<array>
 			<string>Contents/Developer/Platforms/iPhoneOS.platform/Developer/Library/Xcode/PrivatePlugIns/IDEiOSPlatformSupportCore.ideplugin/Contents/Resources/Device.xcspec</string>
 		</array>
+		<array>
+			<string>Contents/PlugIns/Xcode3Core.ideplugin/Contents/SharedSupport/Developer/Library/Xcode/Plug-ins/XCLanguageSupport.xcplugin/Contents/Resources/Swift.xcspec</string>
+		</array>
 	</array>
 </dict>
 </plist>
