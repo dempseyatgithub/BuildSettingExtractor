@@ -185,7 +185,7 @@
             if ([spec isKindOfClass:[NSDictionary class]]) {
                 NSDictionary *specDict = (NSDictionary *)spec;
                 NSString *specType = specDict[@"Type"];
-                if ([specType isEqualToString:@"BuildSystem"]) {
+                if ([specType isEqualToString:@"BuildSystem"] || ([specType isEqualToString:@"Compiler"])) {
                     
                     id options = specDict[@"Options"];
                     if (!options) options = specDict[@"Properties"];
