@@ -682,11 +682,13 @@
                 </menuItem>
             </items>
         </menu>
-        <window title="Build Setting Extractor" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" frameAutosaveName="BuildSettingExtractor" animationBehavior="default" id="QvC-M9-y7g">
+        <window title="Build Setting Extractor" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" showsToolbarButton="NO" frameAutosaveName="BuildSettingExtractor" animationBehavior="default" tabbingMode="disallowed" id="QvC-M9-y7g">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
-            <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="335" y="390" width="436" height="210"/>
+            <windowCollectionBehavior key="collectionBehavior" fullScreenNone="YES"/>
+            <windowPositionMask key="initialPositionMask" topStrut="YES" bottomStrut="YES"/>
+            <rect key="contentRect" x="561" y="536" width="436" height="210"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
+            <value key="minSize" type="size" width="320" height="160"/>
             <view key="contentView" id="EiT-Mj-1SZ">
                 <rect key="frame" x="0.0" y="0.0" width="436" height="210"/>
                 <autoresizingMask key="autoresizingMask"/>
@@ -719,7 +721,7 @@
                     <constraint firstItem="THh-eD-rRa" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" constant="20" symbolic="YES" id="yY4-bH-zCm"/>
                 </constraints>
             </view>
-            <point key="canvasLocation" x="-298" y="59"/>
+            <point key="canvasLocation" x="-298" y="-69"/>
         </window>
         <userDefaultsController representsSharedInstance="YES" id="Czo-a1-luY"/>
         <window title="Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="Preferences" animationBehavior="default" id="fKt-mn-0WB">
