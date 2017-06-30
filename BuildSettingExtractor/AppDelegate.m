@@ -32,8 +32,33 @@
 }
 
 
+- (IBAction)chooseXcodeProject:(id)sender {
+
+    NSOpenPanel *openPanel = [NSOpenPanel openPanel];
+    openPanel.canCreateDirectories = NO;
+    openPanel.allowsMultipleSelection = NO;
+    openPanel.canChooseDirectories = NO;
+    openPanel.canChooseFiles = YES;
+    openPanel.allowedFileTypes = @[[NSString tps_projectBundleTypeIdentifier]];
+    openPanel.message = @"Choose an Xcode project to extract its build settings.";
+    openPanel.prompt = @"Choose";
+    
+    [openPanel beginSheetModalForWindow:self.window completionHandler:^(NSInteger result) {
+        if (result == NSModalResponseOK) {
+            NSURL *projectURL = openPanel.URL;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self processXcodeProjectAtURL:projectURL];
+            });
+        }
+    }];
+}
+
 - (IBAction)handleDroppedFile:(DragFileView *)sender {
     NSURL *fileURL = sender.fileURL;
+    [self processXcodeProjectAtURL:fileURL];
+}
+
+- (void)processXcodeProjectAtURL:(NSURL *)fileURL {
     NSString *typeIdentifier = nil;
     NSString *fileName = nil;
     NSError *error = nil;
