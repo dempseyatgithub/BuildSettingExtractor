@@ -51,7 +51,17 @@ These comments can be turned off in the Preferences sheet for a more compact fil
 
 ### Version History ###
 
-*Version 1.2.5*  
+*Version 1.2.6*
+*Nov 3, 2017*
+
+– Added menu item to choose Xcode project.  
+– Removed unused menu items.  
+– Added window minimum size.  
+– Updated window with options more befitting a single-window app.  
+– Improved support for reading build setting descriptions from xcspec files.  
+– Updated list of build setting description files to include Swift xcspec file.  
+
+*Version 1.2.5*
 *Jun 13, 2017*
 
 – Resolve possible naming conflict between generated project and target files.  
