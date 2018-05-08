@@ -7,7 +7,7 @@
 //
 
 #import "DragFileView.h"
-#import "Constants+Categories.h"
+@import ExtractorKit;
 
 
 @interface DragFileView ()

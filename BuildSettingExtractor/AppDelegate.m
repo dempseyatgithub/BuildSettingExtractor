@@ -8,8 +8,7 @@
 
 #import "AppDelegate.h"
 #import "DragFileView.h"
-#import "BuildSettingExtractor.h"
-#import "Constants+Categories.h"
+@import ExtractorKit;
 
 // During development it is useful to turn off the overwrite checking
 #define OVERWRITE_CHECKING_DISABLED 0

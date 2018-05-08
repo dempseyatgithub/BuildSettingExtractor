@@ -7,7 +7,7 @@
 //
 
 #import <XCTest/XCTest.h>
-#import "BuildSettingExtractor.h"
+@import ExtractorKit;
 
 @interface NSObject (BuildSettingExtractorMethods)
 - (NSDictionary *)buildSettingsByConfigurationForConfigurations:(NSArray *)buildConfigurations;
