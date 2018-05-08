@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
 
 @interface BuildSettingExtractor : NSObject
 
@@ -48,3 +49,5 @@
 - (BOOL)extractBuildSettingsFromProject:(NSURL *)projectWrapperURL toDestinationFolder:(NSURL *)folderURL;
 
 @end
+
+NS_ASSUME_NONNULL_END

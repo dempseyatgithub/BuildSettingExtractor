@@ -8,6 +8,8 @@
 
 #import <Cocoa/Cocoa.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 typedef NS_ENUM(NSUInteger, AppErrorCodes) {
     UnsupportedXcodeVersion = 100,
     DirectoryContainsBuildConfigFiles = 101,
@@ -25,17 +27,19 @@ extern NSString *const TPSOutputFileNameSeparator;
 
 @interface NSPasteboard (TPS_XcodeProjectURLAdditions)
 - (BOOL)tps_canReadXcodeProjectFileURL;
-- (NSURL *)tps_readXcodeProjectFileURL;
+- (nullable NSURL *)tps_readXcodeProjectFileURL;
 @end
 
 #pragma mark -
 
 @interface  NSString (TPS_TypeIdentifierAdditions)
-+ (NSString *)tps_projectBundleTypeIdentifier;
-+ (NSString *)tps_buildConfigurationFileTypeIdentifier;
-+ (NSString *)tps_preferredTypeIdentifierForFileExtension:(NSString *)string;
++ (nullable NSString *)tps_projectBundleTypeIdentifier;
++ (nullable NSString *)tps_buildConfigurationFileTypeIdentifier;
++ (nullable NSString *)tps_preferredTypeIdentifierForFileExtension:(NSString *)string;
 @end
 
 @interface NSString (TPS_BuildSettingAdditions)
 - (NSString *)tps_baseBuildSettingName; // Removes any conditional section of a build setting
 @end
+
+NS_ASSUME_NONNULL_END
