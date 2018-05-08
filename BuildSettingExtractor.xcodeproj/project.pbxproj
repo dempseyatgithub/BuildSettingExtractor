@@ -95,8 +95,6 @@
 		936DE99920A1360000141945 /* ExtractorKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ExtractorKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		936DE99B20A1360000141945 /* ExtractorKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExtractorKit.h; sourceTree = "<group>"; };
 		936DE99C20A1360000141945 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		936DE9A820A1360000141945 /* ExtractorKitTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExtractorKitTests.m; sourceTree = "<group>"; };
-		936DE9AA20A1360000141945 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,7 +132,6 @@
 				53719E9819BF4C6D005D3DE0 /* BuildSettingExtractor */,
 				53719EB619BF4C6D005D3DE0 /* BuildSettingExtractorTests */,
 				936DE99A20A1360000141945 /* ExtractorKit */,
-				936DE9A720A1360000141945 /* ExtractorKitTests */,
 				53719E9119BF4C6D005D3DE0 /* Frameworks */,
 				53719E9019BF4C6D005D3DE0 /* Products */,
 				5395AF4D1A7C6BB60028BE88 /* ReadMe.md */,
@@ -237,15 +234,6 @@
 				936DE99C20A1360000141945 /* Info.plist */,
 			);
 			path = ExtractorKit;
-			sourceTree = "<group>";
-		};
-		936DE9A720A1360000141945 /* ExtractorKitTests */ = {
-			isa = PBXGroup;
-			children = (
-				936DE9A820A1360000141945 /* ExtractorKitTests.m */,
-				936DE9AA20A1360000141945 /* Info.plist */,
-			);
-			path = ExtractorKitTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
