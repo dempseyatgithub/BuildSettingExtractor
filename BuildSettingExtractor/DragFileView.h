@@ -9,7 +9,7 @@
 #import <Cocoa/Cocoa.h>
 
 IB_DESIGNABLE
-@interface DragFileView : NSView
+@interface DragFileView : NSBox
 
 @property (readonly) NSURL *fileURL;
 
