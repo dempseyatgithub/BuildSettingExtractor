@@ -14,7 +14,7 @@ static NSSet *XcodeCompatibilityVersionStringSet() {
     static NSSet *_compatibilityVersionStringSet;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        _compatibilityVersionStringSet = [NSSet setWithObjects:@"Xcode 3.2", @"Xcode 6.3", @"Xcode 8.0", nil];
+        _compatibilityVersionStringSet = [NSSet setWithObjects:@"Xcode 3.2", @"Xcode 6.3", @"Xcode 8.0", @"Xcode 9.3", nil];
     });
     return _compatibilityVersionStringSet;
 }
