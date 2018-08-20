@@ -51,6 +51,15 @@ These comments can be turned off in the Preferences sheet for a more compact fil
 
 ### Version History ###
 
+*Version 1.2.7*
+*Aug 19, 2018*
+
+– Added alert to notify users if the selected project contains no build settings.  
+– Added names and descriptions for some common settings without info.  
+– Updated to extract build settings from Xcode 9.3-compatible project files.  
+– Updated to extract build settings from Xcode 10.0-compatible project files. (Tested with beta 6.)  
+– Made changes to prepare for Mojave Dark Mode.  
+
 *Version 1.2.6*
 *Nov 3, 2017*
 
