@@ -117,18 +117,28 @@ static NSSet *XcodeCompatibilityVersionStringSet() {
             NSDictionary *projectSettings = [self buildSettingStringsByConfigurationForBuildConfigurationListID:buildConfigurationListID];
 
             self.buildSettingsByTarget[validatedProjectConfigName] = projectSettings;
+            
+            // Begin check that the project file has some settings
+            BOOL projectFileHasSettings = projectSettings.containsBuildSettings;
 
             // Add project targets
             for (NSDictionary *target in targets) {
                 NSString *targetName = target[@"name"];
                 buildConfigurationListID = target[@"buildConfigurationList"];
                 NSDictionary *targetSettings = [self buildSettingStringsByConfigurationForBuildConfigurationListID:buildConfigurationListID];
+                if (!projectFileHasSettings) { projectFileHasSettings = targetSettings.containsBuildSettings; }
 
                 self.buildSettingsByTarget[targetName] = targetSettings;
 
             }
             
-            [self writeConfigFilesToDestinationFolder:folderURL];
+            if (projectFileHasSettings) {
+                [self writeConfigFilesToDestinationFolder:folderURL];
+            } else {
+                [self presentErrorForNoSettingsFoundInProject: [projectWrapperURL lastPathComponent]];
+                success = NO;
+            }
+            
         }
     }
     return success;
@@ -158,6 +168,20 @@ static NSSet *XcodeCompatibilityVersionStringSet() {
         [NSApp presentError:error];
     });
 
+}
+
+// Notify the user we did not find any settings in the project.
+- (void)presentErrorForNoSettingsFoundInProject:(NSString *)projectName {
+    NSString *errorDescription = [NSString stringWithFormat:@"No settings found."];
+    NSString *errorRecoverySuggestion = [NSString stringWithFormat:@"No settings were found in the project \'%@\'.\n\nThe project may already be using .xcconfig files for its build settings.\n\nNo xcconfig files will be written. ", projectName];
+    NSDictionary *errorUserInfo = @{NSLocalizedDescriptionKey:errorDescription, NSLocalizedRecoverySuggestionErrorKey: errorRecoverySuggestion};
+    
+    NSError *error = [NSError errorWithDomain:[[NSBundle mainBundle] bundleIdentifier] code:NoSettingsFoundInProjectFile userInfo:errorUserInfo];
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [NSApp presentError:error];
+    });
+    
 }
 
 /* Writes an xcconfig file for each target / configuration combination to the specified directory.

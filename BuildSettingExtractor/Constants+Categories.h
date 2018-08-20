@@ -12,6 +12,7 @@ typedef NS_ENUM(NSUInteger, AppErrorCodes) {
     UnsupportedXcodeVersion = 100,
     DirectoryContainsBuildConfigFiles = 101,
     ProjectSettingsNamingConflict = 102,
+    NoSettingsFoundInProjectFile = 103,
 };
 
 extern NSString *const TPSOpenDirectoryInFinder;
@@ -39,3 +40,13 @@ extern NSString *const TPSOutputFileNameSeparator;
 @interface NSString (TPS_BuildSettingAdditions)
 - (NSString *)tps_baseBuildSettingName; // Removes any conditional section of a build setting
 @end
+
+#pragma mark -
+
+@interface NSDictionary (TPS_BuildSettingAdditions)
+// Assumes that a dictionary of build settings always has NSString values
+// Returns NO if all the values in a dictionary are an empty string
+// Raises an exception if used on a dictionary with any non-NSString value
+- (BOOL)containsBuildSettings;
+@end
+

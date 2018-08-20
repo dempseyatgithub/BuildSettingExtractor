@@ -8,6 +8,7 @@
 
 #import <XCTest/XCTest.h>
 #import "BuildSettingExtractor.h"
+#import "Constants+Categories.h"
 
 @interface NSObject (BuildSettingExtractorMethods)
 - (NSDictionary *)buildSettingsByConfigurationForConfigurations:(NSArray *)buildConfigurations;
@@ -33,6 +34,22 @@
     NSDictionary *sharedBuildSettings = buildSettings[extractor.sharedConfigName];
 
     XCTAssert([sharedBuildSettings isEqualToDictionary:expectedBuildSettings], @"Build settings should match");
+}
+
+- (void)testDictionaryBuildSettingsCategory
+{
+    NSDictionary *dictionaryWithBuildSettings = @{ @"Shared": @"COPY_PHASE_STRIP = NO", @"Release": @"COPY_PHASE_STRIP = NO", @"Debug": @"COPY_PHASE_STRIP = NO" };
+    XCTAssertTrue(dictionaryWithBuildSettings.containsBuildSettings);
+    
+    NSDictionary *dictionaryWithMinimalBuildSettings = @{ @"Shared": @"", @"Release": @"", @"Debug": @"COPY_PHASE_STRIP = NO" };
+    XCTAssertTrue(dictionaryWithMinimalBuildSettings.containsBuildSettings);
+
+    NSDictionary *dictionaryWithoutBuildSettings = @{ @"Shared": @"", @"Release": @"", @"Debug": @"" };
+    XCTAssertFalse(dictionaryWithoutBuildSettings.containsBuildSettings);
+    
+    NSDictionary *badDictionary = @{@"Shared":@"", @"Release":@"", @"Debug":[NSDate date] };
+    BOOL result = NO;
+    XCTAssertThrows(result = badDictionary.containsBuildSettings);
 }
 
 @end

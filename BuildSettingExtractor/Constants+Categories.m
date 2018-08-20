@@ -78,3 +78,25 @@ NSString *const TPSOutputFileNameSeparator = @"TPSOutputFileNameSeparator";
 }
 
 @end
+
+#pragma mark -
+
+@implementation NSDictionary (TPS_BuildSettingAdditions)
+
+    - (BOOL)containsBuildSettings {
+        BOOL foundNonEmptyString = NO;
+        for (id value in self.allValues) {
+            if ([value isKindOfClass:[NSString class]]) {
+                if (![(NSString *)value isEqualToString:@""]) {
+                    foundNonEmptyString = YES;
+                    break;
+                }
+            } else {
+                [NSException raise:(NSInternalInconsistencyException) format:@"-containsBuildSetting is expected to be called on a dictionary with NSString values."];
+            }
+        }
+        return foundNonEmptyString;
+    }
+
+@end
+
