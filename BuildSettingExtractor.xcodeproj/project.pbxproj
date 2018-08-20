@@ -12,7 +12,7 @@
 		53719E9F19BF4C6D005D3DE0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 53719E9E19BF4C6D005D3DE0 /* main.m */; };
 		53719EA619BF4C6D005D3DE0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 53719EA519BF4C6D005D3DE0 /* AppDelegate.m */; };
 		53719EA919BF4C6D005D3DE0 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 53719EA719BF4C6D005D3DE0 /* MainMenu.xib */; };
-		53719EAB19BF4C6D005D3DE0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 53719EAA19BF4C6D005D3DE0 /* Images.xcassets */; };
+		53719EAB19BF4C6D005D3DE0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 53719EAA19BF4C6D005D3DE0 /* Assets.xcassets */; };
 		53719EB219BF4C6D005D3DE0 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53719EB119BF4C6D005D3DE0 /* XCTest.framework */; };
 		53719EB319BF4C6D005D3DE0 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53719E9219BF4C6D005D3DE0 /* Cocoa.framework */; };
 		53719EBB19BF4C6D005D3DE0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 53719EB919BF4C6D005D3DE0 /* InfoPlist.strings */; };
@@ -49,7 +49,7 @@
 		53719EA419BF4C6D005D3DE0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		53719EA519BF4C6D005D3DE0 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		53719EA819BF4C6D005D3DE0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
-		53719EAA19BF4C6D005D3DE0 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		53719EAA19BF4C6D005D3DE0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		53719EB019BF4C6D005D3DE0 /* BuildSettingExtractorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BuildSettingExtractorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		53719EB119BF4C6D005D3DE0 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		53719EB819BF4C6D005D3DE0 /* BuildSettingExtractorTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BuildSettingExtractorTests-Info.plist"; sourceTree = "<group>"; };
@@ -143,7 +143,7 @@
 				53F372F91A7C5803006118CB /* Constants+Categories.h */,
 				53F372FA1A7C5803006118CB /* Constants+Categories.m */,
 				53719EA719BF4C6D005D3DE0 /* MainMenu.xib */,
-				53719EAA19BF4C6D005D3DE0 /* Images.xcassets */,
+				53719EAA19BF4C6D005D3DE0 /* Assets.xcassets */,
 				538196C41A851BB40033CB65 /* BuildSettingInfoSubpaths.plist */,
 				53719E9919BF4C6D005D3DE0 /* Supporting Files */,
 			);
@@ -266,7 +266,7 @@
 			files = (
 				53719E9D19BF4C6D005D3DE0 /* InfoPlist.strings in Resources */,
 				538196C51A851BB40033CB65 /* BuildSettingInfoSubpaths.plist in Resources */,
-				53719EAB19BF4C6D005D3DE0 /* Images.xcassets in Resources */,
+				53719EAB19BF4C6D005D3DE0 /* Assets.xcassets in Resources */,
 				53719EA919BF4C6D005D3DE0 /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
