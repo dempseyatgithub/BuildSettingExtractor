@@ -24,6 +24,10 @@
 		<string>Combine HiDPI Images</string>
 		<key>[COMBINE_HIDPI_IMAGES]-description</key>
 		<string>Combines image files at different resolutions into one multi-page TIFF file that is HiDPI compliant for macOS 10.7 and later. Only image files in the same directory and with the same base name and extension are combined. The file names must conform to the naming convention used in HiDPI.</string>
+		<key>[SWIFT_COMPILATION_MODE]-name</key>
+		<string>Swift Compilation Mode</string>
+		<key>[SWIFT_COMPILATION_MODE]-description</key>
+		<string>This setting controls the way the Swift files in a module are rebuilt.\n- Incremental: Only rebuild the Swift source files in the module that are out of date, running multiple compiler processes as needed.\n- Whole Module: Always rebuild all Swift source files in the module, in a single compiler process.</string>
 	</dict>
 	<key>subpaths</key>
 	<array>
