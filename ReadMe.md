@@ -51,6 +51,15 @@ These comments can be turned off in the Preferences sheet for a more compact fil
 
 ### Version History ###
 
+*Version 1.2.8*
+*Sep 24, 2018*
+
+– Updated list of build setting description files to include Apple Clang file.  
+– Fixed crash when xcspec file was not found when reading build setting descriptions.  
+– Tested Xcode 10.0-compatible project files with Xcode 10.  
+– Tested build setting descriptions with Xcode 10.  
+– This the last version that will build cleanly on macOS 10.13 and earlier.  
+
 *Version 1.2.7*
 *Aug 19, 2018*
 
