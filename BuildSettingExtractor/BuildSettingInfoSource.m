@@ -178,6 +178,10 @@
     NSMutableDictionary *buildSettingInfo = [NSMutableDictionary dictionary];
     NSError *error = nil;
     NSData *plistData = [[NSData alloc] initWithContentsOfURL:fileURL];
+    // If we can't read the file, behave like +dictionaryWithContentsOfFile: and return nil
+    if (!plistData) {
+        return nil;
+    }
     id plist = [NSPropertyListSerialization propertyListWithData:plistData options:NSPropertyListImmutable format:nil error:&error];
     if ([plist isKindOfClass:[NSArray class]]) {
         NSArray *specs = (NSArray *)plist;
