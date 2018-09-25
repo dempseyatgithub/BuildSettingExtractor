@@ -35,9 +35,17 @@
 
 - (void)setHighlight:(BOOL)flag {
     if (flag) {
-        self.fillColor = [NSColor colorWithCalibratedRed:0.56 green:0.7 blue:0.81 alpha:1.0];
+        if (@available(macOS 10.14, *)) {
+            self.fillColor = [[NSColor colorNamed: @"dragViewBackgroundColor"] colorWithSystemEffect:NSColorSystemEffectPressed];
+        } else {
+            self.fillColor = [NSColor colorWithCalibratedRed:0.56 green:0.7 blue:0.81 alpha:1.0];
+        }
     } else {
-        self.fillColor = [NSColor colorWithCalibratedRed:0.7 green:0.85 blue:1.0 alpha:1.0];
+        if (@available(macOS 10.13, *)) {
+            self.fillColor = [NSColor colorNamed: @"dragViewBackgroundColor"];
+        } else {
+            self.fillColor = [NSColor colorWithCalibratedRed:0.7 green:0.85 blue:1.0 alpha:1.0];
+        }
     }
 }
 
