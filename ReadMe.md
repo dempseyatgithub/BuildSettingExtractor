@@ -51,6 +51,12 @@ These comments can be turned off in the Preferences sheet for a more compact fil
 
 ### Version History ###
 
+*Version 1.3*
+*Sep 25, 2018*
+
+– Added Dark Mode support.  
+– Built with Xcode 10.0 on macOS 10.14 Mojave.  
+
 *Version 1.2.8*
 *Sep 24, 2018*
 
@@ -59,6 +65,7 @@ These comments can be turned off in the Preferences sheet for a more compact fil
 – Tested Xcode 10.0-compatible project files with Xcode 10.  
 – Tested build setting descriptions with Xcode 10.  
 – This the last version that will build cleanly on macOS 10.13 and earlier.  
+– Built with Xcode 9.4.1 on macOS 10.13.6 High Sierra.  
 
 *Version 1.2.7*
 *Aug 19, 2018*
