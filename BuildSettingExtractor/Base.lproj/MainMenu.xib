@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="12121"/>
-        <capability name="box content view" minToolsVersion="7.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14313.18"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -173,12 +172,12 @@
                 </menuItem>
             </items>
         </menu>
-        <window title="Build Setting Extractor" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" showsToolbarButton="NO" frameAutosaveName="BuildSettingExtractor" animationBehavior="default" tabbingMode="disallowed" id="QvC-M9-y7g">
+        <window title="Build Setting Extractor" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" frameAutosaveName="BuildSettingExtractor" animationBehavior="default" tabbingMode="disallowed" id="QvC-M9-y7g">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowCollectionBehavior key="collectionBehavior" fullScreenNone="YES"/>
             <windowPositionMask key="initialPositionMask" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="561" y="536" width="436" height="210"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1417"/>
             <value key="minSize" type="size" width="320" height="160"/>
             <view key="contentView" id="EiT-Mj-1SZ">
                 <rect key="frame" x="0.0" y="0.0" width="436" height="210"/>
@@ -187,8 +186,8 @@
                     <customView translatesAutoresizingMaskIntoConstraints="NO" id="THh-eD-rRa" customClass="DragFileView">
                         <rect key="frame" x="20" y="20" width="396" height="170"/>
                         <subviews>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" setsMaxLayoutWidthAtFirstLayout="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BCV-eh-b7F">
-                                <rect key="frame" x="85" y="73" width="226" height="25"/>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BCV-eh-b7F">
+                                <rect key="frame" x="87" y="73" width="222" height="25"/>
                                 <textFieldCell key="cell" refusesFirstResponder="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="center" title="Drag Project File Here" id="BCh-la-6iA">
                                     <font key="font" metaFont="systemBold" size="21"/>
                                     <color key="textColor" red="0.13149642944335938" green="0.26071125268936157" blue="0.42410662770271301" alpha="1" colorSpace="calibratedRGB"/>
@@ -215,10 +214,10 @@
             <point key="canvasLocation" x="-298" y="-69"/>
         </window>
         <userDefaultsController representsSharedInstance="YES" id="Czo-a1-luY"/>
-        <window title="Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="Preferences" animationBehavior="default" id="fKt-mn-0WB">
+        <window title="Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="Preferences" animationBehavior="default" id="fKt-mn-0WB">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
             <rect key="contentRect" x="985" y="795" width="320" height="265"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1417"/>
             <value key="minSize" type="size" width="320" height="265"/>
             <value key="maxSize" type="size" width="320" height="265"/>
             <view key="contentView" id="1kK-jA-VrG">
@@ -251,7 +250,7 @@
                             <rect key="frame" x="1" y="1" width="284" height="116"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
-                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pgR-Eo-bSj">
+                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="pgR-Eo-bSj">
                                     <rect key="frame" x="32" y="87" width="88" height="17"/>
                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Project name:" id="55p-LX-tEF">
                                         <font key="font" metaFont="system"/>
@@ -259,11 +258,11 @@
                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                     </textFieldCell>
                                 </textField>
-                                <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TQC-44-oLj">
+                                <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="TQC-44-oLj">
                                     <rect key="frame" x="126" y="84" width="141" height="22"/>
                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="dJU-oN-41s">
                                         <font key="font" metaFont="system"/>
-                                        <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         <connections>
                                             <binding destination="Czo-a1-luY" name="value" keyPath="values.TPSOutputFileNameProject" id="5kc-lr-9mt"/>
@@ -273,7 +272,7 @@
                                         <binding destination="Czo-a1-luY" name="value" keyPath="values.TPSOutputFileNameProject" id="XH0-ns-RBF"/>
                                     </connections>
                                 </textField>
-                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c24-WP-E9A">
+                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="c24-WP-E9A">
                                     <rect key="frame" x="31" y="55" width="88" height="17"/>
                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Shared name:" id="3PN-eT-YAf">
                                         <font key="font" metaFont="system"/>
@@ -281,18 +280,18 @@
                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                     </textFieldCell>
                                 </textField>
-                                <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YO9-cX-mlT">
+                                <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="YO9-cX-mlT">
                                     <rect key="frame" x="125" y="52" width="141" height="22"/>
                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="d9j-HG-UH4">
                                         <font key="font" metaFont="system"/>
-                                        <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                     </textFieldCell>
                                     <connections>
                                         <binding destination="Czo-a1-luY" name="value" keyPath="values.TPSOutputFileNameShared" id="Fbq-Gw-ZPD"/>
                                     </connections>
                                 </textField>
-                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e1H-r8-PZJ">
+                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="e1H-r8-PZJ">
                                     <rect key="frame" x="17" y="21" width="102" height="17"/>
                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Word separator:" id="Ioq-vO-Qxk">
                                         <font key="font" metaFont="system"/>
@@ -300,11 +299,11 @@
                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                     </textFieldCell>
                                 </textField>
-                                <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YBk-cU-i8C">
+                                <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="YBk-cU-i8C">
                                     <rect key="frame" x="126" y="20" width="141" height="22"/>
                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="kDQ-0L-kg5">
                                         <font key="font" metaFont="system"/>
-                                        <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                     </textFieldCell>
                                     <connections>
@@ -312,6 +311,11 @@
                                     </connections>
                                 </textField>
                             </subviews>
+                            <constraints>
+                                <constraint firstItem="pgR-Eo-bSj" firstAttribute="leading" secondItem="Cm7-26-zuQ" secondAttribute="leading" constant="34" id="0IG-VF-3Ag"/>
+                                <constraint firstItem="e1H-r8-PZJ" firstAttribute="leading" secondItem="Cm7-26-zuQ" secondAttribute="leading" constant="19" id="339-21-WJQ"/>
+                                <constraint firstItem="c24-WP-E9A" firstAttribute="leading" secondItem="Cm7-26-zuQ" secondAttribute="leading" constant="33" id="Dma-zu-mIe"/>
+                            </constraints>
                         </view>
                         <constraints>
                             <constraint firstItem="YO9-cX-mlT" firstAttribute="top" secondItem="TQC-44-oLj" secondAttribute="bottom" constant="10" id="5Gz-e6-EvS"/>
@@ -335,7 +339,7 @@
                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Hfn-iA-xua">
                         <rect key="frame" x="224" y="13" width="82" height="32"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="70" id="Mhi-36-XF6"/>
+                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="70" id="Mhi-36-XF6"/>
                         </constraints>
                         <buttonCell key="cell" type="push" title="Done" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="STv-vC-Etq">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -351,17 +355,20 @@ DQ
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="Hfn-iA-xua" secondAttribute="bottom" constant="20" symbolic="YES" id="4qv-Vd-eta"/>
+                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="jJF-zo-xje" secondAttribute="trailing" constant="48" id="NDe-cK-lMm"/>
+                    <constraint firstItem="Hfn-iA-xua" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="1kK-jA-VrG" secondAttribute="leading" constant="230" id="NRf-7L-6ww"/>
                     <constraint firstItem="PO3-kF-2C5" firstAttribute="top" secondItem="jJF-zo-xje" secondAttribute="bottom" constant="13" id="SBZ-jh-KMn"/>
                     <constraint firstAttribute="trailing" secondItem="D53-ZA-yMZ" secondAttribute="trailing" constant="20" symbolic="YES" id="Sa3-Y2-5hp"/>
                     <constraint firstItem="D53-ZA-yMZ" firstAttribute="leading" secondItem="PO3-kF-2C5" secondAttribute="leading" id="Sut-si-RXA"/>
                     <constraint firstItem="jJF-zo-xje" firstAttribute="leading" secondItem="PO3-kF-2C5" secondAttribute="leading" id="Tk0-KE-6NX"/>
                     <constraint firstItem="D53-ZA-yMZ" firstAttribute="top" secondItem="PO3-kF-2C5" secondAttribute="bottom" constant="14" id="api-Tj-crN"/>
                     <constraint firstAttribute="trailing" secondItem="Hfn-iA-xua" secondAttribute="trailing" constant="20" symbolic="YES" id="lga-uZ-nGU"/>
+                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="PO3-kF-2C5" secondAttribute="trailing" constant="66" id="oaT-CN-R4b"/>
                     <constraint firstItem="jJF-zo-xje" firstAttribute="top" secondItem="1kK-jA-VrG" secondAttribute="top" constant="20" symbolic="YES" id="tW5-wZ-DRa"/>
                     <constraint firstItem="jJF-zo-xje" firstAttribute="leading" secondItem="1kK-jA-VrG" secondAttribute="leading" constant="20" symbolic="YES" id="tlz-a7-foM"/>
                 </constraints>
             </view>
-            <point key="canvasLocation" x="187.5" y="69"/>
+            <point key="canvasLocation" x="166" y="-97"/>
         </window>
     </objects>
 </document>
