@@ -19,6 +19,7 @@
 @property (weak) IBOutlet NSWindow *window;
 @property (weak) IBOutlet DragFileView *dragFileView;
 @property (weak) IBOutlet NSWindow *preferencesWindow;
+@property (weak) IBOutlet NSTextField *dragFileLabel;
 
 @property BOOL shouldOverwriteFiles;
 
@@ -29,6 +30,11 @@
 - (void)awakeFromNib {
     self.dragFileView.target = self;
     self.dragFileView.action = @selector(handleDroppedFile:);
+    if (@available(macOS 10.13, *)) {
+        self.dragFileLabel.textColor = [NSColor colorNamed:@"dragViewTextColor"];
+    } else {
+        self.dragFileLabel.textColor = [NSColor colorWithCalibratedRed:0.13 green:0.26 blue:0.42 alpha:1.0];
+    }
 }
 
 
