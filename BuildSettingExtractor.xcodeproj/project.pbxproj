@@ -242,7 +242,7 @@
 			};
 			buildConfigurationList = 53719E8A19BF4C6D005D3DE0 /* Build configuration list for PBXProject "BuildSettingExtractor" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
