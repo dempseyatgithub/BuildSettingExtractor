@@ -8,6 +8,7 @@
 
 #import <XCTest/XCTest.h>
 #import "BuildSettingExtractor.h"
+#import "BuildSettingInfoSource.h"
 #import "Constants+Categories.h"
 
 @interface NSObject (BuildSettingExtractorMethods)
@@ -50,6 +51,13 @@
     NSDictionary *badDictionary = @{@"Shared":@"", @"Release":@"", @"Debug":[NSDate date] };
     BOOL result = NO;
     XCTAssertThrows(result = badDictionary.containsBuildSettings);
+}
+
+- (void)testLoadingBuildSettingInfo
+{
+    BuildSettingInfoSource *source = [[BuildSettingInfoSource alloc] init];
+    XCTAssertTrue([source loadBuildSettingInfo]);
+
 }
 
 @end
