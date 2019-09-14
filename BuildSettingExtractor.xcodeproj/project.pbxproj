@@ -22,7 +22,6 @@
 		53F372ED1A7BC6A7006118CB /* DragFileView.m in Sources */ = {isa = PBXBuildFile; fileRef = 53F372EC1A7BC6A7006118CB /* DragFileView.m */; };
 		53F372F01A7C042F006118CB /* BuildSettingExtractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 53F372EF1A7C042F006118CB /* BuildSettingExtractor.m */; };
 		53F372F41A7C0CBE006118CB /* ThreeBuildConfigs.plist in Resources */ = {isa = PBXBuildFile; fileRef = 53F372F31A7C0CBE006118CB /* ThreeBuildConfigs.plist */; };
-		53F372F51A7C2F89006118CB /* BuildSettingExtractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 53F372EF1A7C042F006118CB /* BuildSettingExtractor.m */; };
 		53F372FB1A7C5803006118CB /* Constants+Categories.m in Sources */ = {isa = PBXBuildFile; fileRef = 53F372FA1A7C5803006118CB /* Constants+Categories.m */; };
 /* End PBXBuildFile section */
 
@@ -300,7 +299,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				53F372F51A7C2F89006118CB /* BuildSettingExtractor.m in Sources */,
 				53719EBD19BF4C6D005D3DE0 /* BuildSettingExtractorTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
