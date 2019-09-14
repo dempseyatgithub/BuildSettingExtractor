@@ -156,6 +156,17 @@
     BOOL allSubpathsReadSuccessfully = YES;
 
     NSString *defaultXcodePath = @"/Applications/Xcode.app";
+
+    // Read Xcode version
+    NSString *pathToXcodeInfoPlist = [defaultXcodePath stringByAppendingPathComponent:@"Contents/Info.plist"];
+    NSDictionary *xcodeInfoDictionary = [NSDictionary dictionaryWithContentsOfFile:pathToXcodeInfoPlist];
+    NSString *versionString = xcodeInfoDictionary[@"DTXcode"];
+    NSInteger xcodeVersion = [versionString integerValue];
+    if (!versionString || xcodeVersion == 0) {
+        NSLog(@"Could not read Xcode version. Version string: %@, Version Number: %ld", versionString, (long)xcodeVersion);
+    }
+
+    // Load subpaths
     NSURL *buildSettingInfoPlistURL = [[NSBundle mainBundle] URLForResource:@"BuildSettingInfoSubpaths" withExtension:@"plist"];
     NSDictionary *buildSettingInfoDict = [NSDictionary dictionaryWithContentsOfURL:buildSettingInfoPlistURL];
     NSArray *buildSettingInfoSubpaths = buildSettingInfoDict[@"subpaths"];
@@ -165,6 +176,22 @@
     // A spot to put additional setting info. If a more official version is read in, it replaces the backstop info.
     NSDictionary *backstopSettingsInfo = buildSettingInfoDict[@"backstopSettingInfo"];
     [infoStringFile addEntriesFromDictionary:backstopSettingsInfo];
+
+    // Add deprecated subpaths that are valid in the version of Xcode we are using
+    NSMutableArray *subpathsToAdd = nil;
+    NSDictionary *deprecatedSubpaths = buildSettingInfoDict[@"deprecatedSubpathsByVersion"];
+    for (NSString *versionKey in [deprecatedSubpaths allKeys]) {
+        NSInteger maxVersion = [versionKey integerValue];
+        if (xcodeVersion < maxVersion) {
+            if (!subpathsToAdd) {
+                subpathsToAdd = [NSMutableArray array];
+            }
+            [subpathsToAdd addObjectsFromArray:deprecatedSubpaths[versionKey]];
+        }
+    }
+    if (subpathsToAdd) {
+        buildSettingInfoSubpaths = [buildSettingInfoSubpaths arrayByAddingObjectsFromArray:subpathsToAdd];
+    }
 
     // Rather than track exactly what Xcode versions contain which files, group versions of an expected file in an array.
     // Log if no file in the group can be read in.
