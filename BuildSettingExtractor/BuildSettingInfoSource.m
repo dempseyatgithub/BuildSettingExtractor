@@ -151,7 +151,10 @@
     return processedString;
 }
 
-- (void)loadBuildSettingInfo {
+- (BOOL)loadBuildSettingInfo {
+
+    BOOL allSubpathsReadSuccessfully = YES;
+
     NSString *defaultXcodePath = @"/Applications/Xcode.app";
     NSURL *buildSettingInfoPlistURL = [[NSBundle mainBundle] URLForResource:@"BuildSettingInfoSubpaths" withExtension:@"plist"];
     NSDictionary *buildSettingInfoDict = [NSDictionary dictionaryWithContentsOfURL:buildSettingInfoPlistURL];
@@ -191,10 +194,13 @@
             } else {
                 NSLog(@"Could not read settings strings at these paths: %@", buildSettingInfoSubpathList);
             }
+            allSubpathsReadSuccessfully = NO;
         }
     }
 
     _buildSettingInfoDictionary = infoStringFile;
+
+    return allSubpathsReadSuccessfully;
 }
 
 - (NSDictionary *)xcspecFileBuildSettingInfoForPath:(NSString *)path {
