@@ -4,30 +4,30 @@
 <dict>
 	<key>backstopSettingInfo</key>
 	<dict>
-		<key>[SWIFT_OPTIMIZATION_LEVEL]-name</key>
-		<string>Swift Optimization Level</string>
-		<key>[SWIFT_OPTIMIZATION_LEVEL]-description</key>
-		<string>None [-Onone], Fastest [-O], Fastest, Unchecked [-Ounchecked]</string>
-		<key>[IPHONEOS_DEPLOYMENT_TARGET]-name</key>
-		<string>iOS Deployment Target</string>
-		<key>[IPHONEOS_DEPLOYMENT_TARGET]-description</key>
-		<string>Code will load on this and later versions of iOS. Framework APIs that are unavailable in earlier versions will be weak-linked; your code should check for null function pointers or specific system versions before calling newer APIs.</string>
-		<key>[TVOS_DEPLOYMENT_TARGET]-name</key>
-		<string>tvOS Deployment Target</string>
-		<key>[TVOS_DEPLOYMENT_TARGET]-description</key>
-		<string>Code will load on this and later versions of tvOS. Framework APIs that are unavailable in earlier versions will be weak-linked; your code should check for null function pointers or specific system versions before calling newer APIs.</string>
-		<key>[WATCHOS_DEPLOYMENT_TARGET]-name</key>
-		<string>watchOS Deployment Target</string>
-		<key>[WATCHOS_DEPLOYMENT_TARGET]-description</key>
-		<string>Code will load on this and later versions of watchOS. Framework APIs that are unavailable in earlier versions will be weak-linked; your code should check for null function pointers or specific system versions before calling newer APIs.</string>
-		<key>[COMBINE_HIDPI_IMAGES]-name</key>
-		<string>Combine HiDPI Images</string>
 		<key>[COMBINE_HIDPI_IMAGES]-description</key>
 		<string>Combines image files at different resolutions into one multi-page TIFF file that is HiDPI compliant for macOS 10.7 and later. Only image files in the same directory and with the same base name and extension are combined. The file names must conform to the naming convention used in HiDPI.</string>
-		<key>[SWIFT_COMPILATION_MODE]-name</key>
-		<string>Swift Compilation Mode</string>
+		<key>[COMBINE_HIDPI_IMAGES]-name</key>
+		<string>Combine HiDPI Images</string>
+		<key>[IPHONEOS_DEPLOYMENT_TARGET]-description</key>
+		<string>Code will load on this and later versions of iOS. Framework APIs that are unavailable in earlier versions will be weak-linked; your code should check for null function pointers or specific system versions before calling newer APIs.</string>
+		<key>[IPHONEOS_DEPLOYMENT_TARGET]-name</key>
+		<string>iOS Deployment Target</string>
 		<key>[SWIFT_COMPILATION_MODE]-description</key>
 		<string>This setting controls the way the Swift files in a module are rebuilt.\n- Incremental: Only rebuild the Swift source files in the module that are out of date, running multiple compiler processes as needed.\n- Whole Module: Always rebuild all Swift source files in the module, in a single compiler process.</string>
+		<key>[SWIFT_COMPILATION_MODE]-name</key>
+		<string>Swift Compilation Mode</string>
+		<key>[SWIFT_OPTIMIZATION_LEVEL]-description</key>
+		<string>None [-Onone], Fastest [-O], Fastest, Unchecked [-Ounchecked]</string>
+		<key>[SWIFT_OPTIMIZATION_LEVEL]-name</key>
+		<string>Swift Optimization Level</string>
+		<key>[TVOS_DEPLOYMENT_TARGET]-description</key>
+		<string>Code will load on this and later versions of tvOS. Framework APIs that are unavailable in earlier versions will be weak-linked; your code should check for null function pointers or specific system versions before calling newer APIs.</string>
+		<key>[TVOS_DEPLOYMENT_TARGET]-name</key>
+		<string>tvOS Deployment Target</string>
+		<key>[WATCHOS_DEPLOYMENT_TARGET]-description</key>
+		<string>Code will load on this and later versions of watchOS. Framework APIs that are unavailable in earlier versions will be weak-linked; your code should check for null function pointers or specific system versions before calling newer APIs.</string>
+		<key>[WATCHOS_DEPLOYMENT_TARGET]-name</key>
+		<string>watchOS Deployment Target</string>
 	</dict>
 	<key>subpaths</key>
 	<array>
