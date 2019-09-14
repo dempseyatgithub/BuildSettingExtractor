@@ -71,6 +71,17 @@
     return self.buildSettingInfoDictionary[processedKey];
 }
 
+- (NSString *)processedCurrentLine:(NSString *)currentLine {
+    
+    // Trim whitespace
+    currentLine = [currentLine stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    
+    // Add newline and comment prefix
+    currentLine = [NSString stringWithFormat:@"\n// %@", currentLine];
+    
+    return currentLine;
+}
+
 - (NSString *)processedDescriptionString:(NSString *)string forKey:(NSString *)key {
 
     NSString *processedString = @"";
@@ -98,26 +109,20 @@
                 currentLine = [currentLine stringByAppendingFormat:@"%@ ", wordish];
                 characterCount++; // Account for the space
             } else {
-                // Trim whitespace
-                currentLine = [currentLine stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-                // Add newline and comment prefix
-                currentLine = [NSString stringWithFormat:@"\n// %@", currentLine];
+                // Process current line
+                currentLine = [self processedCurrentLine:currentLine];
                 // Add to processed string
                 processedString = [processedString stringByAppendingString:currentLine];
                 // reset line count and set current line to token that didn't fit.
                 characterCount = wordish.length + 1;
                 currentLine = [NSString stringWithFormat:@"%@ ", wordish];
             }
-
-
         }
 
-        // Append the last line if there is any
+        // Append the most recent line if there is any
         if (![currentLine isEqualToString:@""]) {
-            // Trim whitespace
-            currentLine = [currentLine stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-            // Add newline and comment prefix
-            currentLine = [NSString stringWithFormat:@"\n// %@", currentLine];
+            // Process current line
+            currentLine = [self processedCurrentLine:currentLine];
             // Add to processed string
             processedString = [processedString stringByAppendingString:currentLine];
         }
