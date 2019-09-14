@@ -12,4 +12,6 @@
 
 - (NSString *)commentForBuildSettingWithName:(NSString *)buildSettingName;
 
+- (BOOL)loadBuildSettingInfo; // Primarily for testing
+
 @end
