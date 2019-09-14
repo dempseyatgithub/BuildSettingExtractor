@@ -15,11 +15,25 @@
 
 @property (strong, nonatomic) NSDictionary *buildSettingInfoDictionary;
 
+// Some build setting info uses the Xcode flavor of Markdown for option lists.
+// In Xcode, these show up as bulletted lists with option names emphasized.
+// In plain text the emphasis does not look as good.
+// This regex matches the common pattern "* *OptionName:*" and replaces it with "* OptionName:"
+@property (strong, nonatomic) NSRegularExpression *regex;
+
 @end
 
 
 @implementation BuildSettingInfoSource
 
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+         self.regex = [NSRegularExpression regularExpressionWithPattern:@"^\\*\\h\\*(.+?)\\*" options:NSRegularExpressionAnchorsMatchLines error:nil];
+    }
+    return self;
+}
 
 - (NSString *)commentForBuildSettingWithName:(NSString *)buildSettingName {
     NSMutableString *comment = [[NSMutableString alloc] init];
@@ -75,10 +89,15 @@
     
     // Trim whitespace
     currentLine = [currentLine stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    
+
+    // Process Markdown option list item
+    if ([currentLine hasPrefix:@"*"]) {
+        currentLine = [self.regex stringByReplacingMatchesInString:currentLine options:0 range:NSMakeRange(0, [currentLine length]) withTemplate:@"* $1"];
+    }
+
     // Add newline and comment prefix
     currentLine = [NSString stringWithFormat:@"\n// %@", currentLine];
-    
+
     return currentLine;
 }
 
