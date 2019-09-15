@@ -12,6 +12,10 @@
 		<string>Code will load on this and later versions of iOS. Framework APIs that are unavailable in earlier versions will be weak-linked; your code should check for null function pointers or specific system versions before calling newer APIs.</string>
 		<key>[IPHONEOS_DEPLOYMENT_TARGET]-name</key>
 		<string>iOS Deployment Target</string>
+		<key>[MARKETING_VERSION]-description</key>
+		<string>This setting defines the user-visible version of the project. The value corresponds to the `CFBundleShortVersionString` key in your app&apos;s Info.plist.</string>
+		<key>[MARKETING_VERSION]-name</key>
+		<string>Marketing Version</string>
 		<key>[SWIFT_COMPILATION_MODE]-description</key>
 		<string>This setting controls the way the Swift files in a module are rebuilt.\n- Incremental: Only rebuild the Swift source files in the module that are out of date, running multiple compiler processes as needed.\n- Whole Module: Always rebuild all Swift source files in the module, in a single compiler process.</string>
 		<key>[SWIFT_COMPILATION_MODE]-name</key>
@@ -29,15 +33,15 @@
 		<key>[WATCHOS_DEPLOYMENT_TARGET]-name</key>
 		<string>watchOS Deployment Target</string>
 	</dict>
-    <key>deprecatedSubpathsByVersion</key>
-    <dict>
-        <key>0900</key>
-        <array>
-            <array>
-                <string>Contents/Developer/Platforms/iPhoneOS.platform/Developer/Library/Xcode/Specifications/English.lproj/Native Build System.strings</string>
-            </array>
-        </array>
-    </dict>
+	<key>deprecatedSubpathsByVersion</key>
+	<dict>
+		<key>0900</key>
+		<array>
+			<array>
+				<string>Contents/Developer/Platforms/iPhoneOS.platform/Developer/Library/Xcode/Specifications/English.lproj/Native Build System.strings</string>
+			</array>
+		</array>
+	</dict>
 	<key>subpaths</key>
 	<array>
 		<array>
