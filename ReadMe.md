@@ -54,7 +54,7 @@ These comments can be turned off in the Preferences sheet for a more compact fil
 *Version 1.3.1*  
 *Sep 15, 2019*
 
-– Updated to extract build settings from Xcode 10.0-compatible project files.  
+– Updated to extract build settings from Xcode 11.0-compatible project files.  
 – Add mechanism for handling deprecated build setting info files.  
 – Update list of build setting info files for Xcode 11.  
 – Add test to ensure build setting info files load without error.  
