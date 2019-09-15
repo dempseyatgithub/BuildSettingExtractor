@@ -51,6 +51,19 @@ These comments can be turned off in the Preferences sheet for a more compact fil
 
 ### Version History ###
 
+*Version 1.3.1*  
+*Sep 15, 2019*
+
+– Updated to extract build settings from Xcode 10.0-compatible project files.  
+– Add mechanism for handling deprecated build setting info files.  
+– Update list of build setting info files for Xcode 11.  
+– Add test to ensure build setting info files load without error.  
+– Process Markdown in build setting options to plain text.  
+– Tested on macOS 10.14.6 with Xcode 11.  
+– Tested on macOS 10.15 Catalina beta 8.  
+– Built with Xcode 11.0 on macOS 10.14.6 Mojave.  
+- NOTE: The Xcode project file refuses to open in Xcode 11 GMc on macOS 10.15 Catalina beta 8.
+
 *Version 1.3*  
 *Sep 25, 2018*
 
