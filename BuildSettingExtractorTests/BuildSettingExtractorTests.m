@@ -60,4 +60,19 @@
 
 }
 
+- (void)testBadProjectURL
+{
+    NSError *error = nil;
+    BuildSettingExtractor *extractor = [[BuildSettingExtractor alloc] init];
+    
+    NSURL *badURL = [NSURL fileURLWithPath:[@"~/Documents/BadProjectURL.xcodeproj" stringByExpandingTildeInPath]];
+
+    NSArray *nonFatalErrors = [extractor extractBuildSettingsFromProject:badURL error:&error];
+    
+    XCTAssertNil(nonFatalErrors);
+    XCTAssertNotNil(error);
+    XCTAssertEqual(error.code, 260);
+    
+}
+
 @end
