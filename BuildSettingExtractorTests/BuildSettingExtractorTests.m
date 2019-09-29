@@ -110,4 +110,30 @@
     // "Project file format version ‘Xcode 9999.9’ is not supported."
     
 }
+
+// Reads the project.pbxproj file inside of ConflictingName.xcodeproj.test.
+// A stripped down xcodeproj bundle with a conflicting target name "MyTarget".
+- (void)testConflictingProjectName
+{
+    NSError *fatalError = nil;
+    BuildSettingExtractor *extractor = [[BuildSettingExtractor alloc] init];
+    extractor.projectConfigName = @"MyTarget";
+
+    NSURL *badProjectURL = [[NSBundle bundleForClass:[BuildSettingExtractorTests class]] URLForResource:@"ConflictingName.xcodeproj" withExtension:@"test"];
+
+    NSArray *nonFatalErrors = [extractor extractBuildSettingsFromProject:badProjectURL error:&fatalError];
+    
+    XCTAssertNotNil(nonFatalErrors);
+    XCTAssertEqual(nonFatalErrors.count, 1);
+    
+    NSError *firstError = nonFatalErrors.firstObject;
+    XCTAssertNotNil(firstError);
+    XCTAssertEqual(firstError.code, ProjectSettingsNamingConflict);
+    // "Project settings filename conflict."
+    // "The target 'MyTarget' has the same name as the project name set in Preferences."
+
+    XCTAssertNil(fatalError);
+    
+}
+
 @end
