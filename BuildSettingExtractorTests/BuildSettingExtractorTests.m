@@ -136,4 +136,24 @@
     
 }
 
+// Reads the project.pbxproj file inside of EmptySettings.xcodeproj.test.
+// A stripped down xcodeproj bundle with no build settings.
+- (void)testEmptySettings
+{
+    NSError *fatalError = nil;
+    BuildSettingExtractor *extractor = [[BuildSettingExtractor alloc] init];
+
+    NSURL *emptySettingsProjectURL = [[NSBundle bundleForClass:[BuildSettingExtractorTests class]] URLForResource:@"EmptySettings.xcodeproj" withExtension:@"test"];
+
+    NSArray *nonFatalErrors = [extractor extractBuildSettingsFromProject:emptySettingsProjectURL error:&fatalError];
+    
+    XCTAssertNil(nonFatalErrors);
+    XCTAssertNotNil(fatalError);
+    XCTAssertEqual(fatalError.code, NoSettingsFoundInProjectFile);
+    // "No settings were found in the project 'EmptySettings.xcodeproj.test'."
+    // "The project may already be using .xcconfig files for its build settings."
+    // "No xcconfig files will be written."
+
+}
+
 @end

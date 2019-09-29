@@ -26,6 +26,7 @@
 		53FA881F2341601300F51EC3 /* BadProject.xcodeproj.test in Resources */ = {isa = PBXBuildFile; fileRef = 53FA881E2341601300F51EC3 /* BadProject.xcodeproj.test */; };
 		53FA88212341614D00F51EC3 /* BadVersionNumber.xcodeproj.test in Resources */ = {isa = PBXBuildFile; fileRef = 53FA88202341614D00F51EC3 /* BadVersionNumber.xcodeproj.test */; };
 		53FA8823234163D700F51EC3 /* ConflictingName.xcodeproj.test in Resources */ = {isa = PBXBuildFile; fileRef = 53FA8822234163D700F51EC3 /* ConflictingName.xcodeproj.test */; };
+		53FA8825234164E700F51EC3 /* EmptySettings.xcodeproj.test in Resources */ = {isa = PBXBuildFile; fileRef = 53FA8824234164E700F51EC3 /* EmptySettings.xcodeproj.test */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +72,7 @@
 		53FA881E2341601300F51EC3 /* BadProject.xcodeproj.test */ = {isa = PBXFileReference; lastKnownFileType = folder; path = BadProject.xcodeproj.test; sourceTree = "<group>"; };
 		53FA88202341614D00F51EC3 /* BadVersionNumber.xcodeproj.test */ = {isa = PBXFileReference; lastKnownFileType = folder; path = BadVersionNumber.xcodeproj.test; sourceTree = "<group>"; };
 		53FA8822234163D700F51EC3 /* ConflictingName.xcodeproj.test */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ConflictingName.xcodeproj.test; sourceTree = "<group>"; };
+		53FA8824234164E700F51EC3 /* EmptySettings.xcodeproj.test */ = {isa = PBXFileReference; lastKnownFileType = folder; path = EmptySettings.xcodeproj.test; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -188,9 +190,10 @@
 		53F372F61A7C3164006118CB /* TestFiles */ = {
 			isa = PBXGroup;
 			children = (
-				53FA8822234163D700F51EC3 /* ConflictingName.xcodeproj.test */,
-				53FA88202341614D00F51EC3 /* BadVersionNumber.xcodeproj.test */,
 				53FA881E2341601300F51EC3 /* BadProject.xcodeproj.test */,
+				53FA88202341614D00F51EC3 /* BadVersionNumber.xcodeproj.test */,
+				53FA8822234163D700F51EC3 /* ConflictingName.xcodeproj.test */,
+				53FA8824234164E700F51EC3 /* EmptySettings.xcodeproj.test */,
 				53F372F31A7C0CBE006118CB /* ThreeBuildConfigs.plist */,
 			);
 			path = TestFiles;
@@ -285,6 +288,7 @@
 			files = (
 				53F372F41A7C0CBE006118CB /* ThreeBuildConfigs.plist in Resources */,
 				53FA881F2341601300F51EC3 /* BadProject.xcodeproj.test in Resources */,
+				53FA8825234164E700F51EC3 /* EmptySettings.xcodeproj.test in Resources */,
 				53719EBB19BF4C6D005D3DE0 /* InfoPlist.strings in Resources */,
 				53FA8823234163D700F51EC3 /* ConflictingName.xcodeproj.test in Resources */,
 				53FA88212341614D00F51EC3 /* BadVersionNumber.xcodeproj.test in Resources */,
