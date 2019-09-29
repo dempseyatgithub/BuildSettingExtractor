@@ -75,4 +75,21 @@
     
 }
 
+// Reads the project.pbxproj file inside of BadProject.xcodeproj.test.
+// A stripped down xcodeproj bundle with a malformed project.pbxproj plist.
+- (void)testMalformedProjectFile
+{
+    NSError *error = nil;
+    BuildSettingExtractor *extractor = [[BuildSettingExtractor alloc] init];
+
+    NSURL *badProjectURL = [[NSBundle bundleForClass:[BuildSettingExtractorTests class]] URLForResource:@"BadProject.xcodeproj" withExtension:@"test"];
+
+    NSArray *nonFatalErrors = [extractor extractBuildSettingsFromProject:badProjectURL error:&error];
+    
+    XCTAssertNil(nonFatalErrors);
+    XCTAssertNotNil(error);
+    XCTAssertEqual(error.code, 3840); // "Junk after plist at line 545"
+
+}
+
 @end

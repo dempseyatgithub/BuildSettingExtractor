@@ -4,7 +4,6 @@
 	classes = {
 	};
 	objectVersion = 50;
-	objects = {
 
 /* Begin PBXBuildFile section */
 		53719E9319BF4C6D005D3DE0 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53719E9219BF4C6D005D3DE0 /* Cocoa.framework */; };
@@ -23,7 +22,6 @@
 		53F372F01A7C042F006118CB /* BuildSettingExtractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 53F372EF1A7C042F006118CB /* BuildSettingExtractor.m */; };
 		53F372F41A7C0CBE006118CB /* ThreeBuildConfigs.plist in Resources */ = {isa = PBXBuildFile; fileRef = 53F372F31A7C0CBE006118CB /* ThreeBuildConfigs.plist */; };
 		53F372FB1A7C5803006118CB /* Constants+Categories.m in Sources */ = {isa = PBXBuildFile; fileRef = 53F372FA1A7C5803006118CB /* Constants+Categories.m */; };
-		53FA881F2341601300F51EC3 /* BadProject.xcodeproj.test in Resources */ = {isa = PBXBuildFile; fileRef = 53FA881E2341601300F51EC3 /* BadProject.xcodeproj.test */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,7 +64,6 @@
 		53F372F31A7C0CBE006118CB /* ThreeBuildConfigs.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = ThreeBuildConfigs.plist; sourceTree = "<group>"; };
 		53F372F91A7C5803006118CB /* Constants+Categories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Constants+Categories.h"; sourceTree = "<group>"; };
 		53F372FA1A7C5803006118CB /* Constants+Categories.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Constants+Categories.m"; sourceTree = "<group>"; };
-		53FA881E2341601300F51EC3 /* BadProject.xcodeproj.test */ = {isa = PBXFileReference; lastKnownFileType = folder; path = BadProject.xcodeproj.test; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -184,7 +181,6 @@
 		53F372F61A7C3164006118CB /* TestFiles */ = {
 			isa = PBXGroup;
 			children = (
-				53FA881E2341601300F51EC3 /* BadProject.xcodeproj.test */,
 				53F372F31A7C0CBE006118CB /* ThreeBuildConfigs.plist */,
 			);
 			path = TestFiles;
@@ -278,7 +274,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				53F372F41A7C0CBE006118CB /* ThreeBuildConfigs.plist in Resources */,
-				53FA881F2341601300F51EC3 /* BadProject.xcodeproj.test in Resources */,
 				53719EBB19BF4C6D005D3DE0 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
