@@ -92,4 +92,22 @@
 
 }
 
+// Reads the project.pbxproj file inside of BadVersionNumber.xcodeproj.test.
+// A stripped down xcodeproj bundle with its project version set to "Xcode 9999.9"
+- (void)testIncompatibleProjectVersion
+{
+    NSError *error = nil;
+    BuildSettingExtractor *extractor = [[BuildSettingExtractor alloc] init];
+
+    NSURL *badProjectURL = [[NSBundle bundleForClass:[BuildSettingExtractorTests class]] URLForResource:@"BadVersionNumber.xcodeproj" withExtension:@"test"];
+
+    NSArray *nonFatalErrors = [extractor extractBuildSettingsFromProject:badProjectURL error:&error];
+    
+    XCTAssertNil(nonFatalErrors);
+    XCTAssertNotNil(error);
+    XCTAssertEqual(error.code, UnsupportedXcodeVersion);
+    // "Unable to extract build settings from project ‘BadVersionNumber.xcodeproj"
+    // "Project file format version ‘Xcode 9999.9’ is not supported."
+    
+}
 @end
