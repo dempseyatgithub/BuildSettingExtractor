@@ -156,4 +156,14 @@
 
 }
 
+- (void)testWritingWithoutExtracting
+{
+    NSError *fatalError = nil;
+    BuildSettingExtractor *extractor = [[BuildSettingExtractor alloc] init];
+    
+    NSURL *tempFolder = [NSURL fileURLWithPath:NSTemporaryDirectory()];
+
+    XCTAssertThrows([extractor writeConfigFilesToDestinationFolder:tempFolder error:&fatalError]);
+}
+
 @end
