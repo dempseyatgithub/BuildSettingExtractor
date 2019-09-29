@@ -98,8 +98,40 @@
                     buildSettingExtractor.projectConfigName = [defaults stringForKey:TPSOutputFileNameProject];
                     buildSettingExtractor.nameSeparator = [defaults stringForKey:TPSOutputFileNameSeparator];
                     buildSettingExtractor.includeBuildSettingInfoComments = [[NSUserDefaults standardUserDefaults] boolForKey:TPSIncludeBuildSettingInfoComments];
+                    
+                    NSError *fatalError = nil;
+                    
+                    // Extract the build settings
+                    NSArray *nonFatalErrors = [buildSettingExtractor extractBuildSettingsFromProject:fileURL error:&fatalError];
+                    
+                    // On extraction fatal error, present the error and return.
+                    if (!nonFatalErrors && fatalError) {
+                        // present error on main thread and return
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            [NSApp presentError:fatalError];
+                        });
+                        return; // Can't continue, fatal error.
 
-                    BOOL success = [buildSettingExtractor extractBuildSettingsFromProject:fileURL toDestinationFolder:destinationURL];
+                    }
+                    // Otherwise, present non-fatal errors, if present.
+                    else if (nonFatalErrors && nonFatalErrors.count > 0) {
+                        // present non-fatal errors on main thread
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            for (NSError *anError in nonFatalErrors) {
+                                [NSApp presentError:anError]; // Will present one at a time.
+                            }
+                        });
+                    }
+                    
+                    //  Write the config files
+                    BOOL success = [buildSettingExtractor writeConfigFilesToDestinationFolder: destinationURL error: &fatalError];
+                    if (!success && fatalError) {
+                        // present error on main thread and return
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            [NSApp presentError:fatalError];
+                        });
+                        return; // Can't continue, fatal error.
+                    }
 
                     BOOL openInFinder = [[NSUserDefaults standardUserDefaults] boolForKey:TPSOpenDirectoryInFinder];
                     if (success && openInFinder) {

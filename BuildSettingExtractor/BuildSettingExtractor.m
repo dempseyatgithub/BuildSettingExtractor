@@ -22,6 +22,7 @@ static NSSet *XcodeCompatibilityVersionStringSet() {
 @interface BuildSettingExtractor ()
 @property (strong) NSMutableDictionary *buildSettingsByTarget;
 @property (strong) NSDictionary *objects;
+@property BOOL extractionSuccessful;
 
 @property (strong) BuildSettingInfoSource *buildSettingInfoSource;
 @end
@@ -48,6 +49,7 @@ static NSSet *XcodeCompatibilityVersionStringSet() {
         _nameSeparator = [[self class] defaultNameSeparator];
         _buildSettingsByTarget = [[NSMutableDictionary alloc] init];
         _buildSettingInfoSource = [[BuildSettingInfoSource alloc] init];
+        _extractionSuccessful = NO;
     }
     return self;
 }
@@ -63,131 +65,130 @@ static NSSet *XcodeCompatibilityVersionStringSet() {
     return objectArray;
 }
 
-- (BOOL)extractBuildSettingsFromProject:(NSURL *)projectWrapperURL toDestinationFolder:(NSURL *)folderURL {
+- (NSArray *)extractBuildSettingsFromProject:(NSURL *)projectWrapperURL error:(NSError **)error {
 
+    NSMutableArray *nonFatalErrors = [[NSMutableArray alloc] init];
+    
     [self.buildSettingsByTarget removeAllObjects];
-
-    NSError *error = nil;
-    BOOL success = YES;
 
     NSURL *projectFileURL = [projectWrapperURL URLByAppendingPathComponent:@"project.pbxproj"];
 
-    NSData *fileData = [NSData dataWithContentsOfURL:projectFileURL options:0 error:&error];
+    NSData *fileData = [NSData dataWithContentsOfURL:projectFileURL options:0 error:error];
     if (!fileData) {
-        success = NO;
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [NSApp presentError:error];
-        });
-    } else {
-
-        NSDictionary *projectPlist = [NSPropertyListSerialization propertyListWithData:fileData options:NSPropertyListImmutable format:NULL error:&error];
-
-        if (!projectPlist) {
-            success = NO;
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [NSApp presentError:error];
-            });
-        } else {
-
-            // Get root object (project)
-            self.objects = projectPlist[@"objects"];
-            NSDictionary *rootObject = self.objects[projectPlist[@"rootObject"]];
-
-            // Check compatibility version
-            NSString *compatibilityVersion = rootObject[@"compatibilityVersion"];
-            if (![XcodeCompatibilityVersionStringSet() containsObject:compatibilityVersion]) {
-                NSDictionary *userInfo = @{NSLocalizedDescriptionKey:[NSString stringWithFormat:@"Unable to extract build settings from project ‘%@’.", [[projectWrapperURL lastPathComponent] stringByDeletingPathExtension]], NSLocalizedRecoverySuggestionErrorKey: [NSString stringWithFormat:@"Project file format version ‘%@’ is not supported.", compatibilityVersion]};
-                NSError *error = [NSError errorWithDomain:[[NSBundle mainBundle] bundleIdentifier] code:UnsupportedXcodeVersion userInfo:userInfo];
-                success = NO;
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [NSApp presentError:error];
-                });
-                return success;
-            }
-            
-            // Get project targets
-            NSArray *targets = [self objectArrayForDictionary:rootObject key:@"targets"];
-            
-            // Validate project config name to guard against name conflicts with target names
-            NSArray *targetNames = [targets valueForKeyPath:@"name"];
-            NSString *validatedProjectConfigName = [self validatedProjectConfigNameWithTargetNames:targetNames];
-
-            // Get project settings
-            NSString *buildConfigurationListID = rootObject[@"buildConfigurationList"];
-            NSDictionary *projectSettings = [self buildSettingStringsByConfigurationForBuildConfigurationListID:buildConfigurationListID];
-
-            self.buildSettingsByTarget[validatedProjectConfigName] = projectSettings;
-            
-            // Begin check that the project file has some settings
-            BOOL projectFileHasSettings = projectSettings.containsBuildSettings;
-
-            // Add project targets
-            for (NSDictionary *target in targets) {
-                NSString *targetName = target[@"name"];
-                buildConfigurationListID = target[@"buildConfigurationList"];
-                NSDictionary *targetSettings = [self buildSettingStringsByConfigurationForBuildConfigurationListID:buildConfigurationListID];
-                if (!projectFileHasSettings) { projectFileHasSettings = targetSettings.containsBuildSettings; }
-
-                self.buildSettingsByTarget[targetName] = targetSettings;
-
-            }
-            
-            if (projectFileHasSettings) {
-                [self writeConfigFilesToDestinationFolder:folderURL];
-            } else {
-                [self presentErrorForNoSettingsFoundInProject: [projectWrapperURL lastPathComponent]];
-                success = NO;
-            }
-            
-        }
+        return nil;
     }
-    return success;
+        
+    NSDictionary *projectPlist = [NSPropertyListSerialization propertyListWithData:fileData options:NSPropertyListImmutable format:NULL error:error];
+    if (!projectPlist) {
+        return nil;
+    }
+            
+    // Get root object (project)
+    self.objects = projectPlist[@"objects"];
+    NSDictionary *rootObject = self.objects[projectPlist[@"rootObject"]];
+
+    // Check compatibility version
+    NSString *compatibilityVersion = rootObject[@"compatibilityVersion"];
+    if (![XcodeCompatibilityVersionStringSet() containsObject:compatibilityVersion]) {
+        NSDictionary *userInfo = @{NSLocalizedDescriptionKey:[NSString stringWithFormat:@"Unable to extract build settings from project ‘%@’.", [[projectWrapperURL lastPathComponent] stringByDeletingPathExtension]], NSLocalizedRecoverySuggestionErrorKey: [NSString stringWithFormat:@"Project file format version ‘%@’ is not supported.", compatibilityVersion]};
+        if (error) {
+            *error = [NSError errorWithDomain:[[NSBundle mainBundle] bundleIdentifier] code:UnsupportedXcodeVersion userInfo:userInfo];
+        }
+        return nil;
+    }
+            
+    // Get project targets
+    NSArray *targets = [self objectArrayForDictionary:rootObject key:@"targets"];
+    
+    // Validate project config name to guard against name conflicts with target names
+    NSError *nameValdationError = nil;
+    NSArray *targetNames = [targets valueForKeyPath:@"name"];
+    NSString *validatedProjectConfigName = [self validatedProjectConfigNameWithTargetNames:targetNames error: &nameValdationError];
+    
+    if (nameValdationError) {
+        [nonFatalErrors addObject:nameValdationError];
+    }
+    
+    // Get project settings
+    NSString *buildConfigurationListID = rootObject[@"buildConfigurationList"];
+    NSDictionary *projectSettings = [self buildSettingStringsByConfigurationForBuildConfigurationListID:buildConfigurationListID];
+
+    self.buildSettingsByTarget[validatedProjectConfigName] = projectSettings;
+    
+    // Begin check that the project file has some settings
+    BOOL projectFileHasSettings = projectSettings.containsBuildSettings;
+
+    // Add project targets
+    for (NSDictionary *target in targets) {
+        NSString *targetName = target[@"name"];
+        buildConfigurationListID = target[@"buildConfigurationList"];
+        NSDictionary *targetSettings = [self buildSettingStringsByConfigurationForBuildConfigurationListID:buildConfigurationListID];
+        if (!projectFileHasSettings) { projectFileHasSettings = targetSettings.containsBuildSettings; }
+
+        self.buildSettingsByTarget[targetName] = targetSettings;
+
+    }
+    
+    if (!projectFileHasSettings) {
+        if (error) {
+            *error = [self errorForNoSettingsFoundInProject: [projectWrapperURL lastPathComponent]];
+        }
+        return nil;
+    }
+
+
+    self.extractionSuccessful = YES;
+    return nonFatalErrors;
 }
 
 // This will return a validated project config name to guard against naming conflicts with targets
 // If a conflict is found, the project config files will have "-Project-Settings" appended to the
 // provided project config name, using the user-specified name separator between words.
-- (NSString *)validatedProjectConfigNameWithTargetNames:(NSArray *)targetNames {
+- (NSString *)validatedProjectConfigNameWithTargetNames:(NSArray *)targetNames error:(NSError **)error {
     NSString *validatedProjectConfigName = self.projectConfigName;
     if ([targetNames containsObject:self.projectConfigName]) {
         validatedProjectConfigName = [validatedProjectConfigName stringByAppendingFormat:@"%@Project%@Settings", self.nameSeparator, self.nameSeparator];
-        [self presentErrorForNameConflictWithName:self.projectConfigName validatedName:validatedProjectConfigName];
+        if (error) {
+            *error = [self errorForNameConflictWithName:self.projectConfigName validatedName:validatedProjectConfigName];
+        }
     }
     return validatedProjectConfigName;
 }
 
 // Notify the user we are not using the exact name for the project settings provided in Preferences
-- (void)presentErrorForNameConflictWithName:(NSString *)conflictedName validatedName:(NSString *)validatedName {
+- (NSError *)errorForNameConflictWithName:(NSString *)conflictedName validatedName:(NSString *)validatedName {
     NSString *errorDescription = [NSString stringWithFormat:@"Project settings filename conflict."];
     NSString *errorRecoverySuggestion = [NSString stringWithFormat:@"The target \'%@\' has the same name as the project name set in Preferences.\n\nThe generated project settings files will use the name \'%@\' to avoid a conflict.", conflictedName, validatedName];
     NSDictionary *errorUserInfo = @{NSLocalizedDescriptionKey:errorDescription, NSLocalizedRecoverySuggestionErrorKey: errorRecoverySuggestion};
     
     NSError *error = [NSError errorWithDomain:[[NSBundle mainBundle] bundleIdentifier] code:ProjectSettingsNamingConflict userInfo:errorUserInfo];
     
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [NSApp presentError:error];
-    });
-
+    return error;
 }
 
 // Notify the user we did not find any settings in the project.
-- (void)presentErrorForNoSettingsFoundInProject:(NSString *)projectName {
+- (NSError *)errorForNoSettingsFoundInProject:(NSString *)projectName {
     NSString *errorDescription = [NSString stringWithFormat:@"No settings found."];
     NSString *errorRecoverySuggestion = [NSString stringWithFormat:@"No settings were found in the project \'%@\'.\n\nThe project may already be using .xcconfig files for its build settings.\n\nNo xcconfig files will be written. ", projectName];
     NSDictionary *errorUserInfo = @{NSLocalizedDescriptionKey:errorDescription, NSLocalizedRecoverySuggestionErrorKey: errorRecoverySuggestion};
     
     NSError *error = [NSError errorWithDomain:[[NSBundle mainBundle] bundleIdentifier] code:NoSettingsFoundInProjectFile userInfo:errorUserInfo];
     
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [NSApp presentError:error];
-    });
-    
+    return error;
 }
 
 /* Writes an xcconfig file for each target / configuration combination to the specified directory.
  */
-- (void)writeConfigFilesToDestinationFolder:(NSURL *)destinationURL {
+- (BOOL)writeConfigFilesToDestinationFolder:(NSURL *)destinationURL error:(NSError **)error {
+    
+    // It is a programming error to try to write before extracting or to call this method after extracting build settings has failed.
+    if (!self.extractionSuccessful) {
+        [NSException raise:NSInternalInconsistencyException format:@"The method -writeConfigFilesToDestinationFolder:error: was called before successful completion of -extractBuildSettingsFromProject:error:. Callers of this method must call -extractBuildSettingsFromProject:error: first and check for a non-nil return value indicating success."];
+    }
 
+    __block BOOL success = YES;
+    __block NSError *blockError = nil;
+    
     [self.buildSettingsByTarget enumerateKeysAndObjectsUsingBlock:^(id targetName, id obj, BOOL *stop) {
         [obj enumerateKeysAndObjectsUsingBlock:^(id configName, id settings, BOOL *stop) {
 
@@ -226,10 +227,18 @@ static NSSet *XcodeCompatibilityVersionStringSet() {
 
             NSURL *fileURL = [destinationURL URLByAppendingPathComponent:filename];
 
-            BOOL success = [configFileString writeToURL:fileURL atomically:YES encoding:NSUTF8StringEncoding error:nil];
-            if (!success) NSLog(@"No success with %@", fileURL);
+            success = [configFileString writeToURL:fileURL atomically:YES encoding:NSUTF8StringEncoding error:&blockError];
+            if (!success) {
+                *stop = YES;
+            }
         }];
     }];
+    
+    if (!success && error) {
+        *error = blockError;
+    }
+    
+    return success;
 }
 
 // Given the target name and config name returns the xcconfig filename to be used.

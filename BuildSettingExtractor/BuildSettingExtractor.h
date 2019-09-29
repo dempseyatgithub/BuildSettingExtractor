@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
 
 @interface BuildSettingExtractor : NSObject
 
@@ -44,7 +45,17 @@
 // Should each build setting be commented with title and description, if available. 
 @property (assign) BOOL includeBuildSettingInfoComments;
 
-// Returns whether extraction of build settings was successful
-- (BOOL)extractBuildSettingsFromProject:(NSURL *)projectWrapperURL toDestinationFolder:(NSURL *)folderURL;
+// Extracts the build settings from the project.
+// Returns an array of zero or more non-fatal validation errors or nil if a fatal error is encountered
+- (nullable NSArray *)extractBuildSettingsFromProject:(NSURL *)projectWrapperURL error:(NSError **)error;
+
+// After successful extraction, writes config files to the destination folder
+// Returns whether the method was successful and an error if unsuccessful
+//
+// NOTE: This method will throw an exception if it is called before successful extraction of build settings
+// by successful completion of -extractBuildSettingsFromProject:error:. Callers must call -extractBuildSettingsFromProject:error: first and check for a non-nil return value indicating success.
+- (BOOL)writeConfigFilesToDestinationFolder:(NSURL *)destinationURL error:(NSError **)error;
 
 @end
+
+NS_ASSUME_NONNULL_END
