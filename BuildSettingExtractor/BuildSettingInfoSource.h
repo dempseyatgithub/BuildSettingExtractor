@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 Tapas Software. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+@import Foundation;
 
 @interface BuildSettingInfoSource : NSObject
 

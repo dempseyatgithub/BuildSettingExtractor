@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Tapas Software. All rights reserved.
 //
 
-#import <XCTest/XCTest.h>
+@import XCTest;
 #import "BuildSettingExtractor.h"
 #import "BuildSettingInfoSource.h"
 #import "Constants+Categories.h"

@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 Tapas Software. All rights reserved.
 //
 
-#import <Cocoa/Cocoa.h>
+@import Cocoa;
 
 IB_DESIGNABLE
 @interface DragFileView : NSBox
