@@ -62,16 +62,16 @@
 
 - (void)testBadProjectURL
 {
-    NSError *error = nil;
+    NSError *fatalError = nil;
     BuildSettingExtractor *extractor = [[BuildSettingExtractor alloc] init];
     
     NSURL *badURL = [NSURL fileURLWithPath:[@"~/Documents/BadProjectURL.xcodeproj" stringByExpandingTildeInPath]];
 
-    NSArray *nonFatalErrors = [extractor extractBuildSettingsFromProject:badURL error:&error];
+    NSArray *nonFatalErrors = [extractor extractBuildSettingsFromProject:badURL error:&fatalError];
     
     XCTAssertNil(nonFatalErrors);
-    XCTAssertNotNil(error);
-    XCTAssertEqual(error.code, 260);
+    XCTAssertNotNil(fatalError);
+    XCTAssertEqual(fatalError.code, 260);
     
 }
 
@@ -79,33 +79,33 @@
 // A stripped down xcodeproj bundle with a malformed project.pbxproj plist.
 - (void)testMalformedProjectFile
 {
-    NSError *error = nil;
+    NSError *fatalError = nil;
     BuildSettingExtractor *extractor = [[BuildSettingExtractor alloc] init];
 
     NSURL *badProjectURL = [[NSBundle bundleForClass:[BuildSettingExtractorTests class]] URLForResource:@"BadProject.xcodeproj" withExtension:@"test"];
 
-    NSArray *nonFatalErrors = [extractor extractBuildSettingsFromProject:badProjectURL error:&error];
+    NSArray *nonFatalErrors = [extractor extractBuildSettingsFromProject:badProjectURL error:&fatalError];
     
     XCTAssertNil(nonFatalErrors);
-    XCTAssertNotNil(error);
-    XCTAssertEqual(error.code, 3840); // "Junk after plist at line 545"
+    XCTAssertNotNil(fatalError);
+    XCTAssertEqual(fatalError.code, 3840); // "Junk after plist at line 545"
 
 }
 
 // Reads the project.pbxproj file inside of BadVersionNumber.xcodeproj.test.
 // A stripped down xcodeproj bundle with its project version set to "Xcode 9999.9"
-- (void)testIncompatibleProjectVersion
+- (void)testUnsupportedProjectVersion
 {
-    NSError *error = nil;
+    NSError *fatalError = nil;
     BuildSettingExtractor *extractor = [[BuildSettingExtractor alloc] init];
 
     NSURL *badProjectURL = [[NSBundle bundleForClass:[BuildSettingExtractorTests class]] URLForResource:@"BadVersionNumber.xcodeproj" withExtension:@"test"];
 
-    NSArray *nonFatalErrors = [extractor extractBuildSettingsFromProject:badProjectURL error:&error];
+    NSArray *nonFatalErrors = [extractor extractBuildSettingsFromProject:badProjectURL error:&fatalError];
     
     XCTAssertNil(nonFatalErrors);
-    XCTAssertNotNil(error);
-    XCTAssertEqual(error.code, UnsupportedXcodeVersion);
+    XCTAssertNotNil(fatalError);
+    XCTAssertEqual(fatalError.code, UnsupportedXcodeVersion);
     // "Unable to extract build settings from project ‘BadVersionNumber.xcodeproj"
     // "Project file format version ‘Xcode 9999.9’ is not supported."
     
