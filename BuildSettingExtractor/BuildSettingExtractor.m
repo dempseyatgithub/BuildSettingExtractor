@@ -90,9 +90,8 @@ static NSSet *XcodeCompatibilityVersionStringSet() {
     // Check compatibility version
     NSString *compatibilityVersion = rootObject[@"compatibilityVersion"];
     if (![XcodeCompatibilityVersionStringSet() containsObject:compatibilityVersion]) {
-        NSDictionary *userInfo = @{NSLocalizedDescriptionKey:[NSString stringWithFormat:@"Unable to extract build settings from project ‘%@’.", [[projectWrapperURL lastPathComponent] stringByDeletingPathExtension]], NSLocalizedRecoverySuggestionErrorKey: [NSString stringWithFormat:@"Project file format version ‘%@’ is not supported.", compatibilityVersion]};
         if (error) {
-            *error = [NSError errorWithDomain:[[NSBundle mainBundle] bundleIdentifier] code:UnsupportedXcodeVersion userInfo:userInfo];
+            *error = [NSError errorForUnsupportedProjectURL:projectWrapperURL fileVersion:compatibilityVersion];
         }
         return nil;
     }

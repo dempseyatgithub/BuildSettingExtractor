@@ -97,6 +97,15 @@
     return error;
 }
 
+
++ (NSError *)errorForUnsupportedProjectURL:(NSURL *)projectWrapperURL fileVersion:(NSString *)compatibilityVersion {
+NSDictionary *userInfo = @{NSLocalizedDescriptionKey:[NSString stringWithFormat:@"Unable to extract build settings from project ‘%@’.", [[projectWrapperURL lastPathComponent] stringByDeletingPathExtension]], NSLocalizedRecoverySuggestionErrorKey: [NSString stringWithFormat:@"Project file format version ‘%@’ is not supported.", compatibilityVersion]};
+
+    NSError *error = [NSError errorWithDomain:[[NSBundle mainBundle] bundleIdentifier] code:UnsupportedXcodeVersion userInfo:userInfo];
+
+    return error;
+}
+
 @end
 
 

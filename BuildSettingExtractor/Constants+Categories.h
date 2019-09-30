@@ -46,5 +46,8 @@ typedef NS_ENUM(NSUInteger, AppErrorCodes) {
 // Notify the user we did not find any settings in the project.
 + (NSError *)errorForNoSettingsFoundInProject:(NSString *)projectName;
 
+// Notify the user the project version is unsupported
++ (NSError *)errorForUnsupportedProjectURL:(NSURL *)projectWrapperURL fileVersion:(NSString *)compatibilityVersion;
+
 @end
 
