@@ -8,35 +8,6 @@
 
 #import "Constants+Categories.h"
 
-NSString *const TPSOpenDirectoryInFinder = @"TPSOpenDirectoryInFinder";
-NSString *const TPSIncludeBuildSettingInfoComments = @"TPSIncludeBuildSettingInfoComments";
-NSString *const TPSOutputFileNameProject = @"TPSOutputFileNameProject";
-NSString *const TPSOutputFileNameShared = @"TPSOutputFileNameShared";
-NSString *const TPSOutputFileNameSeparator = @"TPSOutputFileNameSeparator";
-
-#pragma mark -
-
-@implementation NSPasteboard (TPS_XcodeProjectURLAdditions)
-
-- (NSURL *)tps_readXcodeProjectFileURL {
-    NSArray *readObjects = [self readObjectsForClasses:@[[NSURL class]] options:[self tps_xcodeProjectReadingOptions]];
-    return readObjects.firstObject;
-}
-
-- (BOOL)tps_canReadXcodeProjectFileURL {
-    return [self canReadObjectForClasses:@[[NSURL class]] options:[self tps_xcodeProjectReadingOptions]];
-}
-
-- (NSDictionary *)tps_xcodeProjectReadingOptions {
-    return @{NSPasteboardURLReadingFileURLsOnlyKey: @(YES), NSPasteboardURLReadingContentsConformToTypesKey: @[[NSString tps_projectBundleTypeIdentifier]]};
-}
-
-@end
-
-
-#pragma mark -
-
-
 @implementation  NSString (TPS_TypeIdentifierAdditions)
 
 + (NSString *)tps_projectBundleTypeIdentifier {

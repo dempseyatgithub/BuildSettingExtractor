@@ -7,6 +7,7 @@
 //
 
 #import "DragFileView.h"
+#import "AppConstants+Categories.h"
 #import "Constants+Categories.h"
 
 

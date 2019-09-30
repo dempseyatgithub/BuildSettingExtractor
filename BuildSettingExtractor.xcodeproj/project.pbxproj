@@ -27,6 +27,7 @@
 		53FA88212341614D00F51EC3 /* BadVersionNumber.xcodeproj.test in Resources */ = {isa = PBXBuildFile; fileRef = 53FA88202341614D00F51EC3 /* BadVersionNumber.xcodeproj.test */; };
 		53FA8823234163D700F51EC3 /* ConflictingName.xcodeproj.test in Resources */ = {isa = PBXBuildFile; fileRef = 53FA8822234163D700F51EC3 /* ConflictingName.xcodeproj.test */; };
 		53FA8825234164E700F51EC3 /* EmptySettings.xcodeproj.test in Resources */ = {isa = PBXBuildFile; fileRef = 53FA8824234164E700F51EC3 /* EmptySettings.xcodeproj.test */; };
+		53FA882823421B9900F51EC3 /* AppConstants+Categories.m in Sources */ = {isa = PBXBuildFile; fileRef = 53FA882723421B9900F51EC3 /* AppConstants+Categories.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +73,8 @@
 		53FA88202341614D00F51EC3 /* BadVersionNumber.xcodeproj.test */ = {isa = PBXFileReference; lastKnownFileType = folder; path = BadVersionNumber.xcodeproj.test; sourceTree = "<group>"; };
 		53FA8822234163D700F51EC3 /* ConflictingName.xcodeproj.test */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ConflictingName.xcodeproj.test; sourceTree = "<group>"; };
 		53FA8824234164E700F51EC3 /* EmptySettings.xcodeproj.test */ = {isa = PBXFileReference; lastKnownFileType = folder; path = EmptySettings.xcodeproj.test; sourceTree = "<group>"; };
+		53FA882623421B9900F51EC3 /* AppConstants+Categories.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AppConstants+Categories.h"; sourceTree = "<group>"; };
+		53FA882723421B9900F51EC3 /* AppConstants+Categories.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "AppConstants+Categories.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,6 +149,8 @@
 				53BC11301A817447005E2FD2 /* BuildSettingInfoSource.m */,
 				53F372EB1A7BC6A7006118CB /* DragFileView.h */,
 				53F372EC1A7BC6A7006118CB /* DragFileView.m */,
+				53FA882623421B9900F51EC3 /* AppConstants+Categories.h */,
+				53FA882723421B9900F51EC3 /* AppConstants+Categories.m */,
 				53F372F91A7C5803006118CB /* Constants+Categories.h */,
 				53F372FA1A7C5803006118CB /* Constants+Categories.m */,
 				53719EA719BF4C6D005D3DE0 /* MainMenu.xib */,
@@ -304,6 +309,7 @@
 				53F372F01A7C042F006118CB /* BuildSettingExtractor.m in Sources */,
 				53719EA619BF4C6D005D3DE0 /* AppDelegate.m in Sources */,
 				53F372ED1A7BC6A7006118CB /* DragFileView.m in Sources */,
+				53FA882823421B9900F51EC3 /* AppConstants+Categories.m in Sources */,
 				53BC11311A817447005E2FD2 /* BuildSettingInfoSource.m in Sources */,
 				53719E9F19BF4C6D005D3DE0 /* main.m in Sources */,
 			);

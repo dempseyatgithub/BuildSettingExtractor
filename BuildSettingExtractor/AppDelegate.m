@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "DragFileView.h"
 #import "BuildSettingExtractor.h"
+#import "AppConstants+Categories.h"
 #import "Constants+Categories.h"
 
 // During development it is useful to turn off the overwrite checking

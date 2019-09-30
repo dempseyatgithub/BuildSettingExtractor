@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 Tapas Software. All rights reserved.
 //
 
-@import Cocoa;
+@import Foundation;
 
 typedef NS_ENUM(NSUInteger, AppErrorCodes) {
     UnsupportedXcodeVersion = 100,
@@ -14,20 +14,6 @@ typedef NS_ENUM(NSUInteger, AppErrorCodes) {
     ProjectSettingsNamingConflict = 102,
     NoSettingsFoundInProjectFile = 103,
 };
-
-extern NSString *const TPSOpenDirectoryInFinder;
-extern NSString *const TPSIncludeBuildSettingInfoComments;
-extern NSString *const TPSOutputFileNameProject;
-extern NSString *const TPSOutputFileNameShared;
-extern NSString *const TPSOutputFileNameSeparator;
-
-
-#pragma mark -
-
-@interface NSPasteboard (TPS_XcodeProjectURLAdditions)
-- (BOOL)tps_canReadXcodeProjectFileURL;
-- (NSURL *)tps_readXcodeProjectFileURL;
-@end
 
 #pragma mark -
 
