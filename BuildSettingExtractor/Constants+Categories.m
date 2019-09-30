@@ -8,6 +8,8 @@
 
 #import "Constants+Categories.h"
 
+NSErrorDomain const TPSBuildSettingExtractorErrorDomain = @"TPSBuildSettingExtractorErrorDomain";
+
 @implementation  NSString (TPS_TypeIdentifierAdditions)
 
 + (NSString *)tps_projectBundleTypeIdentifier {
@@ -81,7 +83,7 @@
     NSString *errorRecoverySuggestion = [NSString stringWithFormat:@"The target \'%@\' has the same name as the project name set in Preferences.\n\nThe generated project settings files will use the name \'%@\' to avoid a conflict.", conflictedName, validatedName];
     NSDictionary *errorUserInfo = @{NSLocalizedDescriptionKey:errorDescription, NSLocalizedRecoverySuggestionErrorKey: errorRecoverySuggestion};
     
-    NSError *error = [NSError errorWithDomain:[[NSBundle mainBundle] bundleIdentifier] code:ProjectSettingsNamingConflict userInfo:errorUserInfo];
+    NSError *error = [NSError errorWithDomain:TPSBuildSettingExtractorErrorDomain code:ProjectSettingsNamingConflict userInfo:errorUserInfo];
     
     return error;
 }
@@ -92,7 +94,7 @@
     NSString *errorRecoverySuggestion = [NSString stringWithFormat:@"No settings were found in the project \'%@\'.\n\nThe project may already be using .xcconfig files for its build settings.\n\nNo xcconfig files will be written. ", projectName];
     NSDictionary *errorUserInfo = @{NSLocalizedDescriptionKey:errorDescription, NSLocalizedRecoverySuggestionErrorKey: errorRecoverySuggestion};
     
-    NSError *error = [NSError errorWithDomain:[[NSBundle mainBundle] bundleIdentifier] code:NoSettingsFoundInProjectFile userInfo:errorUserInfo];
+    NSError *error = [NSError errorWithDomain:TPSBuildSettingExtractorErrorDomain code:NoSettingsFoundInProjectFile userInfo:errorUserInfo];
     
     return error;
 }
@@ -101,7 +103,7 @@
 + (NSError *)errorForUnsupportedProjectURL:(NSURL *)projectWrapperURL fileVersion:(NSString *)compatibilityVersion {
 NSDictionary *userInfo = @{NSLocalizedDescriptionKey:[NSString stringWithFormat:@"Unable to extract build settings from project ‘%@’.", [[projectWrapperURL lastPathComponent] stringByDeletingPathExtension]], NSLocalizedRecoverySuggestionErrorKey: [NSString stringWithFormat:@"Project file format version ‘%@’ is not supported.", compatibilityVersion]};
 
-    NSError *error = [NSError errorWithDomain:[[NSBundle mainBundle] bundleIdentifier] code:UnsupportedXcodeVersion userInfo:userInfo];
+    NSError *error = [NSError errorWithDomain:TPSBuildSettingExtractorErrorDomain code:UnsupportedXcodeVersion userInfo:userInfo];
 
     return error;
 }

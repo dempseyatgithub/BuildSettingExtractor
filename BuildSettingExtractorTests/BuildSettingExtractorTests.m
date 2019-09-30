@@ -105,6 +105,7 @@
     
     XCTAssertNil(nonFatalErrors);
     XCTAssertNotNil(fatalError);
+    XCTAssertEqual(fatalError.domain, TPSBuildSettingExtractorErrorDomain);
     XCTAssertEqual(fatalError.code, UnsupportedXcodeVersion);
     // "Unable to extract build settings from project ‘BadVersionNumber.xcodeproj"
     // "Project file format version ‘Xcode 9999.9’ is not supported."
@@ -128,6 +129,7 @@
     
     NSError *firstError = nonFatalErrors.firstObject;
     XCTAssertNotNil(firstError);
+    XCTAssertEqual(firstError.domain, TPSBuildSettingExtractorErrorDomain);
     XCTAssertEqual(firstError.code, ProjectSettingsNamingConflict);
     // "Project settings filename conflict."
     // "The target 'MyTarget' has the same name as the project name set in Preferences."
@@ -149,6 +151,7 @@
     
     XCTAssertNil(nonFatalErrors);
     XCTAssertNotNil(fatalError);
+    XCTAssertEqual(fatalError.domain, TPSBuildSettingExtractorErrorDomain);
     XCTAssertEqual(fatalError.code, NoSettingsFoundInProjectFile);
     // "No settings were found in the project 'EmptySettings.xcodeproj.test'."
     // "The project may already be using .xcconfig files for its build settings."

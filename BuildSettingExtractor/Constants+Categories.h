@@ -15,6 +15,8 @@ typedef NS_ENUM(NSUInteger, AppErrorCodes) {
     NoSettingsFoundInProjectFile = 103,
 };
 
+extern NSErrorDomain const TPSBuildSettingExtractorErrorDomain;
+
 #pragma mark -
 
 @interface  NSString (TPS_TypeIdentifierAdditions)
