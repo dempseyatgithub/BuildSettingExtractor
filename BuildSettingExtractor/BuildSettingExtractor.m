@@ -131,7 +131,7 @@ static NSSet *XcodeCompatibilityVersionStringSet() {
     
     if (!projectFileHasSettings) {
         if (error) {
-            *error = [self errorForNoSettingsFoundInProject: [projectWrapperURL lastPathComponent]];
+            *error = [NSError errorForNoSettingsFoundInProject: [projectWrapperURL lastPathComponent]];
         }
         return nil;
     }
@@ -149,32 +149,10 @@ static NSSet *XcodeCompatibilityVersionStringSet() {
     if ([targetNames containsObject:self.projectConfigName]) {
         validatedProjectConfigName = [validatedProjectConfigName stringByAppendingFormat:@"%@Project%@Settings", self.nameSeparator, self.nameSeparator];
         if (error) {
-            *error = [self errorForNameConflictWithName:self.projectConfigName validatedName:validatedProjectConfigName];
+            *error = [NSError errorForNameConflictWithName:self.projectConfigName validatedName:validatedProjectConfigName];
         }
     }
     return validatedProjectConfigName;
-}
-
-// Notify the user we are not using the exact name for the project settings provided in Preferences
-- (NSError *)errorForNameConflictWithName:(NSString *)conflictedName validatedName:(NSString *)validatedName {
-    NSString *errorDescription = [NSString stringWithFormat:@"Project settings filename conflict."];
-    NSString *errorRecoverySuggestion = [NSString stringWithFormat:@"The target \'%@\' has the same name as the project name set in Preferences.\n\nThe generated project settings files will use the name \'%@\' to avoid a conflict.", conflictedName, validatedName];
-    NSDictionary *errorUserInfo = @{NSLocalizedDescriptionKey:errorDescription, NSLocalizedRecoverySuggestionErrorKey: errorRecoverySuggestion};
-    
-    NSError *error = [NSError errorWithDomain:[[NSBundle mainBundle] bundleIdentifier] code:ProjectSettingsNamingConflict userInfo:errorUserInfo];
-    
-    return error;
-}
-
-// Notify the user we did not find any settings in the project.
-- (NSError *)errorForNoSettingsFoundInProject:(NSString *)projectName {
-    NSString *errorDescription = [NSString stringWithFormat:@"No settings found."];
-    NSString *errorRecoverySuggestion = [NSString stringWithFormat:@"No settings were found in the project \'%@\'.\n\nThe project may already be using .xcconfig files for its build settings.\n\nNo xcconfig files will be written. ", projectName];
-    NSDictionary *errorUserInfo = @{NSLocalizedDescriptionKey:errorDescription, NSLocalizedRecoverySuggestionErrorKey: errorRecoverySuggestion};
-    
-    NSError *error = [NSError errorWithDomain:[[NSBundle mainBundle] bundleIdentifier] code:NoSettingsFoundInProjectFile userInfo:errorUserInfo];
-    
-    return error;
 }
 
 /* Writes an xcconfig file for each target / configuration combination to the specified directory.

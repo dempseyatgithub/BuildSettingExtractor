@@ -36,3 +36,15 @@ typedef NS_ENUM(NSUInteger, AppErrorCodes) {
 - (BOOL)containsBuildSettings;
 @end
 
+#pragma mark -
+
+@interface NSError (TPS_BuildSettingExtractorAdditions)
+
+// Notify the user we are not using the exact name for the project settings provided in Preferences
++ (NSError *)errorForNameConflictWithName:(NSString *)conflictedName validatedName:(NSString *)validatedName;
+
+// Notify the user we did not find any settings in the project.
++ (NSError *)errorForNoSettingsFoundInProject:(NSString *)projectName;
+
+@end
+
