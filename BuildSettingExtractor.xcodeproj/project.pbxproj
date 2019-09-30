@@ -48,7 +48,6 @@
 		53719E9A19BF4C6D005D3DE0 /* BuildSettingExtractor-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BuildSettingExtractor-Info.plist"; sourceTree = "<group>"; };
 		53719E9C19BF4C6D005D3DE0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		53719E9E19BF4C6D005D3DE0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		53719EA019BF4C6D005D3DE0 /* BuildSettingExtractor-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BuildSettingExtractor-Prefix.pch"; sourceTree = "<group>"; };
 		53719EA419BF4C6D005D3DE0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		53719EA519BF4C6D005D3DE0 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		53719EA819BF4C6D005D3DE0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
@@ -163,7 +162,6 @@
 				53719E9A19BF4C6D005D3DE0 /* BuildSettingExtractor-Info.plist */,
 				53719E9B19BF4C6D005D3DE0 /* InfoPlist.strings */,
 				53719E9E19BF4C6D005D3DE0 /* main.m */,
-				53719EA019BF4C6D005D3DE0 /* BuildSettingExtractor-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -460,8 +458,6 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 14;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "BuildSettingExtractor/BuildSettingExtractor-Prefix.pch";
 				INFOPLIST_FILE = "BuildSettingExtractor/BuildSettingExtractor-Info.plist";
 				MARKETING_VERSION = 1.3.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "net.tapas-software.${PRODUCT_NAME:rfc1034identifier}";
@@ -476,8 +472,6 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 14;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "BuildSettingExtractor/BuildSettingExtractor-Prefix.pch";
 				INFOPLIST_FILE = "BuildSettingExtractor/BuildSettingExtractor-Info.plist";
 				MARKETING_VERSION = 1.3.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "net.tapas-software.${PRODUCT_NAME:rfc1034identifier}";
@@ -495,8 +489,6 @@
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 					"$(inherited)",
 				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "BuildSettingExtractor/BuildSettingExtractor-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -518,8 +510,6 @@
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 					"$(inherited)",
 				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "BuildSettingExtractor/BuildSettingExtractor-Prefix.pch";
 				INFOPLIST_FILE = "BuildSettingExtractorTests/BuildSettingExtractorTests-Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = "net.tapas-software.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
