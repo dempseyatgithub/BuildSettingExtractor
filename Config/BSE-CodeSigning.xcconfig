@@ -1,0 +1,20 @@
+//
+//  BSE-CodeSigning.xcconfig
+//  BuildSettingExtractor
+//
+//  Created by James Dempsey on 10/2/19.
+//  Copyright © 2019 Tapas Software. All rights reserved.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+
+// This file optionally includes an xcconfig file outside of the main
+// github repository. This allows for codesigning the app without needing
+// to include private values, such as team identifiers, in the public
+// repository.
+
+// The optional #include? directive allows the open source project to compile
+// when the private xcconfig file is not found.
+
+#include? "/usr/local/etc/xcconfig-private/CodeSigning.xcconfig"

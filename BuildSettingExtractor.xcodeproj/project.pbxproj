@@ -41,6 +41,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		532C57C7234BB32700FA0872 /* BSE-CodeSigning.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "BSE-CodeSigning.xcconfig"; sourceTree = "<group>"; };
 		53719E8F19BF4C6D005D3DE0 /* BuildSettingExtractor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BuildSettingExtractor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		53719E9219BF4C6D005D3DE0 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		53719E9519BF4C6D005D3DE0 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -98,11 +99,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		532C57C6234BB32700FA0872 /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				532C57C7234BB32700FA0872 /* BSE-CodeSigning.xcconfig */,
+			);
+			path = Config;
+			sourceTree = "<group>";
+		};
 		53719E8619BF4C6D005D3DE0 = {
 			isa = PBXGroup;
 			children = (
 				53719E9819BF4C6D005D3DE0 /* BuildSettingExtractor */,
 				53719EB619BF4C6D005D3DE0 /* BuildSettingExtractorTests */,
+				532C57C6234BB32700FA0872 /* Config */,
 				53719E9119BF4C6D005D3DE0 /* Frameworks */,
 				53719E9019BF4C6D005D3DE0 /* Products */,
 				5395AF4D1A7C6BB60028BE88 /* ReadMe.md */,
