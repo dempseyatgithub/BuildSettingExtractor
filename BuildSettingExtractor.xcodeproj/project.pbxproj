@@ -373,6 +373,7 @@
 /* Begin XCBuildConfiguration section */
 		53719EBE19BF4C6D005D3DE0 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 532C57C7234BB32700FA0872 /* BSE-CodeSigning.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -425,6 +426,7 @@
 		};
 		53719EBF19BF4C6D005D3DE0 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 532C57C7234BB32700FA0872 /* BSE-CodeSigning.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
