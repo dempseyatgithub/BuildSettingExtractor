@@ -8,7 +8,7 @@
 
 @import XCTest;
 #import "BuildSettingExtractor.h"
-#import "BuildSettingInfoSource.h"
+#import "BuildSettingCommentGenerator.h"
 #import "Constants+Categories.h"
 
 @interface NSObject (BuildSettingExtractorMethods)
@@ -55,8 +55,8 @@
 
 - (void)testLoadingBuildSettingInfo
 {
-    BuildSettingInfoSource *source = [[BuildSettingInfoSource alloc] init];
-    XCTAssertTrue([source loadBuildSettingInfo]);
+    BuildSettingCommentGenerator *commentGenerator = [[BuildSettingCommentGenerator alloc] init];
+    XCTAssertTrue([commentGenerator loadBuildSettingInfo]);
 
 }
 

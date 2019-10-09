@@ -1,5 +1,5 @@
 //
-//  BuildSettingInfoSource.h
+//  BuildSettingCommentGenerator.h
 //  BuildSettingExtractor
 //
 //  Created by James Dempsey on 2/3/15.
@@ -8,7 +8,7 @@
 
 @import Foundation;
 
-@interface BuildSettingInfoSource : NSObject
+@interface BuildSettingCommentGenerator : NSObject
 
 - (NSString *)commentForBuildSettingWithName:(NSString *)buildSettingName;
 

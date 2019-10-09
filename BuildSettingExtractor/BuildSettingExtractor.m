@@ -7,7 +7,7 @@
 //
 
 #import "BuildSettingExtractor.h"
-#import "BuildSettingInfoSource.h"
+#import "BuildSettingCommentGenerator.h"
 #import "Constants+Categories.h"
 
 static NSSet *XcodeCompatibilityVersionStringSet() {
@@ -24,7 +24,7 @@ static NSSet *XcodeCompatibilityVersionStringSet() {
 @property (strong) NSDictionary *objects;
 @property BOOL extractionSuccessful;
 
-@property (strong) BuildSettingInfoSource *buildSettingInfoSource;
+@property (strong) BuildSettingCommentGenerator *buildSettingCommentGenerator;
 @end
 
 @implementation BuildSettingExtractor
@@ -48,7 +48,7 @@ static NSSet *XcodeCompatibilityVersionStringSet() {
         _projectConfigName = [[self class] defaultProjectConfigName];
         _nameSeparator = [[self class] defaultNameSeparator];
         _buildSettingsByTarget = [[NSMutableDictionary alloc] init];
-        _buildSettingInfoSource = nil;
+        _buildSettingCommentGenerator = nil;
         _extractionSuccessful = NO;
     }
     return self;
@@ -72,7 +72,7 @@ static NSSet *XcodeCompatibilityVersionStringSet() {
     [self.buildSettingsByTarget removeAllObjects];
 
     if (self.includeBuildSettingInfoComments) {
-        self.buildSettingInfoSource = [[BuildSettingInfoSource alloc] init];
+        self.buildSettingCommentGenerator = [[BuildSettingCommentGenerator alloc] init];
     }
 
     NSURL *projectFileURL = [projectWrapperURL URLByAppendingPathComponent:@"project.pbxproj"];
@@ -257,7 +257,7 @@ static NSSet *XcodeCompatibilityVersionStringSet() {
         id value = buildSettings[key];
 
         if (self.includeBuildSettingInfoComments) {
-            NSString *comment = [self.buildSettingInfoSource commentForBuildSettingWithName:key];
+            NSString *comment = [self.buildSettingCommentGenerator commentForBuildSettingWithName:key];
             [string appendString:comment];
         } else {
             if (firstKey) {

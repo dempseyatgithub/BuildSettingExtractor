@@ -1,5 +1,5 @@
 //
-//  BuildSettingInfoSource.m
+//  BuildSettingCommentGenerator.m
 //  BuildSettingExtractor
 //
 //  Created by James Dempsey on 2/3/15.
@@ -8,10 +8,10 @@
 
 #define MAX_LINE_LENGTH 87 // For 90 columns, minus three (comment slashes and a space)
 
-#import "BuildSettingInfoSource.h"
+#import "BuildSettingCommentGenerator.h"
 #import "Constants+Categories.h"
 
-@interface BuildSettingInfoSource ()
+@interface BuildSettingCommentGenerator ()
 
 @property (strong, nonatomic) NSDictionary *buildSettingInfoDictionary;
 
@@ -24,7 +24,7 @@
 @end
 
 
-@implementation BuildSettingInfoSource
+@implementation BuildSettingCommentGenerator
 
 - (instancetype)init
 {
