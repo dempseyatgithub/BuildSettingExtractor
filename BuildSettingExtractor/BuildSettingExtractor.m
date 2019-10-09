@@ -48,7 +48,7 @@ static NSSet *XcodeCompatibilityVersionStringSet() {
         _projectConfigName = [[self class] defaultProjectConfigName];
         _nameSeparator = [[self class] defaultNameSeparator];
         _buildSettingsByTarget = [[NSMutableDictionary alloc] init];
-        _buildSettingInfoSource = [[BuildSettingInfoSource alloc] init];
+        _buildSettingInfoSource = nil;
         _extractionSuccessful = NO;
     }
     return self;
@@ -70,6 +70,10 @@ static NSSet *XcodeCompatibilityVersionStringSet() {
     NSMutableArray *nonFatalErrors = [[NSMutableArray alloc] init];
     
     [self.buildSettingsByTarget removeAllObjects];
+
+    if (self.includeBuildSettingInfoComments) {
+        self.buildSettingInfoSource = [[BuildSettingInfoSource alloc] init];
+    }
 
     NSURL *projectFileURL = [projectWrapperURL URLByAppendingPathComponent:@"project.pbxproj"];
 
