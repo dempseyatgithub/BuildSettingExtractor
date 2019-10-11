@@ -42,6 +42,12 @@
         self.resolvedVersion = -1;
         self.standardAppPath = @"/Applications/Xcode.app";
         self.standardBetaPath = @"/Applications/Xcode-beta.app";
+        
+        // If using the special style for testing failures, set incorrect paths
+        if (style == -1) {
+            self.standardAppPath = @"/Supplications/EXcode.app";
+            self.standardBetaPath = @"/Supplications/EXcode-beta.app";
+        }
     }
     return self;
 }

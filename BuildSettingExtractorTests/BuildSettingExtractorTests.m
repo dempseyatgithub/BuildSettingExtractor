@@ -177,4 +177,15 @@
     XCTAssertThrows([extractor writeConfigFilesToDestinationFolder:tempFolder error:&fatalError]);
 }
 
+- (void)testUnresolvedBuildSettingInfoSource {
+    
+    // NOTE: -1 is special undeclared style for testing failure to resolve an info source.
+    // It causes BuildSettingInfoSource to use invalid paths for Xcode and Xcode-beta.
+    BuildSettingInfoSourceStyle failureStyle = -1;
+    
+    NSError *error = nil;
+    BuildSettingInfoSource *source = [BuildSettingInfoSource resolvedBuildSettingInfoSourceWithStyle:failureStyle customURL:nil error:&error];
+    XCTAssertNil(source);
+}
+
 @end
