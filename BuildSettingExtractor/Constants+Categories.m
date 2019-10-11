@@ -108,6 +108,14 @@ NSDictionary *userInfo = @{NSLocalizedDescriptionKey:[NSString stringWithFormat:
     return error;
 }
 
++ (NSError *)errorForUnresolvedBuildSettingInfoSource {
+    NSDictionary *userInfo = @{NSLocalizedDescriptionKey:@"No source of build setting info was found.", NSLocalizedRecoverySuggestionErrorKey:@"Xcode or Xcode-beta must be installed in the Applications folder to generate descriptive build setting comments.\n\nConfiguration files will be generated without comments."};
+
+    NSError *error = [NSError errorWithDomain:TPSBuildSettingExtractorErrorDomain code:BuildSettingInfoSourceNotFound userInfo:userInfo];
+
+    return error;
+}
+
 @end
 
 

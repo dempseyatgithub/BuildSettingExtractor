@@ -13,6 +13,7 @@ typedef NS_ENUM(NSUInteger, AppErrorCodes) {
     DirectoryContainsBuildConfigFiles = 101,
     ProjectSettingsNamingConflict = 102,
     NoSettingsFoundInProjectFile = 103,
+    BuildSettingInfoSourceNotFound = 104,
 };
 
 extern NSErrorDomain const TPSBuildSettingExtractorErrorDomain;
@@ -50,6 +51,9 @@ extern NSErrorDomain const TPSBuildSettingExtractorErrorDomain;
 
 // Notify the user the project version is unsupported
 + (NSError *)errorForUnsupportedProjectURL:(NSURL *)projectWrapperURL fileVersion:(NSString *)compatibilityVersion;
+
+// Notify the user no build setting info source could was found
++ (NSError *)errorForUnresolvedBuildSettingInfoSource;
 
 @end
 

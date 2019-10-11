@@ -186,6 +186,9 @@
     NSError *error = nil;
     BuildSettingInfoSource *source = [BuildSettingInfoSource resolvedBuildSettingInfoSourceWithStyle:failureStyle customURL:nil error:&error];
     XCTAssertNil(source);
+    XCTAssertNotNil(error);
+    XCTAssertEqual(error.domain, TPSBuildSettingExtractorErrorDomain);
+    XCTAssertEqual(error.code, BuildSettingInfoSourceNotFound);
 }
 
 @end

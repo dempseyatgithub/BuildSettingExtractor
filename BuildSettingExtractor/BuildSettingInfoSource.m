@@ -7,6 +7,7 @@
 //
 
 #import "BuildSettingInfoSource.h"
+#import "Constants+Categories.h"
 
 @interface BuildSettingInfoSource ()
 @property BuildSettingInfoSourceStyle style;
@@ -96,6 +97,10 @@
     
     if (self.resolvedURL != nil && self.resolvedVersion != -1) {
         successfullyResolved = YES;
+    } else {
+        if (error) {
+            *error = [NSError errorForUnresolvedBuildSettingInfoSource];
+        }
     }
     
     return successfullyResolved;
