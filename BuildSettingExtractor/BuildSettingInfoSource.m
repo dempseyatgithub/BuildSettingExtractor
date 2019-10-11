@@ -11,6 +11,8 @@
 @interface BuildSettingInfoSource ()
 @property BuildSettingInfoSourceStyle style;
 @property (nullable) NSURL *customURL;
+@property NSString *standardAppPath;
+@property NSString *standardBetaPath;
 @end
 
 @implementation BuildSettingInfoSource
@@ -38,6 +40,8 @@
         self.customURL = customURL;
         self.resolvedURL = nil;
         self.resolvedVersion = -1;
+        self.standardAppPath = @"/Applications/Xcode.app";
+        self.standardBetaPath = @"/Applications/Xcode-beta.app";
     }
     return self;
 }
@@ -45,23 +49,21 @@
 - (BOOL)resolveBuildSettingInfoSourceWithError: (NSError **)error {
     BOOL successfullyResolved = NO;
     
-    NSString *standardAppPath = @"/Applications/Xcode.app";
-    BOOL standardAppExists = [[NSFileManager defaultManager] fileExistsAtPath:standardAppPath];
+    BOOL standardAppExists = [[NSFileManager defaultManager] fileExistsAtPath:self.standardAppPath];
     NSInteger standardAppVersion = -1;
     NSURL *standardAppURL = nil;
     
-    NSString *standardBetaPath = @"/Applications/Xcode-beta.app";
-    BOOL standardBetaExists = [[NSFileManager defaultManager] fileExistsAtPath:standardBetaPath];
+    BOOL standardBetaExists = [[NSFileManager defaultManager] fileExistsAtPath:self.standardBetaPath];
     NSInteger standardBetaVersion = -1;
     NSURL *standardBetaURL = nil;
     
     if (standardAppExists) {
-        standardAppURL = [NSURL fileURLWithPath:standardAppPath];
+        standardAppURL = [NSURL fileURLWithPath:self.standardAppPath];
         standardAppVersion = [self versionForXcodeAtURL:standardAppURL];
     }
     
     if (standardBetaExists) {
-        standardBetaURL = [NSURL fileURLWithPath:standardBetaPath];
+        standardBetaURL = [NSURL fileURLWithPath:self.standardBetaPath];
         standardBetaVersion = [self versionForXcodeAtURL:standardBetaURL];
     }
     
