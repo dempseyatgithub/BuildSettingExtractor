@@ -8,6 +8,7 @@
 
 #import "BuildSettingExtractor.h"
 #import "BuildSettingCommentGenerator.h"
+#import "BuildSettingInfoSource.h"
 #import "Constants+Categories.h"
 
 static NSSet *XcodeCompatibilityVersionStringSet() {
@@ -72,7 +73,19 @@ static NSSet *XcodeCompatibilityVersionStringSet() {
     [self.buildSettingsByTarget removeAllObjects];
 
     if (self.includeBuildSettingInfoComments) {
-        self.buildSettingCommentGenerator = [[BuildSettingCommentGenerator alloc] init];
+
+        NSError *infoSourceError = nil;
+        BuildSettingInfoSource *infoSource = [BuildSettingInfoSource resolvedBuildSettingInfoSourceWithStyle:BuildSettingInfoSourceStyleStandard customURL:nil error:&infoSourceError];
+
+        if (infoSource) {
+            self.buildSettingCommentGenerator = [[BuildSettingCommentGenerator alloc] initWithBuildSettingInfoSource:infoSource];
+        } else {
+            self.includeBuildSettingInfoComments = NO;
+        }
+        
+        if (infoSourceError) {
+            [nonFatalErrors addObject:infoSourceError];
+        }
     }
 
     NSURL *projectFileURL = [projectWrapperURL URLByAppendingPathComponent:@"project.pbxproj"];

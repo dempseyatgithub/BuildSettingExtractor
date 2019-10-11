@@ -9,6 +9,7 @@
 @import XCTest;
 #import "BuildSettingExtractor.h"
 #import "BuildSettingCommentGenerator.h"
+#import "BuildSettingInfoSource.h"
 #import "Constants+Categories.h"
 
 @interface NSObject (BuildSettingExtractorMethods)
@@ -55,9 +56,16 @@
 
 - (void)testLoadingBuildSettingInfo
 {
-    BuildSettingCommentGenerator *commentGenerator = [[BuildSettingCommentGenerator alloc] init];
+    NSError *error = nil;
+    
+    // This test assumes Xcode is installed at /Applications/Xcode.app or /Applications/Xcode-beta.app
+    BuildSettingInfoSource *infoSource = [BuildSettingInfoSource resolvedBuildSettingInfoSourceWithStyle:BuildSettingInfoSourceStyleStandard customURL:nil error:&error];
+    XCTAssertNotNil(infoSource);
+    XCTAssertNil(error);
+    
+    BuildSettingCommentGenerator *commentGenerator = [[BuildSettingCommentGenerator alloc] initWithBuildSettingInfoSource:infoSource];
     XCTAssertTrue([commentGenerator loadBuildSettingInfo]);
-
+    
 }
 
 - (void)testBadProjectURL

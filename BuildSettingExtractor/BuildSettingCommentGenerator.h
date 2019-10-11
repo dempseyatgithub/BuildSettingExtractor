@@ -8,7 +8,11 @@
 
 @import Foundation;
 
+@class BuildSettingInfoSource;
+
 @interface BuildSettingCommentGenerator : NSObject
+
+- (instancetype)initWithBuildSettingInfoSource:(BuildSettingInfoSource *)infoSource;
 
 - (NSString *)commentForBuildSettingWithName:(NSString *)buildSettingName;
 

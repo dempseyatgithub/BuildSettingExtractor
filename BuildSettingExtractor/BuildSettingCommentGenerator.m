@@ -9,9 +9,12 @@
 #define MAX_LINE_LENGTH 87 // For 90 columns, minus three (comment slashes and a space)
 
 #import "BuildSettingCommentGenerator.h"
+#import "BuildSettingInfoSource.h"
 #import "Constants+Categories.h"
 
 @interface BuildSettingCommentGenerator ()
+
+@property (strong, nonatomic) BuildSettingInfoSource *infoSource;
 
 @property (strong, nonatomic) NSDictionary *buildSettingInfoDictionary;
 
@@ -28,9 +31,16 @@
 
 - (instancetype)init
 {
+    [NSException raise:NSInternalInconsistencyException format:@"You must use -initWithBuildSettingInfoSource: to initialize instances of BuildSettingCommentGenerator."];
+    return nil;
+}
+
+- (instancetype)initWithBuildSettingInfoSource:(BuildSettingInfoSource *)infoSource
+{
     self = [super init];
     if (self) {
          self.regex = [NSRegularExpression regularExpressionWithPattern:@"^\\*\\h\\*(.+?)\\*" options:NSRegularExpressionAnchorsMatchLines error:nil];
+        self.infoSource = infoSource;
     }
     return self;
 }
@@ -155,16 +165,8 @@
 
     BOOL allSubpathsReadSuccessfully = YES;
 
-    NSString *defaultXcodePath = @"/Applications/Xcode.app";
-
-    // Read Xcode version
-    NSString *pathToXcodeInfoPlist = [defaultXcodePath stringByAppendingPathComponent:@"Contents/Info.plist"];
-    NSDictionary *xcodeInfoDictionary = [NSDictionary dictionaryWithContentsOfFile:pathToXcodeInfoPlist];
-    NSString *versionString = xcodeInfoDictionary[@"DTXcode"];
-    NSInteger xcodeVersion = [versionString integerValue];
-    if (!versionString || xcodeVersion == 0) {
-        NSLog(@"Could not read Xcode version. Version string: %@, Version Number: %ld", versionString, (long)xcodeVersion);
-    }
+    NSString *defaultXcodePath = self.infoSource.resolvedURL.path;
+    NSInteger xcodeVersion = self.infoSource.resolvedVersion;
 
     // Load subpaths
     NSURL *buildSettingInfoPlistURL = [[NSBundle mainBundle] URLForResource:@"BuildSettingInfoSubpaths" withExtension:@"plist"];
