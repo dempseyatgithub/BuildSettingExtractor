@@ -237,8 +237,16 @@ static NSSet *XcodeCompatibilityVersionStringSet() {
 
 // Given the target name and config name returns the xcconfig filename to be used.
 - (NSString *)configFilenameWithTargetName:(NSString *)targetName configName:(NSString *)configName {
+
+    // Use empty separator if there is no config name
     NSString *separator = configName.length ? self.nameSeparator: @"";
-    return [NSString stringWithFormat:@"%@%@%@.xcconfig", targetName, separator, configName];
+
+    NSString *filename = [NSString stringWithFormat:@"%@%@%@.xcconfig", targetName, separator, configName];
+    
+    // Replace all spaces in filename with separator.
+    filename = [filename stringByReplacingOccurrencesOfString:@" " withString:self.nameSeparator];
+
+    return filename;
 }
 
 // Given the filename generate the header comment
