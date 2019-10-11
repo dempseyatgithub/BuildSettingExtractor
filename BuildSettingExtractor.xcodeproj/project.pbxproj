@@ -18,6 +18,7 @@
 		53719EBB19BF4C6D005D3DE0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 53719EB919BF4C6D005D3DE0 /* InfoPlist.strings */; };
 		53719EBD19BF4C6D005D3DE0 /* BuildSettingExtractorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 53719EBC19BF4C6D005D3DE0 /* BuildSettingExtractorTests.m */; };
 		538196C51A851BB40033CB65 /* BuildSettingInfoSubpaths.plist in Resources */ = {isa = PBXBuildFile; fileRef = 538196C41A851BB40033CB65 /* BuildSettingInfoSubpaths.plist */; };
+		539A0207234EFA4300193374 /* BuildSettingInfoSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 539A0206234EFA4300193374 /* BuildSettingInfoSource.m */; };
 		53BC11311A817447005E2FD2 /* BuildSettingCommentGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 53BC11301A817447005E2FD2 /* BuildSettingCommentGenerator.m */; };
 		53F372ED1A7BC6A7006118CB /* DragFileView.m in Sources */ = {isa = PBXBuildFile; fileRef = 53F372EC1A7BC6A7006118CB /* DragFileView.m */; };
 		53F372F01A7C042F006118CB /* BuildSettingExtractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 53F372EF1A7C042F006118CB /* BuildSettingExtractor.m */; };
@@ -61,6 +62,8 @@
 		53719EBC19BF4C6D005D3DE0 /* BuildSettingExtractorTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BuildSettingExtractorTests.m; sourceTree = "<group>"; };
 		538196C41A851BB40033CB65 /* BuildSettingInfoSubpaths.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = BuildSettingInfoSubpaths.plist; sourceTree = "<group>"; };
 		5395AF4D1A7C6BB60028BE88 /* ReadMe.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = ReadMe.md; sourceTree = "<group>"; };
+		539A0205234EFA4300193374 /* BuildSettingInfoSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BuildSettingInfoSource.h; sourceTree = "<group>"; };
+		539A0206234EFA4300193374 /* BuildSettingInfoSource.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BuildSettingInfoSource.m; sourceTree = "<group>"; };
 		53BC112F1A817447005E2FD2 /* BuildSettingCommentGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuildSettingCommentGenerator.h; sourceTree = "<group>"; };
 		53BC11301A817447005E2FD2 /* BuildSettingCommentGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuildSettingCommentGenerator.m; sourceTree = "<group>"; };
 		53F372EB1A7BC6A7006118CB /* DragFileView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DragFileView.h; sourceTree = "<group>"; };
@@ -157,6 +160,8 @@
 				53F372EF1A7C042F006118CB /* BuildSettingExtractor.m */,
 				53BC112F1A817447005E2FD2 /* BuildSettingCommentGenerator.h */,
 				53BC11301A817447005E2FD2 /* BuildSettingCommentGenerator.m */,
+				539A0205234EFA4300193374 /* BuildSettingInfoSource.h */,
+				539A0206234EFA4300193374 /* BuildSettingInfoSource.m */,
 				53F372EB1A7BC6A7006118CB /* DragFileView.h */,
 				53F372EC1A7BC6A7006118CB /* DragFileView.m */,
 				53FA882623421B9900F51EC3 /* AppConstants+Categories.h */,
@@ -321,6 +326,7 @@
 				53F372ED1A7BC6A7006118CB /* DragFileView.m in Sources */,
 				53FA882823421B9900F51EC3 /* AppConstants+Categories.m in Sources */,
 				53BC11311A817447005E2FD2 /* BuildSettingCommentGenerator.m in Sources */,
+				539A0207234EFA4300193374 /* BuildSettingInfoSource.m in Sources */,
 				53719E9F19BF4C6D005D3DE0 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
