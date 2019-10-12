@@ -43,6 +43,7 @@
 
 /* Begin PBXFileReference section */
 		532C57C7234BB32700FA0872 /* BSE-CodeSigning.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "BSE-CodeSigning.xcconfig"; sourceTree = "<group>"; };
+		536AA121235293B600A0FE29 /* BuildSettingExtractor.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BuildSettingExtractor.entitlements; sourceTree = "<group>"; };
 		53719E8F19BF4C6D005D3DE0 /* BuildSettingExtractor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BuildSettingExtractor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		53719E9219BF4C6D005D3DE0 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		53719E9519BF4C6D005D3DE0 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -154,6 +155,7 @@
 		53719E9819BF4C6D005D3DE0 /* BuildSettingExtractor */ = {
 			isa = PBXGroup;
 			children = (
+				536AA121235293B600A0FE29 /* BuildSettingExtractor.entitlements */,
 				53719EA419BF4C6D005D3DE0 /* AppDelegate.h */,
 				53719EA519BF4C6D005D3DE0 /* AppDelegate.m */,
 				53F372EE1A7C042F006118CB /* BuildSettingExtractor.h */,
@@ -480,6 +482,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = BuildSettingExtractor/BuildSettingExtractor.entitlements;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 14;
 				INFOPLIST_FILE = "BuildSettingExtractor/BuildSettingExtractor-Info.plist";
@@ -494,6 +497,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = BuildSettingExtractor/BuildSettingExtractor.entitlements;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 14;
 				INFOPLIST_FILE = "BuildSettingExtractor/BuildSettingExtractor-Info.plist";
