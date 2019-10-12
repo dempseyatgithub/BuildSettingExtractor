@@ -51,6 +51,22 @@ These comments can be turned off in the Preferences sheet for a more compact fil
 
 ### Version History ###
 
+*Version 1.3.2*  
+*Oct 13, 2019*
+
+– Spaces are now replaced with separator in generated xcconfig file names.  
+– Added BSE-CodeSigning.xcconfig file to store easily accessible code signing settings.  
+– Enabled hardened runtime to allow app notarization.  
+– Enabled sandboxing with entitlement for read-write access to user-selected files.  
+– Added support for Xcode beta as build setting info souce.  
+– Added error reporting if no build setting info source is found.  
+– Refactored error creation, handling and presentation.  
+– Refactored AppKit-dependent category methods into separate file.  
+– Removed precompiled headers.  
+– Moved to explicit @import statements.  
+– Tested on macOS 10.15 Catalina.  
+– Built with Xcode 11.1 on macOS 10.14.6 Mojave.  
+
 *Version 1.3.1*  
 *Sep 15, 2019*
 
