@@ -31,3 +31,15 @@
 // Setting this to Manual, otherwise Xcode seems to prefer slipping back into Automatic mode
 
 CODE_SIGN_STYLE = Manual;
+
+
+// Code Signing Identity
+//
+// The name, also known as the *common name*, of a valid code-signing certificate in a
+// keychain within your keychain path. A missing or invalid certificate will cause a
+// build error.
+
+// The DEVELOPMENT_TEAM setting supercedes this setting.
+// Xcode project validation recommended setting the value to '-'.
+
+CODE_SIGN_IDENTITY = -
