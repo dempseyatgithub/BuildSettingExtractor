@@ -116,6 +116,12 @@ NSDictionary *userInfo = @{NSLocalizedDescriptionKey:[NSString stringWithFormat:
     return error;
 }
 
++ (NSError *)errorForDestinationContainsBuildConfigFiles {
+    NSDictionary *userInfo = @{NSLocalizedDescriptionKey:@"Build config files already exist in this folder. Do you want to replace them?", NSLocalizedRecoveryOptionsErrorKey:@[@"Cancel", @"Replace"], NSLocalizedRecoverySuggestionErrorKey:@"Build configuration files already exist in this folder. Replacing will overwrite any files with the same file names."};
+
+    NSError *error = [NSError errorWithDomain:TPSBuildSettingExtractorErrorDomain code:DirectoryContainsBuildConfigFiles userInfo:userInfo];
+
+    return error;
+}
+
 @end
-
-

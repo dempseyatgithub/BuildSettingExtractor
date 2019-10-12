@@ -55,5 +55,7 @@ extern NSErrorDomain const TPSBuildSettingExtractorErrorDomain;
 // Notify the user no build setting info source could was found
 + (NSError *)errorForUnresolvedBuildSettingInfoSource;
 
-@end
+// Notify the user the destination folder already contains build config files
++ (NSError *)errorForDestinationContainsBuildConfigFiles;
 
+@end
