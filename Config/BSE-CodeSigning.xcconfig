@@ -9,6 +9,7 @@
 // Configuration settings file format documentation can be found at:
 // https://help.apple.com/xcode/#/dev745c5c974
 
+
 // This file optionally includes an xcconfig file outside of the main
 // github repository. This allows for codesigning the app without needing
 // to include private values, such as team identifiers, in the public
@@ -18,3 +19,15 @@
 // when the private xcconfig file is not found.
 
 #include? "/usr/local/etc/xcconfig-private/CodeSigning.xcconfig"
+
+
+// Code Sign Style
+
+// This setting specifies the method used to acquire and locate signing assets.
+// Choose `Automatic` to let Xcode automatically create and update profiles,
+// app IDs, and certificates. Choose `Manual` to create and update these yourself
+// on the developer website.
+
+// Setting this to Manual, otherwise Xcode seems to prefer slipping back into Automatic mode
+
+CODE_SIGN_STYLE = Manual;
