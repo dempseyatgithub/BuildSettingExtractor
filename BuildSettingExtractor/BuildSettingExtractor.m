@@ -66,6 +66,36 @@ static NSSet *XcodeCompatibilityVersionStringSet() {
     return objectArray;
 }
 
+
++ (BOOL)validateDestinationFolder:(NSURL *)destinationURL error:(NSError **)error {
+
+    NSArray *filesInDirectory = [[NSFileManager defaultManager] contentsOfDirectoryAtURL:destinationURL includingPropertiesForKeys:@[NSURLTypeIdentifierKey] options:NSDirectoryEnumerationSkipsSubdirectoryDescendants | NSDirectoryEnumerationSkipsHiddenFiles error:error];
+
+    __block BOOL foundBuildConfigFile = NO;
+
+    [filesInDirectory enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        NSString *typeIdentifier = nil;
+        NSError *resourceError = nil;
+        [obj getResourceValue:&typeIdentifier forKey:NSURLTypeIdentifierKey error:&resourceError];
+        if ([typeIdentifier isEqualToString:[NSString tps_buildConfigurationFileTypeIdentifier]]) {
+            foundBuildConfigFile = YES;
+            *stop = YES;
+        }
+
+    }];
+    
+    BOOL isValid = !foundBuildConfigFile;
+
+    if (foundBuildConfigFile) {
+        if (error) {
+            *error = [NSError errorForDestinationContainsBuildConfigFiles];
+        }
+    }
+    
+    return isValid;
+}
+
+
 - (NSArray *)extractBuildSettingsFromProject:(NSURL *)projectWrapperURL error:(NSError **)error {
 
     NSMutableArray *nonFatalErrors = [[NSMutableArray alloc] init];

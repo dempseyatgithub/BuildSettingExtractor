@@ -45,6 +45,10 @@ NS_ASSUME_NONNULL_BEGIN
 // Should each build setting be commented with title and description, if available. 
 @property (assign) BOOL includeBuildSettingInfoComments;
 
+// Validates destination folder, checking for existing build config files
+// Returns an error suitable for presentation in an alert with options to cancel or replace existing files.
++ (BOOL)validateDestinationFolder:(NSURL *)destinationURL error:(NSError **)error;
+
 // Extracts the build settings from the project.
 // Returns an array of zero or more non-fatal validation errors or nil if a fatal error is encountered
 - (nullable NSArray *)extractBuildSettingsFromProject:(NSURL *)projectWrapperURL error:(NSError **)error;
