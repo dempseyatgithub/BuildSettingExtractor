@@ -22,8 +22,6 @@
 @property (weak) IBOutlet NSWindow *preferencesWindow;
 @property (weak) IBOutlet NSTextField *dragFileLabel;
 
-@property BOOL shouldOverwriteFiles;
-
 @end
 
 @implementation AppDelegate
@@ -67,81 +65,100 @@
 
 - (void)processXcodeProjectAtURL:(NSURL *)fileURL {
     NSString *typeIdentifier = nil;
-    NSString *fileName = nil;
     NSError *error = nil;
     [fileURL getResourceValue:&typeIdentifier forKey:NSURLTypeIdentifierKey error:&error];
-    [fileURL getResourceValue:&fileName forKey:NSURLLocalizedNameKey error:&error];
-
 
     if (fileURL && [typeIdentifier isEqualToString:[NSString tps_projectBundleTypeIdentifier]]) {
-        self.shouldOverwriteFiles = OVERWRITE_CHECKING_DISABLED;
-        NSOpenPanel *openPanel = [NSOpenPanel openPanel];
-        openPanel.delegate = self;
-        openPanel.canCreateDirectories = YES;
-        openPanel.allowsMultipleSelection = YES;
-        openPanel.canChooseDirectories = YES;
-        openPanel.canChooseFiles = NO;
-        openPanel.allowedFileTypes = @[(NSString *)kUTTypeFolder];
-        openPanel.message = [NSString stringWithFormat:@"Choose location to save configuration files for project ‘%@’.", fileName];
-        openPanel.prompt = @"Choose";
-
-        [openPanel beginSheetModalForWindow:self.window completionHandler:^(NSInteger result) {
-            if (result == NSModalResponseOK) {
-                NSURL *destinationURL = openPanel.URL;
-
-                // Perform the extraction in the background.
-                // Using DISPATCH_QUEUE_PRIORITY_HIGH which is available on 10.9
-                // Move to QOS_CLASS_USER_INITIATED when 10.10 is the deployment target
-                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-                    BuildSettingExtractor *buildSettingExtractor = [[BuildSettingExtractor alloc] init];
-                    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-                    buildSettingExtractor.sharedConfigName = [defaults stringForKey:TPSOutputFileNameShared];
-                    buildSettingExtractor.projectConfigName = [defaults stringForKey:TPSOutputFileNameProject];
-                    buildSettingExtractor.nameSeparator = [defaults stringForKey:TPSOutputFileNameSeparator];
-                    buildSettingExtractor.includeBuildSettingInfoComments = [[NSUserDefaults standardUserDefaults] boolForKey:TPSIncludeBuildSettingInfoComments];
-                    
-                    NSError *fatalError = nil;
-                    
-                    // Extract the build settings
-                    NSArray *nonFatalErrors = [buildSettingExtractor extractBuildSettingsFromProject:fileURL error:&fatalError];
-                    
-                    // On extraction fatal error, present the error and return.
-                    if (!nonFatalErrors && fatalError) {
-                        // present error on main thread and return
-                        dispatch_async(dispatch_get_main_queue(), ^{
-                            [NSApp presentError:fatalError];
-                        });
-                        return; // Can't continue, fatal error.
-
-                    }
-                    // Otherwise, present non-fatal errors, if present.
-                    else if (nonFatalErrors && nonFatalErrors.count > 0) {
-                        // present non-fatal errors on main thread
-                        dispatch_async(dispatch_get_main_queue(), ^{
-                            for (NSError *anError in nonFatalErrors) {
-                                [NSApp presentError:anError]; // Will present one at a time.
-                            }
-                        });
-                    }
-                    
-                    //  Write the config files
-                    BOOL success = [buildSettingExtractor writeConfigFilesToDestinationFolder: destinationURL error: &fatalError];
-                    if (!success && fatalError) {
-                        // present error on main thread and return
-                        dispatch_async(dispatch_get_main_queue(), ^{
-                            [NSApp presentError:fatalError];
-                        });
-                        return; // Can't continue, fatal error.
-                    }
-
-                    BOOL openInFinder = [[NSUserDefaults standardUserDefaults] boolForKey:TPSOpenDirectoryInFinder];
-                    if (success && openInFinder) {
-                        [[NSWorkspace sharedWorkspace] openURL:destinationURL];
-                    }
-                });
-            }
-        }];
+        [self selectDestinationURLForSourceProject:fileURL];
     }
+}
+
+- (void)selectDestinationURLForSourceProject:(NSURL *)fileURL {
+    
+    NSOpenPanel *openPanel = [NSOpenPanel openPanel];
+    openPanel.canCreateDirectories = YES;
+    openPanel.allowsMultipleSelection = YES;
+    openPanel.canChooseDirectories = YES;
+    openPanel.canChooseFiles = NO;
+    openPanel.allowedFileTypes = @[(NSString *)kUTTypeFolder];
+    openPanel.message = [NSString stringWithFormat:@"Choose location to save configuration files for project ‘%@’.", [fileURL lastPathComponent]];
+    openPanel.prompt = @"Choose";
+
+    [openPanel beginSheetModalForWindow:self.window completionHandler:^(NSInteger result) {
+        
+        if (result == NSModalResponseOK) {
+            NSURL *destinationURL = openPanel.URL;
+            
+            NSError *error = nil;
+            BOOL validDestination = [BuildSettingExtractor validateDestinationFolder:destinationURL error:&error];
+            
+            if (validDestination || OVERWRITE_CHECKING_DISABLED) {
+                [self performExtractionFromProject:fileURL toDestination:destinationURL];
+            }
+            else {
+                NSAlert *alert = [NSAlert alertWithError:error];
+                [alert beginSheetModalForWindow:self.window completionHandler:^(NSModalResponse returnCode) {
+                    if (returnCode == NSAlertSecondButtonReturn) {
+                        [self performExtractionFromProject:fileURL toDestination:destinationURL];
+                    }
+                }];
+            }
+        }
+    }];
+}
+
+- (void)performExtractionFromProject:(NSURL *)fileURL toDestination:(NSURL *)destinationURL {
+    
+    // Perform the extraction in the background.
+    // Using DISPATCH_QUEUE_PRIORITY_HIGH which is available on 10.9
+    // Move to QOS_CLASS_USER_INITIATED when 10.10 is the deployment target
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+        BuildSettingExtractor *buildSettingExtractor = [[BuildSettingExtractor alloc] init];
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        buildSettingExtractor.sharedConfigName = [defaults stringForKey:TPSOutputFileNameShared];
+        buildSettingExtractor.projectConfigName = [defaults stringForKey:TPSOutputFileNameProject];
+        buildSettingExtractor.nameSeparator = [defaults stringForKey:TPSOutputFileNameSeparator];
+        buildSettingExtractor.includeBuildSettingInfoComments = [[NSUserDefaults standardUserDefaults] boolForKey:TPSIncludeBuildSettingInfoComments];
+        
+        NSError *fatalError = nil;
+        
+        // Extract the build settings
+        NSArray *nonFatalErrors = [buildSettingExtractor extractBuildSettingsFromProject:fileURL error:&fatalError];
+        
+        // On extraction fatal error, present the error and return.
+        if (!nonFatalErrors && fatalError) {
+            // present error on main thread and return
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [NSApp presentError:fatalError];
+            });
+            return; // Can't continue, fatal error.
+
+        }
+        // Otherwise, present non-fatal errors, if present.
+        else if (nonFatalErrors && nonFatalErrors.count > 0) {
+            // present non-fatal errors on main thread
+            dispatch_async(dispatch_get_main_queue(), ^{
+                for (NSError *anError in nonFatalErrors) {
+                    [NSApp presentError:anError]; // Will present one at a time.
+                }
+            });
+        }
+        
+        //  Write the config files
+        BOOL success = [buildSettingExtractor writeConfigFilesToDestinationFolder: destinationURL error: &fatalError];
+        if (!success && fatalError) {
+            // present error on main thread and return
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [NSApp presentError:fatalError];
+            });
+            return; // Can't continue, fatal error.
+        }
+
+        BOOL openInFinder = [[NSUserDefaults standardUserDefaults] boolForKey:TPSOpenDirectoryInFinder];
+        if (success && openInFinder) {
+            [[NSWorkspace sharedWorkspace] openURL:destinationURL];
+        }
+    });
 }
 
 - (IBAction)presentPreferencesWindow:(id)sender {
@@ -155,58 +172,6 @@
     [self.window endSheet:self.preferencesWindow];
 }
 
-#pragma mark - NSOpenSavePanelDelegate
-
-/* We want to protect against overwriting the contents of a folder that already has xcconfig files in it.  So validate the contents of the selected folder.
- */
-- (BOOL)panel:(id)panel validateURL:(NSURL *)url error:(NSError *__autoreleasing *)outError {
-    NSError *error = nil;
-    NSArray *filesInDirectory = [[NSFileManager defaultManager] contentsOfDirectoryAtURL:url includingPropertiesForKeys:@[NSURLTypeIdentifierKey] options:NSDirectoryEnumerationSkipsSubdirectoryDescendants | NSDirectoryEnumerationSkipsHiddenFiles error:&error];
-
-    __block BOOL foundBuildConfigFile = NO;
-
-    [filesInDirectory enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        NSString *typeIdentifier = nil;
-        NSError *resourceError = nil;
-        [obj getResourceValue:&typeIdentifier forKey:NSURLTypeIdentifierKey error:&resourceError];
-        if ([typeIdentifier isEqualToString:[NSString tps_buildConfigurationFileTypeIdentifier]]) {
-            foundBuildConfigFile = YES;
-            *stop = YES;
-        }
-
-    }];
-
-    BOOL valid = (!foundBuildConfigFile || self.shouldOverwriteFiles);
-
-    if (!valid) {
-        NSDictionary *errorUserInfo = @{NSLocalizedDescriptionKey:@"Build config files already exist in this folder. Do you want to replace them?", NSLocalizedRecoveryOptionsErrorKey:@[@"Cancel", @"Replace"], NSLocalizedRecoverySuggestionErrorKey:@"Build configuration files already exist in this folder. Replacing will overwrite any files with the same file names.", NSRecoveryAttempterErrorKey: self};
-        NSError *error = [NSError errorWithDomain:[[NSBundle mainBundle] bundleIdentifier] code:DirectoryContainsBuildConfigFiles userInfo:errorUserInfo];
-        *outError = error;
-    }
-
-
-    return valid;
-}
-
-#pragma mark - NSError Recovery
-
-/* The user can choose to replace / overwrite the contents of the folder as a recovery option.  If so, the open panel goes through validation again.
- */
-- (void)attemptRecoveryFromError:(NSError *)error optionIndex:(NSUInteger)recoveryOptionIndex delegate:(id)delegate didRecoverSelector:(SEL)didRecoverSelector contextInfo:(void *)contextInfo {
-
-    BOOL success = NO;
-    NSInvocation *invoke = [NSInvocation invocationWithMethodSignature:[delegate methodSignatureForSelector:didRecoverSelector]];
-    [invoke setSelector:didRecoverSelector];
-
-    if (recoveryOptionIndex == 1) { // Recovery requested.
-        self.shouldOverwriteFiles = YES;
-        success = YES;
-    }
-
-    [invoke setArgument:(void *)&success atIndex:2];
-    [invoke setArgument:(void *)&contextInfo atIndex:3];
-    [invoke invokeWithTarget:delegate];
-}
 
 #pragma mark - NSApplicationDelegate
 
