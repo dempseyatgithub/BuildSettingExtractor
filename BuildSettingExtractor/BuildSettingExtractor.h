@@ -41,8 +41,11 @@ NS_ASSUME_NONNULL_BEGIN
 // The string that will separate filename components.
 @property (copy) NSString *nameSeparator;
 
+// Number of lines between build settings. Default is 0.
+@property NSInteger linesBetweenSettings;
 
-// Should each build setting be commented with title and description, if available. 
+
+// Should each build setting be commented with title and description, if available. Default is NO.
 @property (assign) BOOL includeBuildSettingInfoComments;
 
 // Validates destination folder, checking for existing build config files

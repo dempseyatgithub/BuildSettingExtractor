@@ -16,6 +16,8 @@ NSString *const TPSIncludeBuildSettingInfoComments = @"TPSIncludeBuildSettingInf
 NSString *const TPSOutputFileNameProject = @"TPSOutputFileNameProject";
 NSString *const TPSOutputFileNameShared = @"TPSOutputFileNameShared";
 NSString *const TPSOutputFileNameSeparator = @"TPSOutputFileNameSeparator";
+NSString *const TPSLinesBetweenBuildSettings = @"TPSLinesBetweenBuildSettings";
+NSString *const TPSLinesBetweenBuildSettingsWithInfo = @"TPSLinesBetweenBuildSettingsWithInfo";
 
 
 #pragma mark -

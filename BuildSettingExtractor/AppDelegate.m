@@ -119,6 +119,11 @@
         buildSettingExtractor.projectConfigName = [defaults stringForKey:TPSOutputFileNameProject];
         buildSettingExtractor.nameSeparator = [defaults stringForKey:TPSOutputFileNameSeparator];
         buildSettingExtractor.includeBuildSettingInfoComments = [[NSUserDefaults standardUserDefaults] boolForKey:TPSIncludeBuildSettingInfoComments];
+        if (buildSettingExtractor.includeBuildSettingInfoComments) {
+            buildSettingExtractor.linesBetweenSettings = [[NSUserDefaults standardUserDefaults] integerForKey:TPSLinesBetweenBuildSettingsWithInfo];
+        } else {
+            buildSettingExtractor.linesBetweenSettings = [[NSUserDefaults standardUserDefaults] integerForKey:TPSLinesBetweenBuildSettings];
+        }
         
         NSError *fatalError = nil;
         
@@ -186,6 +191,8 @@
         TPSOutputFileNameShared:BuildSettingExtractor.defaultSharedConfigName,
         TPSOutputFileNameProject:BuildSettingExtractor.defaultProjectConfigName,
         TPSOutputFileNameSeparator:BuildSettingExtractor.defaultNameSeparator,
+        TPSLinesBetweenBuildSettings:@0,
+        TPSLinesBetweenBuildSettingsWithInfo:@3
     };
     [[NSUserDefaults standardUserDefaults] registerDefaults:defaults];
 }

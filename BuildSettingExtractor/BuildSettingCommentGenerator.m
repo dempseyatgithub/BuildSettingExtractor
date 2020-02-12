@@ -56,8 +56,6 @@
         if (settingDescription) {
             settingDescription = [self processedDescriptionString:settingDescription forKey:buildSettingName];
         }
-
-        [comment appendString:@"\n\n\n"];
         if (presentationName) {
             [comment appendFormat:@"// %@\n", presentationName];
         }
@@ -65,9 +63,6 @@
             [comment appendFormat:@"// %@\n", settingDescription];
         }
         [comment appendString:@"\n"];
-    } else {
-        // For now, leave some space above an entry without a name or description
-        [comment appendString:@"\n\n\n"];
     }
 
     return comment;

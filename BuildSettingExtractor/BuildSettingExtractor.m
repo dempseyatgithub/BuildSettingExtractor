@@ -110,7 +110,9 @@ static NSSet *XcodeCompatibilityVersionStringSet() {
         if (infoSource) {
             self.buildSettingCommentGenerator = [[BuildSettingCommentGenerator alloc] initWithBuildSettingInfoSource:infoSource];
         } else {
+            // If no info source, fallback to basic formatting
             self.includeBuildSettingInfoComments = NO;
+            self.linesBetweenSettings = 0;
         }
         
         if (infoSourceError) {
@@ -241,6 +243,9 @@ static NSSet *XcodeCompatibilityVersionStringSet() {
                 settings = [settings stringByAppendingString:@"//********************************************//"];
 
                 ;
+            } else {
+                // Add a few lines before first setting
+                configFileString = [configFileString stringByAppendingString:@"\n\n"];
             }
 
             configFileString = [configFileString stringByAppendingString:settings];
@@ -306,15 +311,16 @@ static NSSet *XcodeCompatibilityVersionStringSet() {
     BOOL firstKey = YES;
     for (NSString *key in sortedKeys) {
         id value = buildSettings[key];
+        
+        if (!firstKey){
+            for (NSInteger i = 0; i < self.linesBetweenSettings; i++) {
+                [string appendString:@"\n"];
+            }
+        }
 
         if (self.includeBuildSettingInfoComments) {
             NSString *comment = [self.buildSettingCommentGenerator commentForBuildSettingWithName:key];
             [string appendString:comment];
-        } else {
-            if (firstKey) {
-                [string appendString:@"\n\n"]; // Tack on some space before first setting, if there are no info comments
-                firstKey = NO;
-            }
         }
 
         if ([value isKindOfClass:[NSString class]]) {
@@ -326,6 +332,7 @@ static NSSet *XcodeCompatibilityVersionStringSet() {
             [NSException raise:@"Should not get here!" format:@"Unexpected class: %@ in %s", [value class], __PRETTY_FUNCTION__];
         }
 
+        firstKey = NO;
     }
     
     return string;

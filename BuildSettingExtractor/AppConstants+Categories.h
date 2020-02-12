@@ -15,6 +15,8 @@ extern NSString *const TPSIncludeBuildSettingInfoComments;
 extern NSString *const TPSOutputFileNameProject;
 extern NSString *const TPSOutputFileNameShared;
 extern NSString *const TPSOutputFileNameSeparator;
+extern NSString *const TPSLinesBetweenBuildSettings;
+extern NSString *const TPSLinesBetweenBuildSettingsWithInfo;
 
 #pragma mark -
 
