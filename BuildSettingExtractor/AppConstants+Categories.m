@@ -8,6 +8,7 @@
 
 #import "AppConstants+Categories.h"
 #import "Constants+Categories.h"
+#import "BuildSettingExtractor.h"
 
 #pragma mark User Default Keys
 
@@ -19,6 +20,20 @@ NSString *const TPSOutputFileNameSeparator = @"TPSOutputFileNameSeparator";
 NSString *const TPSLinesBetweenBuildSettings = @"TPSLinesBetweenBuildSettings";
 NSString *const TPSLinesBetweenBuildSettingsWithInfo = @"TPSLinesBetweenBuildSettingsWithInfo";
 
+@implementation NSUserDefaults (TPS_DefaultsRegistration)
+- (void)tps_registerApplicationDefaults {
+    NSDictionary *defaults = @{
+        TPSOpenDirectoryInFinder:@(YES),
+        TPSIncludeBuildSettingInfoComments:@(YES),
+        TPSOutputFileNameShared:BuildSettingExtractor.defaultSharedConfigName,
+        TPSOutputFileNameProject:BuildSettingExtractor.defaultProjectConfigName,
+        TPSOutputFileNameSeparator:BuildSettingExtractor.defaultNameSeparator,
+        TPSLinesBetweenBuildSettings:@0,
+        TPSLinesBetweenBuildSettingsWithInfo:@3
+    };
+    [self registerDefaults:defaults];
+}
+@end
 
 #pragma mark -
 

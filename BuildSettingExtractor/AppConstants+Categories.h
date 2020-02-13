@@ -18,6 +18,10 @@ extern NSString *const TPSOutputFileNameSeparator;
 extern NSString *const TPSLinesBetweenBuildSettings;
 extern NSString *const TPSLinesBetweenBuildSettingsWithInfo;
 
+@interface NSUserDefaults (TPS_DefaultsRegistration)
+- (void)tps_registerApplicationDefaults;
+@end
+
 #pragma mark -
 
 @interface NSPasteboard (TPS_XcodeProjectURLAdditions)
