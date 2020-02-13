@@ -23,6 +23,7 @@ static NSSet *XcodeCompatibilityVersionStringSet() {
 @interface BuildSettingExtractor ()
 @property (strong) NSMutableDictionary *buildSettingsByTarget;
 @property (strong) NSDictionary *objects;
+@property (nullable) NSString *validatedProjectConfigName;
 @property BOOL extractionSuccessful;
 
 @property (strong) BuildSettingCommentGenerator *buildSettingCommentGenerator;
@@ -50,6 +51,7 @@ static NSSet *XcodeCompatibilityVersionStringSet() {
         _nameSeparator = [[self class] defaultNameSeparator];
         _buildSettingsByTarget = [[NSMutableDictionary alloc] init];
         _buildSettingCommentGenerator = nil;
+        _validatedProjectConfigName = nil;
         _extractionSuccessful = NO;
     }
     return self;
@@ -69,20 +71,25 @@ static NSSet *XcodeCompatibilityVersionStringSet() {
 
 + (BOOL)validateDestinationFolder:(NSURL *)destinationURL error:(NSError **)error {
 
-    NSArray *filesInDirectory = [[NSFileManager defaultManager] contentsOfDirectoryAtURL:destinationURL includingPropertiesForKeys:@[NSURLTypeIdentifierKey] options:NSDirectoryEnumerationSkipsSubdirectoryDescendants | NSDirectoryEnumerationSkipsHiddenFiles error:error];
+    NSDirectoryEnumerator *enumerator = [[NSFileManager defaultManager] enumeratorAtURL:destinationURL includingPropertiesForKeys:@[NSURLTypeIdentifierKey] options:NSDirectoryEnumerationSkipsHiddenFiles | NSDirectoryEnumerationSkipsPackageDescendants errorHandler:nil];
 
-    __block BOOL foundBuildConfigFile = NO;
+    BOOL foundBuildConfigFile = NO;
 
-    [filesInDirectory enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+    NSURL *currentURL = nil;
+    while (currentURL = [enumerator nextObject]) {
+        // Only check three levels deep, in case user chooses something like the home folder
+        if (enumerator.level > 3) {
+            [enumerator skipDescendants];
+            continue;
+        }
         NSString *typeIdentifier = nil;
         NSError *resourceError = nil;
-        [obj getResourceValue:&typeIdentifier forKey:NSURLTypeIdentifierKey error:&resourceError];
+        [currentURL getResourceValue:&typeIdentifier forKey:NSURLTypeIdentifierKey error:&resourceError];
         if ([typeIdentifier isEqualToString:[NSString tps_buildConfigurationFileTypeIdentifier]]) {
             foundBuildConfigFile = YES;
-            *stop = YES;
+            break;
         }
-
-    }];
+    }
     
     BOOL isValid = !foundBuildConfigFile;
 
@@ -151,7 +158,7 @@ static NSSet *XcodeCompatibilityVersionStringSet() {
     // Validate project config name to guard against name conflicts with target names
     NSError *nameValdationError = nil;
     NSArray *targetNames = [targets valueForKeyPath:@"name"];
-    NSString *validatedProjectConfigName = [self validatedProjectConfigNameWithTargetNames:targetNames error: &nameValdationError];
+    self.validatedProjectConfigName = [self validatedProjectConfigNameWithTargetNames:targetNames error: &nameValdationError];
     
     if (nameValdationError) {
         [nonFatalErrors addObject:nameValdationError];
@@ -161,7 +168,7 @@ static NSSet *XcodeCompatibilityVersionStringSet() {
     NSString *buildConfigurationListID = rootObject[@"buildConfigurationList"];
     NSDictionary *projectSettings = [self buildSettingStringsByConfigurationForBuildConfigurationListID:buildConfigurationListID];
 
-    self.buildSettingsByTarget[validatedProjectConfigName] = projectSettings;
+    self.buildSettingsByTarget[self.validatedProjectConfigName] = projectSettings;
     
     // Begin check that the project file has some settings
     BOOL projectFileHasSettings = projectSettings.containsBuildSettings;
@@ -253,14 +260,28 @@ static NSSet *XcodeCompatibilityVersionStringSet() {
             // Trim whitespace and newlines
             configFileString = [configFileString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 
-
-            NSURL *fileURL = [destinationURL URLByAppendingPathComponent:filename];
-
-            success = [configFileString writeToURL:fileURL atomically:YES encoding:NSUTF8StringEncoding error:&blockError];
-            if (!success) {
-                *stop = YES;
+            BOOL isProcessingProjectConfigFiles = [targetName isEqualToString:self.validatedProjectConfigName];
+            BOOL currentTargetCanUseFolder = isProcessingProjectConfigFiles ? self.projectFolderEnabled : YES;
+            
+            NSURL *fileURL = nil;
+            if (self.targetFoldersEnabled && currentTargetCanUseFolder) {
+                fileURL = [destinationURL URLByAppendingPathComponent:targetName];
+                success = [[NSFileManager defaultManager] createDirectoryAtURL:fileURL withIntermediateDirectories:YES attributes:nil error:&blockError];
+                fileURL = [fileURL URLByAppendingPathComponent:filename];
+            } else {
+                fileURL = [destinationURL URLByAppendingPathComponent:filename];
             }
+
+            // Don't write to file if directory creation failed
+            if (success) {
+                success = [configFileString writeToURL:fileURL atomically:YES encoding:NSUTF8StringEncoding error:&blockError];
+            }
+            // If we failed to write a configuration, stop iterating through this target's configurations
+            if (!success) { *stop = YES; }
         }];
+        
+        // If we failed writing a target's configurations, stop iterating through targets
+        if (!success) { *stop = YES; }
     }];
     
     if (!success && error) {

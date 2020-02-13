@@ -19,17 +19,21 @@ NSString *const TPSOutputFileNameShared = @"TPSOutputFileNameShared";
 NSString *const TPSOutputFileNameSeparator = @"TPSOutputFileNameSeparator";
 NSString *const TPSLinesBetweenBuildSettings = @"TPSLinesBetweenBuildSettings";
 NSString *const TPSLinesBetweenBuildSettingsWithInfo = @"TPSLinesBetweenBuildSettingsWithInfo";
+NSString *const TPSTargetFoldersEnabled = @"TPSTargetFoldersEnabled";
+NSString *const TPSProjectFolderEnabled = @"TPSProjectFolderEnabled";
 
 @implementation NSUserDefaults (TPS_DefaultsRegistration)
 - (void)tps_registerApplicationDefaults {
     NSDictionary *defaults = @{
-        TPSOpenDirectoryInFinder:@(YES),
-        TPSIncludeBuildSettingInfoComments:@(YES),
-        TPSOutputFileNameShared:BuildSettingExtractor.defaultSharedConfigName,
-        TPSOutputFileNameProject:BuildSettingExtractor.defaultProjectConfigName,
-        TPSOutputFileNameSeparator:BuildSettingExtractor.defaultNameSeparator,
-        TPSLinesBetweenBuildSettings:@0,
-        TPSLinesBetweenBuildSettingsWithInfo:@3
+        TPSOpenDirectoryInFinder : @(YES),
+        TPSIncludeBuildSettingInfoComments : @(YES),
+        TPSOutputFileNameShared : BuildSettingExtractor.defaultSharedConfigName,
+        TPSOutputFileNameProject : BuildSettingExtractor.defaultProjectConfigName,
+        TPSOutputFileNameSeparator : BuildSettingExtractor.defaultNameSeparator,
+        TPSLinesBetweenBuildSettings : @0,
+        TPSLinesBetweenBuildSettingsWithInfo : @3,
+        TPSTargetFoldersEnabled : @(NO),
+        TPSProjectFolderEnabled : @(NO)
     };
     [self registerDefaults:defaults];
 }

@@ -17,6 +17,8 @@ extern NSString *const TPSOutputFileNameShared;
 extern NSString *const TPSOutputFileNameSeparator;
 extern NSString *const TPSLinesBetweenBuildSettings;
 extern NSString *const TPSLinesBetweenBuildSettingsWithInfo;
+extern NSString *const TPSTargetFoldersEnabled;
+extern NSString *const TPSProjectFolderEnabled;
 
 @interface NSUserDefaults (TPS_DefaultsRegistration)
 - (void)tps_registerApplicationDefaults;

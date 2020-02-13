@@ -121,6 +121,8 @@
         BOOL includeInfo = [defaults boolForKey:TPSIncludeBuildSettingInfoComments];
         buildSettingExtractor.includeBuildSettingInfoComments = includeInfo;
         buildSettingExtractor.linesBetweenSettings = [defaults integerForKey:includeInfo ? TPSLinesBetweenBuildSettingsWithInfo : TPSLinesBetweenBuildSettings];
+        buildSettingExtractor.targetFoldersEnabled = [defaults boolForKey:TPSTargetFoldersEnabled];
+        buildSettingExtractor.projectFolderEnabled = [defaults boolForKey:TPSProjectFolderEnabled];
         
         NSError *fatalError = nil;
         

@@ -48,6 +48,15 @@ NS_ASSUME_NONNULL_BEGIN
 // Should each build setting be commented with title and description, if available. Default is NO.
 @property (assign) BOOL includeBuildSettingInfoComments;
 
+// If set to YES the generated config files for each target will be put in a separate folder.
+// Use with the projectFolderEnabled property for project-level config files. Default is NO.
+@property BOOL targetFoldersEnabled;
+
+// If set to YES project-level config files will be put in a separate folder.
+// Only takes effect when targetFoldersEnabled is also set to YES. Default is NO.
+@property BOOL projectFolderEnabled;
+
+
 // Validates destination folder, checking for existing build config files
 // Returns an error suitable for presentation in an alert with options to cancel or replace existing files.
 + (BOOL)validateDestinationFolder:(NSURL *)destinationURL error:(NSError **)error;
