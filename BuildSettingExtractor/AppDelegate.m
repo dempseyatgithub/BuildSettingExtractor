@@ -15,6 +15,9 @@
 // During development it is useful to turn off the overwrite checking
 #define OVERWRITE_CHECKING_DISABLED 0
 
+// Temporary flag until the preference pane is updated
+#define ENCLOSING_DESTINATION_FOLDER_ENABLED 0
+
 @interface AppDelegate () <NSOpenSavePanelDelegate>
 
 @property (weak) IBOutlet NSWindow *window;
@@ -69,7 +72,18 @@
     [fileURL getResourceValue:&typeIdentifier forKey:NSURLTypeIdentifierKey error:&error];
 
     if (fileURL && [typeIdentifier isEqualToString:[NSString tps_projectBundleTypeIdentifier]]) {
-        [self selectDestinationURLForSourceProject:fileURL];
+        if (ENCLOSING_DESTINATION_FOLDER_ENABLED && [[NSUserDefaults standardUserDefaults] boolForKey:TPSAutosaveInProjectFolder]) {
+            NSURL *baseURL = [fileURL URLByDeletingLastPathComponent];
+            NSURL *destinationURL = [self createValidatedDestinationURLForBaseURL:baseURL error:&error];
+            if (!destinationURL) {
+                NSAlert *alert = [NSAlert alertWithError:error];
+                [alert beginSheetModalForWindow:self.window completionHandler:nil];
+                return;
+            }
+            [self performExtractionFromProject:fileURL toDestination:destinationURL];
+        } else {
+            [self selectDestinationURLForSourceProject:fileURL];
+        }
     }
 }
 
@@ -81,15 +95,30 @@
     openPanel.canChooseDirectories = YES;
     openPanel.canChooseFiles = NO;
     openPanel.allowedFileTypes = @[(NSString *)kUTTypeFolder];
+#if ENCLOSING_DESTINATION_FOLDER_ENABLED
+    openPanel.message = [NSString stringWithFormat:@"Choose location to save configuration files. Configuration files for project\n‘%@’ will be saved in a folder named '%@'.", [fileURL lastPathComponent], [[NSUserDefaults standardUserDefaults] stringForKey:TPSDestinationFolderName]];
+#else
     openPanel.message = [NSString stringWithFormat:@"Choose location to save configuration files for project ‘%@’.", [fileURL lastPathComponent]];
+    #endif
     openPanel.prompt = @"Choose";
 
     [openPanel beginSheetModalForWindow:self.window completionHandler:^(NSInteger result) {
         
         if (result == NSModalResponseOK) {
-            NSURL *destinationURL = openPanel.URL;
-            
+#if ENCLOSING_DESTINATION_FOLDER_ENABLED
             NSError *error = nil;
+            NSURL *baseURL = openPanel.URL;
+            NSURL *destinationURL = [self createValidatedDestinationURLForBaseURL:baseURL error: &error];
+            if (!destinationURL) {
+                NSAlert *alert = [NSAlert alertWithError:error];
+                [alert beginSheetModalForWindow:self.window completionHandler:nil];
+                return;
+            }
+#else
+            NSError *error = nil;
+            NSURL *destinationURL = openPanel.URL;
+#endif
+            
             BOOL validDestination = [BuildSettingExtractor validateDestinationFolder:destinationURL error:&error];
             
             if (validDestination || OVERWRITE_CHECKING_DISABLED) {
@@ -105,6 +134,43 @@
             }
         }
     }];
+}
+
+- (nullable NSURL *)createValidatedDestinationURLForBaseURL:(NSURL *) baseURL error: (NSError **)error {
+    NSString *folderName = [[NSUserDefaults standardUserDefaults] stringForKey:TPSDestinationFolderName];
+    // First check if there is a folder of that name in the base url
+    NSArray *fileURLs = [[NSFileManager defaultManager] contentsOfDirectoryAtURL:baseURL includingPropertiesForKeys:nil options:NSDirectoryEnumerationSkipsHiddenFiles error:nil];
+    NSMutableIndexSet *untakenIndexes = [[NSMutableIndexSet alloc] initWithIndexesInRange:NSMakeRange(1, 9999)];
+    BOOL foundNameConflict = NO;
+    for (NSURL *fileURL in fileURLs) {
+        NSString *filename = [fileURL lastPathComponent];
+        if ([folderName isEqualToString:filename]) {
+            foundNameConflict = YES;
+        }
+        if ([filename hasPrefix:folderName]) {
+            NSArray *components = [filename componentsSeparatedByString:@"-"];
+            if (components.count > 1) {
+                NSUInteger value = (NSUInteger)[[components lastObject] integerValue];
+                if (value != 0) {
+                    [untakenIndexes removeIndex:value];
+                }
+            }
+        }
+    }
+    NSString *validatedFolderName = nil;
+    if (foundNameConflict) {
+        validatedFolderName = [NSString stringWithFormat:@"%@-%ld", folderName, untakenIndexes.firstIndex];
+    } else {
+        validatedFolderName = folderName;
+    }
+    
+    // Then create destination folder
+    NSURL *validatedDestinationURL = [baseURL URLByAppendingPathComponent:validatedFolderName];
+    if ([[NSFileManager defaultManager] createDirectoryAtURL:validatedDestinationURL withIntermediateDirectories:NO attributes:nil error:error]) {
+        return validatedDestinationURL;
+    } else {
+        return nil;
+    }
 }
 
 - (void)performExtractionFromProject:(NSURL *)fileURL toDestination:(NSURL *)destinationURL {

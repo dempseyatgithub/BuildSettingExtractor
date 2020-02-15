@@ -19,6 +19,8 @@ extern NSString *const TPSLinesBetweenBuildSettings;
 extern NSString *const TPSLinesBetweenBuildSettingsWithInfo;
 extern NSString *const TPSTargetFoldersEnabled;
 extern NSString *const TPSProjectFolderEnabled;
+extern NSString *const TPSDestinationFolderName;
+extern NSString *const TPSAutosaveInProjectFolder;
 
 @interface NSUserDefaults (TPS_DefaultsRegistration)
 - (void)tps_registerApplicationDefaults;
