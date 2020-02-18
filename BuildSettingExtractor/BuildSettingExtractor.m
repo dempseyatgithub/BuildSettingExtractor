@@ -329,6 +329,13 @@ static NSSet *XcodeCompatibilityVersionStringSet() {
     // Sort build settings by name for easier reading and testing. Case insensitive compare should stay stable regardess of locale.
     NSArray *sortedKeys = [[buildSettings allKeys] sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
 
+    NSUInteger maxKeyLength = 0;
+    if (self.alignBuildSettingValues) {
+        for (NSString *key in sortedKeys) {
+            maxKeyLength = MAX(maxKeyLength, key.length);
+        }
+    }
+    
     BOOL firstKey = YES;
     for (NSString *key in sortedKeys) {
         id value = buildSettings[key];
@@ -343,12 +350,19 @@ static NSSet *XcodeCompatibilityVersionStringSet() {
             NSString *comment = [self.buildSettingCommentGenerator commentForBuildSettingWithName:key];
             [string appendString:comment];
         }
+        
+        [string appendString:key];
+        if (self.alignBuildSettingValues) {
+            for (NSUInteger currentLength = key.length; currentLength < maxKeyLength; currentLength++) {
+                [string appendString:@" "];
+            }
+        }
 
         if ([value isKindOfClass:[NSString class]]) {
-            [string appendFormat:@"%@ = %@\n", key, value];
+            [string appendFormat:@" = %@\n", value];
 
         } else if ([value isKindOfClass:[NSArray class]]) {
-            [string appendFormat:@"%@ = %@\n", key, [value componentsJoinedByString:@" "]];
+            [string appendFormat:@" = %@\n", [value componentsJoinedByString:@" "]];
         } else {
             [NSException raise:@"Should not get here!" format:@"Unexpected class: %@ in %s", [value class], __PRETTY_FUNCTION__];
         }

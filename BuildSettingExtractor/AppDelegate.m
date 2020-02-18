@@ -189,6 +189,7 @@
         buildSettingExtractor.linesBetweenSettings = [defaults integerForKey:includeInfo ? TPSLinesBetweenBuildSettingsWithInfo : TPSLinesBetweenBuildSettings];
         buildSettingExtractor.targetFoldersEnabled = [defaults boolForKey:TPSTargetFoldersEnabled];
         buildSettingExtractor.projectFolderEnabled = [defaults boolForKey:TPSProjectFolderEnabled];
+        buildSettingExtractor.alignBuildSettingValues = [defaults boolForKey:TPSAlignBuildSettingValues];
         
         NSError *fatalError = nil;
         

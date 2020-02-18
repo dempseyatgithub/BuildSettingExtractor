@@ -23,6 +23,7 @@ NSString *const TPSTargetFoldersEnabled = @"TPSTargetFoldersEnabled";
 NSString *const TPSProjectFolderEnabled = @"TPSProjectFolderEnabled";
 NSString *const TPSDestinationFolderName = @"TPSDestinationFolderName";
 NSString *const TPSAutosaveInProjectFolder = @"TPSAutosaveInProjectFolder";
+NSString *const TPSAlignBuildSettingValues = @"TPSAlignBuildSettingValues";
 
 @implementation NSUserDefaults (TPS_DefaultsRegistration)
 - (void)tps_registerApplicationDefaults {
@@ -37,7 +38,8 @@ NSString *const TPSAutosaveInProjectFolder = @"TPSAutosaveInProjectFolder";
         TPSTargetFoldersEnabled : @(NO),
         TPSProjectFolderEnabled : @(NO),
         TPSDestinationFolderName : @"Config",
-        TPSAutosaveInProjectFolder: @(NO)
+        TPSAutosaveInProjectFolder: @(NO),
+        TPSAlignBuildSettingValues: @(NO)
     };
     [self registerDefaults:defaults];
 }

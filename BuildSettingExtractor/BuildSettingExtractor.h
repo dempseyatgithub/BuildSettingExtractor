@@ -56,6 +56,8 @@ NS_ASSUME_NONNULL_BEGIN
 // Only takes effect when targetFoldersEnabled is also set to YES. Default is NO.
 @property BOOL projectFolderEnabled;
 
+// If set to YES aligns the build settings in generated files. Default is NO.
+@property BOOL alignBuildSettingValues;
 
 // Validates destination folder, checking for existing build config files
 // Returns an error suitable for presentation in an alert with options to cancel or replace existing files.
