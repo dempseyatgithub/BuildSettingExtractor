@@ -29,6 +29,7 @@
 		53FA8823234163D700F51EC3 /* ConflictingName.xcodeproj.test in Resources */ = {isa = PBXBuildFile; fileRef = 53FA8822234163D700F51EC3 /* ConflictingName.xcodeproj.test */; };
 		53FA8825234164E700F51EC3 /* EmptySettings.xcodeproj.test in Resources */ = {isa = PBXBuildFile; fileRef = 53FA8824234164E700F51EC3 /* EmptySettings.xcodeproj.test */; };
 		53FA882823421B9900F51EC3 /* AppConstants+Categories.m in Sources */ = {isa = PBXBuildFile; fileRef = 53FA882723421B9900F51EC3 /* AppConstants+Categories.m */; };
+		53FE1CF62450821600C26F50 /* FormattingTestData.plist in Resources */ = {isa = PBXBuildFile; fileRef = 53FE1CF52450821600C26F50 /* FormattingTestData.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,6 +81,7 @@
 		53FA8824234164E700F51EC3 /* EmptySettings.xcodeproj.test */ = {isa = PBXFileReference; lastKnownFileType = folder; path = EmptySettings.xcodeproj.test; sourceTree = "<group>"; };
 		53FA882623421B9900F51EC3 /* AppConstants+Categories.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AppConstants+Categories.h"; sourceTree = "<group>"; };
 		53FA882723421B9900F51EC3 /* AppConstants+Categories.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "AppConstants+Categories.m"; sourceTree = "<group>"; };
+		53FE1CF52450821600C26F50 /* FormattingTestData.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = FormattingTestData.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -215,6 +217,7 @@
 				53FA8822234163D700F51EC3 /* ConflictingName.xcodeproj.test */,
 				53FA8824234164E700F51EC3 /* EmptySettings.xcodeproj.test */,
 				53F372F31A7C0CBE006118CB /* ThreeBuildConfigs.plist */,
+				53FE1CF52450821600C26F50 /* FormattingTestData.plist */,
 			);
 			path = TestFiles;
 			sourceTree = "<group>";
@@ -311,6 +314,7 @@
 				53FA8825234164E700F51EC3 /* EmptySettings.xcodeproj.test in Resources */,
 				53719EBB19BF4C6D005D3DE0 /* InfoPlist.strings in Resources */,
 				53FA8823234163D700F51EC3 /* ConflictingName.xcodeproj.test in Resources */,
+				53FE1CF62450821600C26F50 /* FormattingTestData.plist in Resources */,
 				53FA88212341614D00F51EC3 /* BadVersionNumber.xcodeproj.test in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

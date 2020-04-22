@@ -191,4 +191,39 @@
     XCTAssertEqual(error.code, BuildSettingInfoSourceNotFound);
 }
 
+- (void)testBuildSettingFormatting {
+    NSURL *testFileURL = [[NSBundle bundleForClass:[BuildSettingExtractorTests class]] URLForResource:@"FormattingTestData" withExtension:@"plist"];
+    NSDictionary *testPlist = [NSDictionary dictionaryWithContentsOfURL:testFileURL];
+
+    NSArray *formattingTests = testPlist[@"formattingTests"];
+    
+    NSDictionary *testSettings = @{@"CLANG_WARN__DUPLICATE_METHOD_MATCH":@"YES",
+                                   @"COPY_PHASE_STRIP":@"YES",
+                                   @"DEBUG_INFORMATION_FORMAT":@"dwarf-with-dsym",
+                                   @"ENABLE_NS_ASSERTIONS":@"NO"};
+
+    for (NSDictionary *test in formattingTests) {
+        NSNumber *includeBuildSettingInfoValue = [test valueForKey:@"includeBuildSettingInfo"];
+        XCTAssertNotNil(includeBuildSettingInfoValue);
+        BOOL includeBuildSettingsInfo = [includeBuildSettingInfoValue boolValue];
+        
+        NSNumber *alignBuildSettingsValue = [test valueForKey:@"alignSettings"];
+        XCTAssertNotNil(alignBuildSettingsValue);
+        BOOL alignBuildSettings = [alignBuildSettingsValue boolValue];
+
+        NSNumber *linesBetweenSettingsValue = [test valueForKey:@"linesBetweenSettings"];
+        XCTAssertNotNil(linesBetweenSettingsValue);
+        NSInteger linesBetweenSettings = [linesBetweenSettingsValue integerValue];
+        
+        NSString *expectedResult = [test valueForKey:@"expectedResult"];
+        XCTAssertNotNil(expectedResult);
+        
+        NSString *testString = [BuildSettingExtractor exampleBuildFormattingStringForSettings:testSettings includeBuildSettingInfoComments:includeBuildSettingsInfo alignBuildSettingValues:alignBuildSettings linesBetweenSettings:linesBetweenSettings];
+        
+        XCTAssertEqualObjects(testString, expectedResult);
+
+    }
+
+}
+
 @end
