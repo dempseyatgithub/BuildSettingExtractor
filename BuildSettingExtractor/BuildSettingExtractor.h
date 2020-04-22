@@ -74,6 +74,10 @@ NS_ASSUME_NONNULL_BEGIN
 // by successful completion of -extractBuildSettingsFromProject:error:. Callers must call -extractBuildSettingsFromProject:error: first and check for a non-nil return value indicating success.
 - (BOOL)writeConfigFilesToDestinationFolder:(NSURL *)destinationURL error:(NSError **)error;
 
+// Generates an example build setting string using the provided settings dictionary and options. The settings dictionary keys are expected
+// to be string. The values are expected to be strings or arrays of strings.
++ (NSString *)exampleBuildFormattingStringForSettings:(NSDictionary *)settings includeBuildSettingInfoComments:(BOOL)includeBuildSettingInfoComments alignBuildSettingValues:(BOOL)alignBuildSettingValues linesBetweenSettings:(NSInteger)linesBetweenSettings;
+
 @end
 
 NS_ASSUME_NONNULL_END

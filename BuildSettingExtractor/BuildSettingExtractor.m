@@ -324,13 +324,18 @@ static NSSet *XcodeCompatibilityVersionStringSet() {
 
 /* Given a build setting dictionary, returns a string representation of the build settings, suitable for an xcconfig file. */
 - (NSString *)stringRepresentationOfBuildSettings:(NSDictionary *)buildSettings {
+    return [BuildSettingExtractor stringRepresentationOfBuildSettings:buildSettings includeBuildSettingInfoComments:self.includeBuildSettingInfoComments alignBuildSettingValues:self.alignBuildSettingValues linesBetweenSettings:self.linesBetweenSettings commentGenerator:self.buildSettingCommentGenerator];
+}
+
+/* Given a build setting dictionary and a set of options, returns a string representation of the build settings, suitable for an xcconfig file. Logic is shared between generating xcconfig files and providing a formatting example. */
++ (NSString *)stringRepresentationOfBuildSettings:(NSDictionary *)buildSettings includeBuildSettingInfoComments:(BOOL)includeBuildSettingInfoComments alignBuildSettingValues:(BOOL)alignBuildSettingValues linesBetweenSettings:(NSInteger)linesBetweenSettings commentGenerator:(BuildSettingCommentGenerator *) buildSettingCommentGenerator {
     NSMutableString *string = [[NSMutableString alloc] init];
 
     // Sort build settings by name for easier reading and testing. Case insensitive compare should stay stable regardess of locale.
     NSArray *sortedKeys = [[buildSettings allKeys] sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
 
     NSUInteger maxKeyLength = 0;
-    if (self.alignBuildSettingValues) {
+    if (alignBuildSettingValues) {
         for (NSString *key in sortedKeys) {
             maxKeyLength = MAX(maxKeyLength, key.length);
         }
@@ -341,18 +346,18 @@ static NSSet *XcodeCompatibilityVersionStringSet() {
         id value = buildSettings[key];
         
         if (!firstKey){
-            for (NSInteger i = 0; i < self.linesBetweenSettings; i++) {
+            for (NSInteger i = 0; i < linesBetweenSettings; i++) {
                 [string appendString:@"\n"];
             }
         }
 
-        if (self.includeBuildSettingInfoComments) {
-            NSString *comment = [self.buildSettingCommentGenerator commentForBuildSettingWithName:key];
+        if (includeBuildSettingInfoComments) {
+            NSString *comment = [buildSettingCommentGenerator commentForBuildSettingWithName:key];
             [string appendString:comment];
         }
         
         [string appendString:key];
-        if (self.alignBuildSettingValues) {
+        if (alignBuildSettingValues) {
             for (NSUInteger currentLength = key.length; currentLength < maxKeyLength; currentLength++) {
                 [string appendString:@" "];
             }
@@ -450,6 +455,23 @@ static NSSet *XcodeCompatibilityVersionStringSet() {
     }
     
     return buildSettingsByConfiguration;
+}
+
++ (NSString *)exampleBuildFormattingStringForSettings:(NSDictionary *)settings includeBuildSettingInfoComments:(BOOL)includeBuildSettingInfoComments alignBuildSettingValues:(BOOL)alignBuildSettingValues linesBetweenSettings:(NSInteger)linesBetweenSettings {
+    
+    BuildSettingCommentGenerator *buildSettingCommentGenerator = nil;
+    
+    if (includeBuildSettingInfoComments) {
+
+        NSError *infoSourceError = nil;
+        BuildSettingInfoSource *infoSource = [BuildSettingInfoSource resolvedBuildSettingInfoSourceWithStyle:BuildSettingInfoSourceStyleStandard customURL:nil error:&infoSourceError];
+
+        if (infoSource) {
+            buildSettingCommentGenerator = [[BuildSettingCommentGenerator alloc] initWithBuildSettingInfoSource:infoSource];
+        }
+    }
+
+    return [BuildSettingExtractor stringRepresentationOfBuildSettings:settings includeBuildSettingInfoComments:includeBuildSettingInfoComments alignBuildSettingValues:alignBuildSettingValues linesBetweenSettings:linesBetweenSettings commentGenerator:buildSettingCommentGenerator];
 }
 
 @end
