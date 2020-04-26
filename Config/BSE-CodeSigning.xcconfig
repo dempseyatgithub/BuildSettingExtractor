@@ -28,6 +28,6 @@
 // app IDs, and certificates. Choose `Manual` to create and update these yourself
 // on the developer website.
 
-// Setting this to Manual, otherwise Xcode seems to prefer slipping back into Automatic mode
+// Set to Automatic mode.
 
-CODE_SIGN_STYLE = Manual;
+CODE_SIGN_STYLE = Automatic
