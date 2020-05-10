@@ -19,7 +19,6 @@
 
 @property (weak) IBOutlet NSWindow *window;
 @property (weak) IBOutlet DragFileView *dragFileView;
-@property (weak) IBOutlet NSWindow *preferencesWindow;
 @property NSWindowController *preferencesWindowController;
 @property (weak) IBOutlet NSTextField *dragFileLabel;
 
@@ -227,13 +226,6 @@
         self.preferencesWindowController = (NSWindowController *)[storyboard instantiateInitialController];
     }
     [self.preferencesWindowController showWindow:nil];
-}
-
-- (IBAction)dismissPreferencesWindow:(id)sender {
-    // make sure current edit field gets bound
-    [self.preferencesWindow makeFirstResponder:nil];
-    
-    [self.window endSheet:self.preferencesWindow];
 }
 
 
