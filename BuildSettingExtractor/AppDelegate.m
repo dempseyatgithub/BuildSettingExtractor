@@ -16,13 +16,14 @@
 #define OVERWRITE_CHECKING_DISABLED 0
 
 // Temporary flag until the preference pane is updated
-#define ENCLOSING_DESTINATION_FOLDER_ENABLED 0
+#define ENCLOSING_DESTINATION_FOLDER_ENABLED 1
 
 @interface AppDelegate () <NSOpenSavePanelDelegate>
 
 @property (weak) IBOutlet NSWindow *window;
 @property (weak) IBOutlet DragFileView *dragFileView;
 @property (weak) IBOutlet NSWindow *preferencesWindow;
+@property NSWindowController *preferencesWindowController;
 @property (weak) IBOutlet NSTextField *dragFileLabel;
 
 @end
@@ -233,7 +234,11 @@
 }
 
 - (IBAction)presentPreferencesWindow:(id)sender {
-    [self.window beginSheet:self.preferencesWindow completionHandler:nil];
+    if (!self.preferencesWindowController) {
+        NSStoryboard *storyboard = [NSStoryboard storyboardWithName:@"Preferences" bundle:nil];
+        self.preferencesWindowController = (NSWindowController *)[storyboard instantiateInitialController];
+    }
+    [self.preferencesWindowController showWindow:nil];
 }
 
 - (IBAction)dismissPreferencesWindow:(id)sender {

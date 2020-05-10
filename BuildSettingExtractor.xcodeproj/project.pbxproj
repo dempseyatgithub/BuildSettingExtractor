@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5359360F24687FF800445F95 /* Preferences.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5359360D24687FF800445F95 /* Preferences.storyboard */; };
 		53719E9319BF4C6D005D3DE0 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53719E9219BF4C6D005D3DE0 /* Cocoa.framework */; };
 		53719E9D19BF4C6D005D3DE0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 53719E9B19BF4C6D005D3DE0 /* InfoPlist.strings */; };
 		53719E9F19BF4C6D005D3DE0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 53719E9E19BF4C6D005D3DE0 /* main.m */; };
@@ -19,7 +20,11 @@
 		53719EBD19BF4C6D005D3DE0 /* BuildSettingExtractorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 53719EBC19BF4C6D005D3DE0 /* BuildSettingExtractorTests.m */; };
 		538196C51A851BB40033CB65 /* BuildSettingInfoSubpaths.plist in Resources */ = {isa = PBXBuildFile; fileRef = 538196C41A851BB40033CB65 /* BuildSettingInfoSubpaths.plist */; };
 		539A0207234EFA4300193374 /* BuildSettingInfoSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 539A0206234EFA4300193374 /* BuildSettingInfoSource.m */; };
+		53B3D7F023F6EB6F0039C5B0 /* PreferencesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 53B3D7EE23F6EB6F0039C5B0 /* PreferencesViewController.m */; };
+		53B3D7F623F6EDB70039C5B0 /* FileLayoutPreferencesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 53B3D7F523F6EDB70039C5B0 /* FileLayoutPreferencesViewController.m */; };
+		53B3D7FA23F6EDCD0039C5B0 /* ContentsPreferencesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 53B3D7F823F6EDCD0039C5B0 /* ContentsPreferencesViewController.m */; };
 		53BC11311A817447005E2FD2 /* BuildSettingCommentGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 53BC11301A817447005E2FD2 /* BuildSettingCommentGenerator.m */; };
+		53C7618223F85AE20024B432 /* SampleFileStructureGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 53C7618123F85AE20024B432 /* SampleFileStructureGenerator.m */; };
 		53F372ED1A7BC6A7006118CB /* DragFileView.m in Sources */ = {isa = PBXBuildFile; fileRef = 53F372EC1A7BC6A7006118CB /* DragFileView.m */; };
 		53F372F01A7C042F006118CB /* BuildSettingExtractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 53F372EF1A7C042F006118CB /* BuildSettingExtractor.m */; };
 		53F372F41A7C0CBE006118CB /* ThreeBuildConfigs.plist in Resources */ = {isa = PBXBuildFile; fileRef = 53F372F31A7C0CBE006118CB /* ThreeBuildConfigs.plist */; };
@@ -44,6 +49,7 @@
 
 /* Begin PBXFileReference section */
 		532C57C7234BB32700FA0872 /* BSE-CodeSigning.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "BSE-CodeSigning.xcconfig"; sourceTree = "<group>"; };
+		5359360E24687FF800445F95 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Preferences.storyboard; sourceTree = "<group>"; };
 		536AA121235293B600A0FE29 /* BuildSettingExtractor.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BuildSettingExtractor.entitlements; sourceTree = "<group>"; };
 		53719E8F19BF4C6D005D3DE0 /* BuildSettingExtractor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BuildSettingExtractor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		53719E9219BF4C6D005D3DE0 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
@@ -66,8 +72,16 @@
 		5395AF4D1A7C6BB60028BE88 /* ReadMe.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = ReadMe.md; sourceTree = "<group>"; };
 		539A0205234EFA4300193374 /* BuildSettingInfoSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BuildSettingInfoSource.h; sourceTree = "<group>"; };
 		539A0206234EFA4300193374 /* BuildSettingInfoSource.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BuildSettingInfoSource.m; sourceTree = "<group>"; };
+		53B3D7EE23F6EB6F0039C5B0 /* PreferencesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreferencesViewController.m; sourceTree = "<group>"; };
+		53B3D7EF23F6EB6F0039C5B0 /* PreferencesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreferencesViewController.h; sourceTree = "<group>"; };
+		53B3D7F423F6EDB70039C5B0 /* FileLayoutPreferencesViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FileLayoutPreferencesViewController.h; sourceTree = "<group>"; };
+		53B3D7F523F6EDB70039C5B0 /* FileLayoutPreferencesViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FileLayoutPreferencesViewController.m; sourceTree = "<group>"; };
+		53B3D7F723F6EDCD0039C5B0 /* ContentsPreferencesViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ContentsPreferencesViewController.h; sourceTree = "<group>"; };
+		53B3D7F823F6EDCD0039C5B0 /* ContentsPreferencesViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ContentsPreferencesViewController.m; sourceTree = "<group>"; };
 		53BC112F1A817447005E2FD2 /* BuildSettingCommentGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuildSettingCommentGenerator.h; sourceTree = "<group>"; };
 		53BC11301A817447005E2FD2 /* BuildSettingCommentGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuildSettingCommentGenerator.m; sourceTree = "<group>"; };
+		53C7618023F85AE20024B432 /* SampleFileStructureGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SampleFileStructureGenerator.h; sourceTree = "<group>"; };
+		53C7618123F85AE20024B432 /* SampleFileStructureGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SampleFileStructureGenerator.m; sourceTree = "<group>"; };
 		53F372EB1A7BC6A7006118CB /* DragFileView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DragFileView.h; sourceTree = "<group>"; };
 		53F372EC1A7BC6A7006118CB /* DragFileView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DragFileView.m; sourceTree = "<group>"; };
 		53F372EE1A7C042F006118CB /* BuildSettingExtractor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuildSettingExtractor.h; sourceTree = "<group>"; };
@@ -172,6 +186,7 @@
 				53FA882723421B9900F51EC3 /* AppConstants+Categories.m */,
 				53F372F91A7C5803006118CB /* Constants+Categories.h */,
 				53F372FA1A7C5803006118CB /* Constants+Categories.m */,
+				53B3D7EB23F6EB090039C5B0 /* Preferences */,
 				53719EA719BF4C6D005D3DE0 /* MainMenu.xib */,
 				53719EAA19BF4C6D005D3DE0 /* Assets.xcassets */,
 				538196C41A851BB40033CB65 /* BuildSettingInfoSubpaths.plist */,
@@ -207,6 +222,22 @@
 				53719EB919BF4C6D005D3DE0 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		53B3D7EB23F6EB090039C5B0 /* Preferences */ = {
+			isa = PBXGroup;
+			children = (
+				53B3D7EF23F6EB6F0039C5B0 /* PreferencesViewController.h */,
+				53B3D7EE23F6EB6F0039C5B0 /* PreferencesViewController.m */,
+				53B3D7F423F6EDB70039C5B0 /* FileLayoutPreferencesViewController.h */,
+				53B3D7F523F6EDB70039C5B0 /* FileLayoutPreferencesViewController.m */,
+				53B3D7F723F6EDCD0039C5B0 /* ContentsPreferencesViewController.h */,
+				53B3D7F823F6EDCD0039C5B0 /* ContentsPreferencesViewController.m */,
+				53C7618023F85AE20024B432 /* SampleFileStructureGenerator.h */,
+				53C7618123F85AE20024B432 /* SampleFileStructureGenerator.m */,
+				5359360D24687FF800445F95 /* Preferences.storyboard */,
+			);
+			path = Preferences;
 			sourceTree = "<group>";
 		};
 		53F372F61A7C3164006118CB /* TestFiles */ = {
@@ -266,7 +297,7 @@
 		53719E8719BF4C6D005D3DE0 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1110;
+				LastUpgradeCheck = 1140;
 				ORGANIZATIONNAME = "Tapas Software";
 				TargetAttributes = {
 					53719EAF19BF4C6D005D3DE0 = {
@@ -301,6 +332,7 @@
 				53719E9D19BF4C6D005D3DE0 /* InfoPlist.strings in Resources */,
 				538196C51A851BB40033CB65 /* BuildSettingInfoSubpaths.plist in Resources */,
 				53719EAB19BF4C6D005D3DE0 /* Assets.xcassets in Resources */,
+				5359360F24687FF800445F95 /* Preferences.storyboard in Resources */,
 				53719EA919BF4C6D005D3DE0 /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -332,8 +364,12 @@
 				53F372ED1A7BC6A7006118CB /* DragFileView.m in Sources */,
 				53FA882823421B9900F51EC3 /* AppConstants+Categories.m in Sources */,
 				53BC11311A817447005E2FD2 /* BuildSettingCommentGenerator.m in Sources */,
+				53B3D7FA23F6EDCD0039C5B0 /* ContentsPreferencesViewController.m in Sources */,
+				53C7618223F85AE20024B432 /* SampleFileStructureGenerator.m in Sources */,
+				53B3D7F023F6EB6F0039C5B0 /* PreferencesViewController.m in Sources */,
 				539A0207234EFA4300193374 /* BuildSettingInfoSource.m in Sources */,
 				53719E9F19BF4C6D005D3DE0 /* main.m in Sources */,
+				53B3D7F623F6EDB70039C5B0 /* FileLayoutPreferencesViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -356,6 +392,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		5359360D24687FF800445F95 /* Preferences.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5359360E24687FF800445F95 /* Base */,
+			);
+			name = Preferences.storyboard;
+			sourceTree = "<group>";
+		};
 		53719E9B19BF4C6D005D3DE0 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -430,7 +474,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
 			};
@@ -477,7 +521,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				SDKROOT = macosx;
 			};
 			name = Release;
