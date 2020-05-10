@@ -81,6 +81,12 @@
                                     <action selector="chooseXcodeProject:" target="-1" id="P8t-ft-58a"/>
                                 </connections>
                             </menuItem>
+                            <menuItem isSeparatorItem="YES" id="05u-tv-qZn"/>
+                            <menuItem title="Close" keyEquivalent="w" id="zL7-0j-nT3">
+                                <connections>
+                                    <action selector="performClose:" target="-1" id="6vE-8s-Gbp"/>
+                                </connections>
+                            </menuItem>
                         </items>
                     </menu>
                 </menuItem>
