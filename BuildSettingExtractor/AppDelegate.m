@@ -15,9 +15,6 @@
 // During development it is useful to turn off the overwrite checking
 #define OVERWRITE_CHECKING_DISABLED 0
 
-// Temporary flag until the preference pane is updated
-#define ENCLOSING_DESTINATION_FOLDER_ENABLED 1
-
 @interface AppDelegate () <NSOpenSavePanelDelegate>
 
 @property (weak) IBOutlet NSWindow *window;
@@ -73,7 +70,7 @@
     [fileURL getResourceValue:&typeIdentifier forKey:NSURLTypeIdentifierKey error:&error];
 
     if (fileURL && [typeIdentifier isEqualToString:[NSString tps_projectBundleTypeIdentifier]]) {
-        if (ENCLOSING_DESTINATION_FOLDER_ENABLED && [[NSUserDefaults standardUserDefaults] boolForKey:TPSAutosaveInProjectFolder]) {
+        if ([[NSUserDefaults standardUserDefaults] boolForKey:TPSAutosaveInProjectFolder]) {
             NSURL *baseURL = [fileURL URLByDeletingLastPathComponent];
             NSURL *destinationURL = [self createValidatedDestinationURLForBaseURL:baseURL error:&error];
             if (!destinationURL) {
@@ -96,17 +93,12 @@
     openPanel.canChooseDirectories = YES;
     openPanel.canChooseFiles = NO;
     openPanel.allowedFileTypes = @[(NSString *)kUTTypeFolder];
-#if ENCLOSING_DESTINATION_FOLDER_ENABLED
-    openPanel.message = [NSString stringWithFormat:@"Choose location to save configuration files. Configuration files for project\n‘%@’ will be saved in a folder named '%@'.", [fileURL lastPathComponent], [[NSUserDefaults standardUserDefaults] stringForKey:TPSDestinationFolderName]];
-#else
-    openPanel.message = [NSString stringWithFormat:@"Choose location to save configuration files for project ‘%@’.", [fileURL lastPathComponent]];
-    #endif
+    openPanel.message = [NSString stringWithFormat:@"Choose location to save configuration files.\nConfiguration files for project ‘%@’\nwill be saved in a folder named '%@'.", [fileURL lastPathComponent], [[NSUserDefaults standardUserDefaults] stringForKey:TPSDestinationFolderName]];
     openPanel.prompt = @"Choose";
 
     [openPanel beginSheetModalForWindow:self.window completionHandler:^(NSInteger result) {
         
         if (result == NSModalResponseOK) {
-#if ENCLOSING_DESTINATION_FOLDER_ENABLED
             NSError *error = nil;
             NSURL *baseURL = openPanel.URL;
             NSURL *destinationURL = [self createValidatedDestinationURLForBaseURL:baseURL error: &error];
@@ -115,10 +107,6 @@
                 [alert beginSheetModalForWindow:self.window completionHandler:nil];
                 return;
             }
-#else
-            NSError *error = nil;
-            NSURL *destinationURL = openPanel.URL;
-#endif
             
             BOOL validDestination = [BuildSettingExtractor validateDestinationFolder:destinationURL error:&error];
             
