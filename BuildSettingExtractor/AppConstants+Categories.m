@@ -37,7 +37,7 @@ NSString *const TPSAlignBuildSettingValues = @"TPSAlignBuildSettingValues";
         TPSLinesBetweenBuildSettingsWithInfo : @3,
         TPSTargetFoldersEnabled : @(NO),
         TPSProjectFolderEnabled : @(NO),
-        TPSDestinationFolderName : @"Config",
+        TPSDestinationFolderName : @"xcconfig",
         TPSAutosaveInProjectFolder: @(NO),
         TPSAlignBuildSettingValues: @(NO)
     };
