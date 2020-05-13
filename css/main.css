@@ -1,0 +1,93 @@
+body {
+  background-color: maroon;
+  padding: 0;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, sans-serif;
+  color: white;
+/* 
+  --title-box-color: purple;
+  --icon-box-color: green;
+  --hero-box-color: teal;
+ */
+}
+
+a:link {
+	color:white;
+}
+
+.hero-box {
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-items: center;
+  align-content: center;
+  flex-wrap: wrap;
+  height: 80%;
+  width: 80%;
+  max-width: 740px;
+  min-width: 300px;
+  background-color: var(--hero-box-color);
+}
+
+.icon-box {
+/*   width: 30%; */
+  margin: 0 auto;
+  background-color: var(--icon-box-color);
+}
+
+@media screen and (min-width: 0) {
+.icon {
+  width: 150px;
+/*   margin: 0 auto; */
+}
+	.title {
+	  font-size: 2.25rem;
+	}
+	.subtitle {
+	  font-size: 1.25rem;
+	}
+}
+
+@media screen and (min-width: 700px) {
+.icon {
+  width: 200px;
+/*   margin: 0 auto; */
+}
+	.title {
+	  font-size: 2.75rem;
+	}
+	.subtitle {
+	font-size: 1.5rem;
+	}
+  
+}
+
+.title-box {
+  margin: 0 auto;
+  padding: 25px;
+  background-color: var(--title-box-color);
+}
+
+.title {
+  font-weight: bold;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.subtitle {
+  text-align: center;
+  margin: 0 auto;
+}
+
+.download {
+	text-align: center;
+	font-size: 1.25rem;
+	color: white;
+}
+
+
+.hero {
+  height: 400px;
+  display: flex;
+  align-items: center;
+}
