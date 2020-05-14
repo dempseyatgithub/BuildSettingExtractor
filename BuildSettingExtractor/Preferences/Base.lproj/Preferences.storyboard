@@ -86,7 +86,7 @@
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                     </tableHeaderCell>
                                                     <textFieldCell key="dataCell" controlSize="small" lineBreakMode="truncatingTail" selectable="YES" editable="YES" title="Text Cell" id="izn-pK-Cyy">
-                                                        <font key="font" metaFont="message" size="11"/>
+                                                        <font key="font" metaFont="menu" size="11"/>
                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
@@ -103,7 +103,7 @@
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="gz0-HR-Vz6">
                                                                     <rect key="frame" x="22" y="3" width="241" height="14"/>
                                                                     <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="V1I-73-dY2">
-                                                                        <font key="font" metaFont="message" size="11"/>
+                                                                        <font key="font" metaFont="menu" size="11"/>
                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
@@ -126,6 +126,7 @@
                                                 </tableColumn>
                                             </tableColumns>
                                             <connections>
+                                                <accessibilityConnection property="title" destination="Viy-Vf-Vcr" id="I8h-Zt-vfF"/>
                                                 <outlet property="dataSource" destination="mVV-zB-t1f" id="qUJ-dY-z0B"/>
                                                 <outlet property="delegate" destination="mVV-zB-t1f" id="KMK-fi-yET"/>
                                             </connections>
@@ -203,6 +204,7 @@
                                                 </connections>
                                             </textFieldCell>
                                             <connections>
+                                                <accessibilityConnection property="title" destination="coG-6B-ZVS" id="H6t-xY-4qT"/>
                                                 <binding destination="FdP-VK-zkk" name="value" keyPath="values.TPSOutputFileNameProject" id="cDw-RG-uUD">
                                                     <dictionary key="options">
                                                         <bool key="NSContinuouslyUpdatesValue" value="YES"/>
@@ -235,6 +237,7 @@
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                             <connections>
+                                                <accessibilityConnection property="title" destination="9ya-6K-r0m" id="0er-8y-h2g"/>
                                                 <binding destination="FdP-VK-zkk" name="value" keyPath="values.TPSOutputFileNameShared" id="Kmq-xE-dHS">
                                                     <dictionary key="options">
                                                         <bool key="NSContinuouslyUpdatesValue" value="YES"/>
@@ -267,6 +270,7 @@
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                             <connections>
+                                                <accessibilityConnection property="title" destination="ApD-gw-uD5" id="YUV-Fq-B5t"/>
                                                 <binding destination="FdP-VK-zkk" name="value" keyPath="values.TPSOutputFileNameSeparator" id="aYr-Nd-jpu">
                                                     <dictionary key="options">
                                                         <bool key="NSContinuouslyUpdatesValue" value="YES"/>
@@ -364,6 +368,7 @@
                                                 </objectValues>
                                             </comboBoxCell>
                                             <connections>
+                                                <accessibilityConnection property="title" destination="r8S-QW-u7V" id="XcD-Ue-oPz"/>
                                                 <binding destination="FdP-VK-zkk" name="value" keyPath="values.TPSDestinationFolderName" id="AsD-kr-Xii"/>
                                             </connections>
                                         </comboBox>
@@ -513,6 +518,7 @@
                                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                             </textFieldCell>
                                                             <connections>
+                                                                <accessibilityConnection property="title" destination="MKY-la-XH1" id="W0V-Pb-lLb"/>
                                                                 <action selector="lineSpacingTextFieldChanged:" target="OJf-1a-TqC" id="bAA-ME-Xqx"/>
                                                                 <outlet property="delegate" destination="OJf-1a-TqC" id="41P-OH-0CJ"/>
                                                             </connections>
@@ -521,6 +527,7 @@
                                                             <rect key="frame" x="31" y="-3" width="19" height="28"/>
                                                             <stepperCell key="cell" continuous="YES" alignment="left" maxValue="999" id="Z61-Eh-H52"/>
                                                             <connections>
+                                                                <accessibilityConnection property="title" destination="MKY-la-XH1" id="Ngr-hE-1lo"/>
                                                                 <action selector="lineSpacingStepperChanged:" target="OJf-1a-TqC" id="rXj-cd-lsA"/>
                                                             </connections>
                                                         </stepper>
@@ -593,6 +600,9 @@
                                                 </fragment>
                                             </attributedString>
                                             <color key="insertionPointColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                            <connections>
+                                                <accessibilityConnection property="title" destination="FSY-Nv-PJd" id="Jqt-cr-L71"/>
+                                            </connections>
                                         </textView>
                                     </subviews>
                                 </clipView>
