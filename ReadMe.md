@@ -44,12 +44,31 @@ The generated xcconfig files include build setting explanations gleaned from Xco
 
     INFOPLIST_FILE = BuildSettingExtractorTests/BuildSettingExtractorTests-Info.plist
 
-These comments can be turned off in the Preferences sheet for a more compact file:
+These comments can be turned off in the Preferences window for a more compact file:
 
 	FRAMEWORK_SEARCH_PATHS = $(DEVELOPER_FRAMEWORKS_DIR) $(inherited)
 	INFOPLIST_FILE = BuildSettingExtractorTests/BuildSettingExtractorTests-Info.plist
 
 ### Version History ###
+
+*Version 1.4*  
+*May 17, 2020*
+
+– Moved preferences from a sheet to a separate window.  
+– Added preference to generate xcconfig files in folders grouped by target.  
+– Added preference to group project xcconfig files in a folder.  
+– Added preference to set name of folder enclosing all generated xcconfig files.  
+– Folder enclosing generated xcconfig files is named according to preference value.  
+– Added preference to automatically save generated files in same folder as source project.  
+– Added preference for line spacing between settings.  
+– Added preference for aligning build setting values.  
+– Added a preview to each preference pane.  
+– Added Close command to the File menu.  
+– Added shared xcscheme file to allow Xcode Server usage.  
+– Updated list of build setting info files for Xcode 11.4.  
+– Updated minimum macOS deployment target to 10.14.  
+– Tested on macOS 10.15.4 Catalina.  
+– Built with Xcode 11.4.1 on macOS 10.15.4 Catalina.  
 
 *Version 1.3.2*  
 *Oct 13, 2019*
