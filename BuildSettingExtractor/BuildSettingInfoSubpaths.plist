@@ -35,6 +35,13 @@
 	</dict>
 	<key>deprecatedSubpathsByVersion</key>
 	<dict>
+		<key>1200</key>
+		<array>
+			<array>
+				<string>Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Xcode/Specifications/Native Build System.strings</string>
+				<string>Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Xcode/Specifications/Native Build System.xcspec</string>
+			</array>
+		</array>
 		<key>0900</key>
 		<array>
 			<array>
@@ -67,6 +74,10 @@
 		</array>
 		<array>
 			<string>Contents/PlugIns/Xcode3Core.ideplugin/Contents/SharedSupport/Developer/Library/Xcode/Plug-ins/Metal.xcplugin/Contents/Resources/Metal Compiler.strings</string>
+			<string>Contents/PlugIns/Xcode3Core.ideplugin/Contents/SharedSupport/Developer/Library/Xcode/Plug-ins/Metal.xcplugin/Contents/Resources/MetalCompiler.strings</string>
+		</array>
+		<array>
+			<string>Contents/PlugIns/Xcode3Core.ideplugin/Contents/SharedSupport/Developer/Library/Xcode/Plug-ins/Metal.xcplugin/Contents/Resources/MetalLinker.strings</string>
 		</array>
 		<array>
 			<string>Contents/PlugIns/Xcode3Core.ideplugin/Contents/SharedSupport/Developer/Library/Xcode/Plug-ins/Core Data.xcplugin/Contents/Resources/en.lproj/com.apple.compilers.model.coredata.strings</string>
@@ -79,6 +90,9 @@
 		<array>
 			<string>Contents/PlugIns/Xcode3Core.ideplugin/Contents/SharedSupport/Developer/Library/Xcode/Plug-ins/Core Data.xcplugin/Contents/Resources/en.lproj/com.apple.compilers.model.persistence.strings</string>
 			<string>Contents/PlugIns/Xcode3Core.ideplugin/Contents/SharedSupport/Developer/Library/Xcode/Plug-ins/Core Data.xcplugin/Contents/Resources/English.lproj/com.apple.compilers.model.persistence.strings</string>
+		</array>
+		<array>
+			<string>Contents/PlugIns/Xcode3Core.ideplugin/Contents/SharedSupport/Developer/Library/Xcode/Plug-ins/IBCompilerPlugin.xcplugin/Contents/Resources/AssetCatalogCompiler.xcspec</string>
 		</array>
 		<array>
 			<string>Contents/PlugIns/Xcode3Core.ideplugin/Contents/SharedSupport/Developer/Library/Xcode/Plug-ins/IBCompilerPlugin.xcplugin/Contents/Resources/en.lproj/com.apple.compilers.assetcatalog.strings</string>
@@ -99,10 +113,6 @@
 		<array>
 			<string>Contents/PlugIns/Xcode3Core.ideplugin/Contents/SharedSupport/Developer/Library/Xcode/Plug-ins/IBCompilerPlugin.xcplugin/Contents/Resources/en.lproj/Interface Builder Storyboard Postprocessor.strings</string>
 			<string>Contents/PlugIns/Xcode3Core.ideplugin/Contents/SharedSupport/Developer/Library/Xcode/Plug-ins/IBCompilerPlugin.xcplugin/Contents/Resources/English.lproj/Interface Builder Storyboard Postprocessor.strings</string>
-		</array>
-		<array>
-			<string>Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Xcode/Specifications/Native Build System.strings</string>
-			<string>Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Xcode/Specifications/Native Build System.xcspec</string>
 		</array>
 		<array>
 			<string>Contents/PlugIns/Xcode3Core.ideplugin/Contents/SharedSupport/Developer/Library/Xcode/Plug-ins/CoreBuildTasks.xcplugin/Contents/Resources/en.lproj/OpenCL.strings</string>
