@@ -49,6 +49,15 @@
 			</array>
 		</array>
 	</dict>
+	<key>introducedSubpathsByVersion</key>
+	<dict>
+		<key>1200</key>
+		<array>
+			<array>
+				<string>Contents/PlugIns/Xcode3Core.ideplugin/Contents/SharedSupport/Developer/Library/Xcode/Plug-ins/Metal.xcplugin/Contents/Resources/MetalLinker.strings</string>
+			</array>
+		</array>
+	</dict>
 	<key>subpaths</key>
 	<array>
 		<array>
@@ -75,9 +84,6 @@
 		<array>
 			<string>Contents/PlugIns/Xcode3Core.ideplugin/Contents/SharedSupport/Developer/Library/Xcode/Plug-ins/Metal.xcplugin/Contents/Resources/Metal Compiler.strings</string>
 			<string>Contents/PlugIns/Xcode3Core.ideplugin/Contents/SharedSupport/Developer/Library/Xcode/Plug-ins/Metal.xcplugin/Contents/Resources/MetalCompiler.strings</string>
-		</array>
-		<array>
-			<string>Contents/PlugIns/Xcode3Core.ideplugin/Contents/SharedSupport/Developer/Library/Xcode/Plug-ins/Metal.xcplugin/Contents/Resources/MetalLinker.strings</string>
 		</array>
 		<array>
 			<string>Contents/PlugIns/Xcode3Core.ideplugin/Contents/SharedSupport/Developer/Library/Xcode/Plug-ins/Core Data.xcplugin/Contents/Resources/en.lproj/com.apple.compilers.model.coredata.strings</string>

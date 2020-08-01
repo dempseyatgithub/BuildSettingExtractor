@@ -189,6 +189,23 @@
     if (subpathsToAdd) {
         buildSettingInfoSubpaths = [buildSettingInfoSubpaths arrayByAddingObjectsFromArray:subpathsToAdd];
     }
+    
+    // Add introduced subpaths that are valid in the version of Xcode we are using
+    subpathsToAdd = nil;
+    NSDictionary *introducedSubpaths = buildSettingInfoDict[@"introducedSubpathsByVersion"];
+    for (NSString *versionKey in [introducedSubpaths allKeys]) {
+        NSInteger minVersion = [versionKey integerValue];
+        if (xcodeVersion >= minVersion) {
+            if (!subpathsToAdd) {
+                subpathsToAdd = [NSMutableArray array];
+            }
+            [subpathsToAdd addObjectsFromArray:introducedSubpaths[versionKey]];
+        }
+    }
+    if (subpathsToAdd) {
+        buildSettingInfoSubpaths = [buildSettingInfoSubpaths arrayByAddingObjectsFromArray:subpathsToAdd];
+    }
+
 
     // Rather than track exactly what Xcode versions contain which files, group versions of an expected file in an array.
     // Log if no file in the group can be read in.
