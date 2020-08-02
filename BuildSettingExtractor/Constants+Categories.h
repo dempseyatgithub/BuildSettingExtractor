@@ -8,7 +8,7 @@
 
 @import Foundation;
 
-typedef NS_ENUM(NSUInteger, AppErrorCodes) {
+typedef NS_ENUM(NSUInteger, BuildSettingExtractorErrorCodes) {
     UnsupportedXcodeVersion = 100,
     DirectoryContainsBuildConfigFiles = 101,
     ProjectSettingsNamingConflict = 102,
