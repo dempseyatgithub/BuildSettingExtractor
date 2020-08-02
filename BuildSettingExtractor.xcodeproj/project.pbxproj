@@ -297,7 +297,7 @@
 		53719E8719BF4C6D005D3DE0 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1140;
+				LastUpgradeCheck = 1150;
 				ORGANIZATIONNAME = "Tapas Software";
 				TargetAttributes = {
 					53719EAF19BF4C6D005D3DE0 = {
