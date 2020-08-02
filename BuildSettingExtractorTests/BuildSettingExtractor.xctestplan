@@ -6,6 +6,24 @@
       "options" : {
 
       }
+    },
+    {
+      "id" : "4BF654CB-B6F5-489E-B5A8-99F06E583C46",
+      "name" : "Thread Sanitizer",
+      "options" : {
+        "threadSanitizerEnabled" : true,
+        "undefinedBehaviorSanitizerEnabled" : true
+      }
+    },
+    {
+      "id" : "373DC580-59EC-476B-A670-9ADF153957DF",
+      "name" : "Address Sanitizer",
+      "options" : {
+        "addressSanitizer" : {
+          "enabled" : true
+        },
+        "undefinedBehaviorSanitizerEnabled" : true
+      }
     }
   ],
   "defaultOptions" : {
