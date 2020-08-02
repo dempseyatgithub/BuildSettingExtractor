@@ -240,9 +240,13 @@
     return YES;
 }
 
-- (void)applicationDidFinishLaunching:(NSNotification *)notification {
+- (void)applicationWillFinishLaunching:(NSNotification *)notification {
     [[NSUserDefaults standardUserDefaults] tps_registerApplicationDefaults];
 }
 
+- (void)application:(NSApplication *)application openURLs:(NSArray<NSURL *> *)urls {
+    NSURL *fileURL = urls.firstObject;
+    if (fileURL) { [self processXcodeProjectAtURL:fileURL]; }
+}
 
 @end
