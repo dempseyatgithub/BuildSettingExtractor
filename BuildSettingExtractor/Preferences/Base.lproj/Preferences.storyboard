@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="nfV-zh-Irh">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="nfV-zh-Irh">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="16096"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="16097.2"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -13,7 +13,7 @@
                     <window key="window" title="Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" tabbingMode="disallowed" id="18y-cr-3oE">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
                         <rect key="contentRect" x="268" y="0.0" width="480" height="270"/>
-                        <rect key="screenRect" x="0.0" y="0.0" width="1792" height="1097"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1417"/>
                         <connections>
                             <outlet property="delegate" destination="nfV-zh-Irh" id="y0e-2f-rSH"/>
                         </connections>
@@ -86,7 +86,7 @@
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                     </tableHeaderCell>
                                                     <textFieldCell key="dataCell" controlSize="small" lineBreakMode="truncatingTail" selectable="YES" editable="YES" title="Text Cell" id="izn-pK-Cyy">
-                                                        <font key="font" metaFont="menu" size="11"/>
+                                                        <font key="font" metaFont="controlContent" size="11"/>
                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
@@ -103,7 +103,7 @@
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="gz0-HR-Vz6">
                                                                     <rect key="frame" x="22" y="3" width="241" height="14"/>
                                                                     <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="V1I-73-dY2">
-                                                                        <font key="font" metaFont="menu" size="11"/>
+                                                                        <font key="font" metaFont="controlContent" size="11"/>
                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
@@ -190,7 +190,7 @@
                                         </textField>
                                     </gridCell>
                                     <gridCell row="yID-zz-wjv" column="HMW-Bu-KYY" headOfMergedCell="cus-Fs-WQD" id="cus-Fs-WQD">
-                                        <textField key="contentView" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Du2-6u-sqX">
+                                        <textField key="contentView" verticalHuggingPriority="750" tag="101" translatesAutoresizingMaskIntoConstraints="NO" id="Du2-6u-sqX">
                                             <rect key="frame" x="135" y="243" width="100" height="21"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="100" id="P2o-hZ-KaX"/>
@@ -205,11 +205,12 @@
                                             </textFieldCell>
                                             <connections>
                                                 <accessibilityConnection property="title" destination="coG-6B-ZVS" id="H6t-xY-4qT"/>
-                                                <binding destination="FdP-VK-zkk" name="value" keyPath="values.TPSOutputFileNameProject" id="cDw-RG-uUD">
+                                                <binding destination="FdP-VK-zkk" name="value" keyPath="values.TPSOutputFileNameProject" id="Zin-Fd-Lzb">
                                                     <dictionary key="options">
                                                         <bool key="NSContinuouslyUpdatesValue" value="YES"/>
                                                     </dictionary>
                                                 </binding>
+                                                <outlet property="delegate" destination="mVV-zB-t1f" id="MiB-Pb-aVh"/>
                                             </connections>
                                         </textField>
                                     </gridCell>
@@ -226,7 +227,7 @@
                                         </textField>
                                     </gridCell>
                                     <gridCell row="fdy-IR-IrN" column="HMW-Bu-KYY" headOfMergedCell="ocC-fA-43R" id="ocC-fA-43R">
-                                        <textField key="contentView" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="W86-pJ-96U">
+                                        <textField key="contentView" verticalHuggingPriority="750" tag="102" translatesAutoresizingMaskIntoConstraints="NO" id="W86-pJ-96U">
                                             <rect key="frame" x="135" y="216" width="100" height="21"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="100" id="EzD-0q-Q0j"/>
@@ -243,6 +244,7 @@
                                                         <bool key="NSContinuouslyUpdatesValue" value="YES"/>
                                                     </dictionary>
                                                 </binding>
+                                                <outlet property="delegate" destination="mVV-zB-t1f" id="FAV-TB-gzA"/>
                                             </connections>
                                         </textField>
                                     </gridCell>
@@ -259,7 +261,7 @@
                                         </textField>
                                     </gridCell>
                                     <gridCell row="KAl-yU-oLr" column="HMW-Bu-KYY" headOfMergedCell="f0V-v5-SRH" id="f0V-v5-SRH">
-                                        <textField key="contentView" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ZcT-Qp-Ibl">
+                                        <textField key="contentView" verticalHuggingPriority="750" tag="103" translatesAutoresizingMaskIntoConstraints="NO" id="ZcT-Qp-Ibl">
                                             <rect key="frame" x="135" y="189" width="100" height="21"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="100" id="o4d-Cc-Pp4"/>
@@ -271,9 +273,10 @@
                                             </textFieldCell>
                                             <connections>
                                                 <accessibilityConnection property="title" destination="ApD-gw-uD5" id="YUV-Fq-B5t"/>
-                                                <binding destination="FdP-VK-zkk" name="value" keyPath="values.TPSOutputFileNameSeparator" id="aYr-Nd-jpu">
+                                                <binding destination="FdP-VK-zkk" name="value" keyPath="values.TPSOutputFileNameSeparator" id="fuY-Ge-NPr">
                                                     <dictionary key="options">
                                                         <bool key="NSContinuouslyUpdatesValue" value="YES"/>
+                                                        <string key="NSNullPlaceholder">None</string>
                                                     </dictionary>
                                                 </binding>
                                             </connections>
@@ -351,7 +354,7 @@
                                         </textField>
                                     </gridCell>
                                     <gridCell row="z8r-Rg-63W" column="HMW-Bu-KYY" headOfMergedCell="kGz-5d-tm4" id="kGz-5d-tm4">
-                                        <comboBox key="contentView" horizontalHuggingPriority="249" verticalHuggingPriority="750" preferredMaxLayoutWidth="120" translatesAutoresizingMaskIntoConstraints="NO" id="OzR-eI-M7g">
+                                        <comboBox key="contentView" horizontalHuggingPriority="249" verticalHuggingPriority="750" tag="104" preferredMaxLayoutWidth="120" translatesAutoresizingMaskIntoConstraints="NO" id="OzR-eI-M7g">
                                             <rect key="frame" x="135" y="48" width="123" height="25"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" priority="250" constant="120" id="3xZ-YE-mVX"/>
@@ -369,7 +372,12 @@
                                             </comboBoxCell>
                                             <connections>
                                                 <accessibilityConnection property="title" destination="r8S-QW-u7V" id="XcD-Ue-oPz"/>
-                                                <binding destination="FdP-VK-zkk" name="value" keyPath="values.TPSDestinationFolderName" id="AsD-kr-Xii"/>
+                                                <binding destination="FdP-VK-zkk" name="value" keyPath="values.TPSDestinationFolderName" id="oIj-8g-dRI">
+                                                    <dictionary key="options">
+                                                        <bool key="NSContinuouslyUpdatesValue" value="YES"/>
+                                                    </dictionary>
+                                                </binding>
+                                                <outlet property="delegate" destination="mVV-zB-t1f" id="ub4-2r-dJY"/>
                                             </connections>
                                         </comboBox>
                                     </gridCell>

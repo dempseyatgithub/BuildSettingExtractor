@@ -9,9 +9,18 @@
 #import "FileLayoutPreferencesViewController.h"
 #import "AppConstants+Categories.h"
 #import "SampleFileStructureGenerator.h"
+#import "BuildSettingExtractor.h"
 
+typedef NS_ENUM(NSUInteger, PreferencesInterfaceElementTags) {
+    ProjectNameTextField = 101,
+    SharedNameTextField = 102,
+    SeparatorTextField = 103,
+    DestinationFolderNameTextField = 104
+};
 
-@interface FileLayoutPreferencesViewController () <NSOutlineViewDataSource, NSOutlineViewDelegate>
+#pragma mark -
+
+@interface FileLayoutPreferencesViewController () <NSOutlineViewDataSource, NSOutlineViewDelegate, NSTextFieldDelegate>
 @property (weak) IBOutlet NSOutlineView *outlineView;
 @property Item *rootItem;
 @end
@@ -33,6 +42,21 @@
 - (void)viewWillAppear {
     [super viewWillAppear];
     [self updateOutlineView];
+}
+
+- (BOOL)control:(NSControl *)control textShouldEndEditing:(NSText *)fieldEditor {
+    if ([fieldEditor.string isEqualToString:@""]) {
+        if (control.tag == ProjectNameTextField) {
+            fieldEditor.string = BuildSettingExtractor.defaultProjectConfigName;
+        }
+        else if (control.tag == SharedNameTextField) {
+            fieldEditor.string = BuildSettingExtractor.defaultSharedConfigName;
+        }
+        else if (control.tag == DestinationFolderNameTextField) {
+            fieldEditor.string = BuildSettingExtractor.defaultDestinationFolderName;
+        }
+    }
+    return YES;
 }
 
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
