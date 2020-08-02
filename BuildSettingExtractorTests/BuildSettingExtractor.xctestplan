@@ -1,0 +1,29 @@
+{
+  "configurations" : [
+    {
+      "id" : "A59CFD73-15EC-4B32-9336-A775AA56A72E",
+      "name" : "Standard",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "codeCoverage" : false,
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:BuildSettingExtractor.xcodeproj",
+      "identifier" : "53719E8E19BF4C6D005D3DE0",
+      "name" : "BuildSettingExtractor"
+    }
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:BuildSettingExtractor.xcodeproj",
+        "identifier" : "53719EAF19BF4C6D005D3DE0",
+        "name" : "BuildSettingExtractorTests"
+      }
+    }
+  ],
+  "version" : 1
+}

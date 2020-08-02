@@ -82,6 +82,7 @@
 		53BC11301A817447005E2FD2 /* BuildSettingCommentGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuildSettingCommentGenerator.m; sourceTree = "<group>"; };
 		53C7618023F85AE20024B432 /* SampleFileStructureGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SampleFileStructureGenerator.h; sourceTree = "<group>"; };
 		53C7618123F85AE20024B432 /* SampleFileStructureGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SampleFileStructureGenerator.m; sourceTree = "<group>"; };
+		53DCD48924D6440400D512FB /* BuildSettingExtractor.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = BuildSettingExtractor.xctestplan; sourceTree = "<group>"; };
 		53F372EB1A7BC6A7006118CB /* DragFileView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DragFileView.h; sourceTree = "<group>"; };
 		53F372EC1A7BC6A7006118CB /* DragFileView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DragFileView.m; sourceTree = "<group>"; };
 		53F372EE1A7C042F006118CB /* BuildSettingExtractor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuildSettingExtractor.h; sourceTree = "<group>"; };
@@ -208,6 +209,7 @@
 		53719EB619BF4C6D005D3DE0 /* BuildSettingExtractorTests */ = {
 			isa = PBXGroup;
 			children = (
+				53DCD48924D6440400D512FB /* BuildSettingExtractor.xctestplan */,
 				53719EBC19BF4C6D005D3DE0 /* BuildSettingExtractorTests.m */,
 				53F372F61A7C3164006118CB /* TestFiles */,
 				53719EB719BF4C6D005D3DE0 /* Supporting Files */,
