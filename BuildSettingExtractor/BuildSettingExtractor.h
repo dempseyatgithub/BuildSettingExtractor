@@ -30,6 +30,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSString *)defaultSharedConfigName; // "Shared" is the default.
 + (NSString *)defaultProjectConfigName; // "Project" is the default.
 + (NSString *)defaultNameSeparator; // "-" (hyphen) is the default.
++ (NSString *)defaultDestinationFolderName; // "xcconfig" is the default.
 
 
 // The name that will be used to name common / shared config files.

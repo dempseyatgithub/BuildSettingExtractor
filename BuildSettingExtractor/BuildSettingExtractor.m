@@ -43,6 +43,10 @@ static NSSet *XcodeCompatibilityVersionStringSet() {
     return @"-";
 }
 
++ (NSString *)defaultDestinationFolderName {
+    return @"xcconfig";
+}
+
 - (instancetype)init {
     self = [super init];
     if (self) {
