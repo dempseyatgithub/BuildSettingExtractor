@@ -1,8 +1,6 @@
 body {
 	--text-color: rgba(255, 255, 255, 0.9);
 	background-color: maroon;
-	padding: 0;
-	margin: 0;
 	font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, sans-serif;
 	color: var(--text-color);
  
@@ -97,10 +95,11 @@ a:link {
 	text-align: center;
 	font-size: 1.25rem;
 	background-color: rgba(255, 255, 255, 0.15);
-	border: 1px solid rgba(0, 0, 0, 0.2);
+	border: 1px solid #730000;
 	border-radius: 15px;
 	margin: 0 auto;
 	width: 60%;
+  	max-width: 600px;
 	padding: .5rem;
 }
 
