@@ -26,6 +26,11 @@
 
 @implementation AppDelegate
 
++ (void)initialize {
+    EmptyStringTransformer *transformer = [[EmptyStringTransformer alloc] init];
+    [NSValueTransformer setValueTransformer:transformer forName:@"EmptyStringTransformer"];
+}
+
 - (void)awakeFromNib {
     self.dragFileView.target = self;
     self.dragFileView.action = @selector(handleDroppedFile:);

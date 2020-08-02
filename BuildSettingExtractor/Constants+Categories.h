@@ -59,3 +59,8 @@ extern NSErrorDomain const TPSBuildSettingExtractorErrorDomain;
 + (NSError *)errorForDestinationContainsBuildConfigFiles;
 
 @end
+
+#pragma mark -
+
+@interface EmptyStringTransformer: NSValueTransformer {}
+@end

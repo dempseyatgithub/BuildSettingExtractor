@@ -125,3 +125,26 @@ NSDictionary *userInfo = @{NSLocalizedDescriptionKey:[NSString stringWithFormat:
 }
 
 @end
+
+#pragma mark -
+
+@implementation EmptyStringTransformer
++ (Class)transformedValueClass { return [NSString class]; }
++ (BOOL)allowsReverseTransformation { return YES; }
+
+- (id)transformedValue:(id)value {
+    if ([value isKindOfClass:[NSString class]] && [value isEqualToString:@""]) {
+        return nil;
+    } else if (value == nil) {
+        return @"";
+    } else {
+        return value;
+    }
+}
+
+- (id)reversedTransformedValue:(id)value {
+    if (value == nil) { return @""; }
+    else { return value; }
+}
+@end
+

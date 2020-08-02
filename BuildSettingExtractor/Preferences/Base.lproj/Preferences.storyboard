@@ -273,10 +273,11 @@
                                             </textFieldCell>
                                             <connections>
                                                 <accessibilityConnection property="title" destination="ApD-gw-uD5" id="YUV-Fq-B5t"/>
-                                                <binding destination="FdP-VK-zkk" name="value" keyPath="values.TPSOutputFileNameSeparator" id="fuY-Ge-NPr">
+                                                <binding destination="FdP-VK-zkk" name="value" keyPath="values.TPSOutputFileNameSeparator" id="aYI-51-xnh">
                                                     <dictionary key="options">
                                                         <bool key="NSContinuouslyUpdatesValue" value="YES"/>
                                                         <string key="NSNullPlaceholder">None</string>
+                                                        <string key="NSValueTransformerName">EmptyStringTransformer</string>
                                                     </dictionary>
                                                 </binding>
                                             </connections>
