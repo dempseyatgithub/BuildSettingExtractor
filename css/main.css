@@ -6,12 +6,9 @@ body {
  
 /* 
   --title-box-color: purple;
- */
-/* 
   --icon-box-color: green;
- */
-/* 
   --hero-box-color: teal;
+  --text-box-color: blue;
  */
 
 }
@@ -20,8 +17,8 @@ a:link {
 	color: var(--text-color);
 }
 
-.hero-box {
-  margin: 0 auto;
+.hero {
+  margin: 2.5rem auto;
   display: flex;
   align-items: center;
   justify-items: center;
@@ -40,11 +37,29 @@ a:link {
   background-color: var(--icon-box-color);
 }
 
+.title-box {
+  margin: 0 auto;
+  padding: 0 25px;
+  background-color: var(--title-box-color);
+}
+
+.title {
+  font-weight: bold;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.subtitle {
+  text-align: center;
+  margin: 0 auto;
+}
+
 .text {
   margin: 0 auto 1.5rem;
   width: 80%;
   max-width: 740px;
   font-size: 1.25rem;
+  background-color: var(--text-box-color);
 }
 
 @media screen and (min-width: 0) {
@@ -74,23 +89,6 @@ a:link {
   
 }
 
-.title-box {
-  margin: 0 auto;
-  padding: 25px;
-  background-color: var(--title-box-color);
-}
-
-.title {
-  font-weight: bold;
-  text-align: center;
-  margin: 0 auto;
-}
-
-.subtitle {
-  text-align: center;
-  margin: 0 auto;
-}
-
 .download {
 	text-align: center;
 	font-size: 1.25rem;
@@ -101,10 +99,4 @@ a:link {
 	width: 60%;
   	max-width: 600px;
 	padding: .5rem;
-}
-
-.hero {
-  height: 400px;
-  display: flex;
-  align-items: center;
 }
