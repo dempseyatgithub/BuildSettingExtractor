@@ -51,6 +51,20 @@ These comments can be turned off in the Preferences window for a more compact fi
 
 ### Version History ###
 
+*Version 1.4.1*  
+*Aug 3, 2020*
+
+– Added ability to drag Xcode project to app icon to extract settings.  
+– Added support for no word separator in generated file names.  
+– Added validation for text fields that should never be empty.  
+– Added mechanism for handling introduced build setting info files.  
+– Updated list of build setting info files for Xcode 12.0 beta.  
+– Updated to extract build settings from Xcode 12.0-compatible project files.  
+– Convert app scheme to use a test plan.  
+– Tested on macOS 10.15.5 Catalina.  
+– Tested on macOS 11.0 Big Sur beta 3.  
+– Built with Xcode 11.6 on macOS 10.15.5 Catalina.  
+
 *Version 1.4*  
 *May 17, 2020*
 
