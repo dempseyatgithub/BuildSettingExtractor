@@ -1,35 +1,125 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  
-  <!--  Meta  -->
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="initial-scale=1.0">
-  <title>BuildSettingExtractor</title>
-  
-  <!--  Styles  -->
-  <link rel="stylesheet" href="css/normalize.css">
-  <link rel="stylesheet" href="css/main.css">
+<!--  Meta  -->
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="initial-scale=1.0">
+	<title>BuildSettingExtractor</title>
+<!--  Styles  -->
+	<link rel="stylesheet" href="css/normalize.css">
+	<link rel="stylesheet" href="css/main.css">
 </head>
 <body>
-	<div class="hero">
-		<div class="icon-box">
-			<img class="icon" src="img/bse_icon_256.png" alt="BuildSettingExtractor icon">
-		</div>
-		<div class="title-box">
-			<p class="title">BuildSettingExtractor</p>
-			<p class="subtitle">The fastest way to extract build settings.</p>
-		</div>
+<div class="hero">
+	<div class="icon-box">
+		<img class="icon" src="img/bse_icon_256.png" alt="BuildSettingExtractor icon"> 
 	</div>
-    <div>
-		<p class="text"><strong>BuildSettingExtractor</strong> is a free, open-source utility that extracts build settings from an Xcode project into a set of xcconfig files.</p>
-	<p class="text">
-	When you’re moving Xcode build settings out of your project file and into xcconfig files, this handy utility makes that initial move a lot easier. It’s also an easy way for the curious to take a look at the build settings in a project without fear of accidentally changing them.
+	<div class="title-box">
+		<p class="title">
+			BuildSettingExtractor 
 		</p>
-    </div>
-    <div class="download">
-    	<p><a href="https://github.com/dempseyatgithub/BuildSettingExtractor/releases/download/v1.4.1/BuildSettingExtractor_1.4.1.dmg">Download BuildSettingExtractor</a></p>
-    	<p>It’s Free! Requires macOS 10.14 or later</p>
-    </div>
+		<p class="subtitle">
+			The fastest way to extract build settings. 
+		</p>
+	</div>
+</div>
+<div>
+	<p class="text">
+		<strong>BuildSettingExtractor</strong> is a free, open-source utility that extracts build settings from an Xcode project into a set of xcconfig files. 
+	</p>
+	<p class="text">
+		When you’re moving Xcode build settings out of your project file and into xcconfig files, this handy utility makes that initial move a lot easier. It’s also an easy way for the curious to take a look at the build settings in a project without fear of accidentally changing them. 
+	</p>
+</div>
+<div class="download">
+	<p>
+		<a href="https://github.com/dempseyatgithub/BuildSettingExtractor/releases/download/v1.4.1/BuildSettingExtractor_1.4.1.dmg">Download BuildSettingExtractor</a> 
+	</p>
+	<p>
+		It’s Free! Requires macOS 10.14 or later 
+	</p>
+</div>
+<h1>
+	It’s easy 
+</h1>
+<p>
+	Just drag an Xcode project file to the window or right to the app icon itself.
+</p>
+<p>
+	Pick a destination and BuildSettingExtractor generates xcconfig files for each target in the project, plus the project itself. 
+</p>
+<img class="screenshot" src="img/drag_to_window.png" alt="Project file dragged to app window"> 
+<h1>
+	It’s safe 
+</h1>
+<p>
+	Nobody wants a corrupted Xcode project file. That’s why BuildSettingExtractor doesn’t make any changes. It reads the project file and extracts the settings, but never edits the project file itself. 
+</p>
+<h1>
+	It’s informative 
+</h1>
+<p>
+	There are hundreds of build settings and it’s not always obvious what they mean. BuildSettingExtractor gleans build setting info directly from Xcode and annotates each setting with an explanatory comment. Information about each build setting is available wherever you are looking at the xcconfig file, in GitHub, text editors, diff tools. You don’t need a trip to a reference webpage or Xcode help. 
+</p>
+<p>
+	Of course if you prefer, you can turn these comments off in the Preferences window for a much more pithy xcconfig file. 
+</p>
+<div class="code-box">
+<p class="code">// Framework Search Paths
+// 
+// This is a list of paths to folders containing frameworks to be
+// searched by the compiler for both included or imported header 
+// files when compiling C, Objective-C, C++, or Objective-C++, and
+// by the linker for frameworks used by the product. Paths are
+// delimited by whitespace, so any paths with spaces in them need
+// to be properly quoted.
+// [-F]
+
+FRAMEWORK_SEARCH_PATHS = $(DEVELOPER_FRAMEWORKS_DIR) $(inherited)
+
+
+// Info.plist File
+// 
+// This is the project-relative path to the plist file that 
+// contains the Info.plist information used by bundles.
+
+INFOPLIST_FILE = MyApp/MyApp-Info.plist
+</p>
+</div>
+<h1>
+	It’s flexible 
+</h1>
+<p>
+	Every developer has their own way of working. BuildSettingExtractor gives you a lot of options for how you want your xcconfig files generated. 
+</p>
+<h2>
+	Flexible Files
+</h2>
+<p>
+	Customize the file names of the project and shared build setting files. Customize the word separator for camel case, kebab case, snake case, or whatever you’d like. Customize the name of the folder that will contain all the generated files. Customize how you want the files organized. 
+</p>
+<p>
+	A handy preview displays an example of how files will be organized and named. 
+</p>
+<p>
+	By default BuildSettingExtractor will open the generated folder in Finder so it’s easy to inspect the files you just generated. 
+</p>
+<p>
+	You can even have BuildSettingExtractor automatic save the generated files right next to the source project file, where you would typically add a folder of xcconfig files. 
+</p>
+<img class="screenshot" src="img/bse_prefs_files.png" alt="File layout preferences pane of BuildSettingExtractor app "> 
+<h2>
+	Flexible Content 
+</h2>
+<p>
+	Have BuildSettingExtractor generate xcconfig files with rich, informative build setting comments. Or generate a concise file containing just the settings. 
+</p>
+<p>
+	Adjust the lines between settings to give each setting more or less breathing room for readability. Have the generated files align the setting values. 
+</p>
+<p>
+	The preference pane shows example output so you don’t have to figure out what you want by trial and error. 
+</p>
+<img class="screenshot" src="img/bse_prefs_contents.png" alt="Contents preferences pane of BuildSettingExtractor app"> 
 </body>
 </html>
