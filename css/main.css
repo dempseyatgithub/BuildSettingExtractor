@@ -13,7 +13,7 @@ body
  */
 }
 
-a:link { color: var(--text-color); }
+a { color: var(--text-color); }
 
 .hero
 {
@@ -43,8 +43,8 @@ a:link { color: var(--text-color); }
 
 .title-box
 {
-	margin: 0 auto;
-	padding: 0 25px;
+	margin: 1rem auto;
+	padding: 0 1.5rem;
 	background-color: var(--title-box-color);
 }
 
@@ -142,12 +142,31 @@ h2
 	max-width: 646px;
 }
 
+footer
+{
+	background-color: #600000;
+	padding: 2rem 0;
+	margin-top: 4rem;
+	text-align: center;
+	font-size: 1rem;
+}
+
+footer a
+{
+	font-size: 1.25rem;
+	font-weight: bold;
+	text-decoration: none;
+	color: #0B82FE;
+}
+
 @media (max-width: 680px)
 {
+	.hero { margin: 2.5rem auto 1rem; }
 	.icon { width: 150px; }
-	.title { font-size: 1.5rem; }
-	.subtitle { font-size: 1.25rem; }
+	.title { font-size: 2rem; }
+	.subtitle { font-size: 1.5rem; }
 	.code { font-size: 1rem; }
+	footer { padding: 1.5rem 0; }
 }
 
 @media (max-width: 380px)
@@ -169,6 +188,7 @@ h2
 	.icon { width: 100px; }
 	.title { font-size: 1.4rem; }
 	.subtitle { font-size: 1.1rem; }
+	footer { padding: 1rem 0; }
 	
 	.download
 	{
