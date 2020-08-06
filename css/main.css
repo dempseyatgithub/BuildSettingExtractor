@@ -1,3 +1,7 @@
+:root {
+	color-scheme: light dark;
+}
+
 body
 {
 	--text-color: rgba(255, 255, 255, 0.9);
@@ -134,12 +138,20 @@ h2
 	font-size: 1.3rem;
 }
 
+.drag-screenshot
+{
+	display: block;
+	margin: 2.5rem auto 1rem;
+	width: 80%;
+	max-width: 646px;
+}
+
 .screenshot
 {
 	display: block;
 	margin: 1.5rem auto;
 	width: 80%;
-	max-width: 646px;
+	max-width: 740px;
 }
 
 footer
