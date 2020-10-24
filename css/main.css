@@ -181,7 +181,14 @@ footer a
 	footer { padding: 1.5rem 0; }
 }
 
-@media (max-width: 380px)
+@media (max-width: 450px)
+{
+	.icon { width: 125px; }
+	.title { font-size: 1.6rem; }
+	.subtitle { font-size: 1.25rem; }
+}
+
+@media (max-width: 390px)
 {
 	body { font-size: 1rem; }
 	
@@ -197,7 +204,7 @@ footer a
 		margin: .5rem;
 	}
 	
-	.icon { width: 100px; }
+	.icon { width: 110px; }
 	.title { font-size: 1.4rem; }
 	.subtitle { font-size: 1.1rem; }
 	footer { padding: 1rem 0; }
