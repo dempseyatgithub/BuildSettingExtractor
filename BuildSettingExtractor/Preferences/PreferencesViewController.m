@@ -13,6 +13,23 @@
 
 @implementation PreferencesViewController
 
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    // Use SF Symbols for preference pane icons on macOS 11 and later
+    if (@available(macOS 11.0, *)) {
+        for (NSTabViewItem *item in self.tabViewItems) {
+            if ([item.identifier isEqualToString:@"FileLayout"]) {
+                item.image = [NSImage imageWithSystemSymbolName:@"doc.on.doc" accessibilityDescription:item.label];
+            }
+            else if ([item.identifier isEqualToString:@"Contents"]) {
+                item.image = [NSImage imageWithSystemSymbolName:@"hammer" accessibilityDescription:item.label];
+            } else {
+                [NSException raise: NSInternalInconsistencyException format:@"Unexpected preference pane tab item"];
+            }
+        }
+    }
+}
+
 - (void)viewWillAppear {
     [super viewWillAppear];
     [self updateWindowTitle];
