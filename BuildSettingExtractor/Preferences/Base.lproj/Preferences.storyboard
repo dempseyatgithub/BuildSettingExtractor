@@ -31,8 +31,8 @@
             <objects>
                 <tabViewController tabStyle="toolbar" id="3bd-FI-Zs6" customClass="PreferencesViewController" sceneMemberID="viewController">
                     <tabViewItems>
-                        <tabViewItem label="File Layout" identifier="" image="NSMultipleDocuments" id="ief-5F-XDP"/>
-                        <tabViewItem label="Contents" image="contents_icon" id="St9-dV-t9R"/>
+                        <tabViewItem label="File Layout" identifier="FileLayout" image="NSMultipleDocuments" id="ief-5F-XDP"/>
+                        <tabViewItem label="Contents" identifier="Contents" image="contents_icon" id="St9-dV-t9R"/>
                     </tabViewItems>
                     <tabView key="tabView" type="noTabsNoBorder" id="lnA-6S-fr7">
                         <rect key="frame" x="0.0" y="0.0" width="403" height="300"/>
