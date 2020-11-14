@@ -17,6 +17,8 @@ body
  */
 }
 
+.notice-text { color: rgba(255, 255, 140, 0.9); }
+
 a { color: var(--text-color); }
 
 .hero
