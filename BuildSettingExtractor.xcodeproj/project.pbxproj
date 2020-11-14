@@ -72,6 +72,7 @@
 		5395AF4D1A7C6BB60028BE88 /* ReadMe.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = ReadMe.md; sourceTree = "<group>"; };
 		539A0205234EFA4300193374 /* BuildSettingInfoSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BuildSettingInfoSource.h; sourceTree = "<group>"; };
 		539A0206234EFA4300193374 /* BuildSettingInfoSource.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BuildSettingInfoSource.m; sourceTree = "<group>"; };
+		53B3D1EA256031280071ED64 /* BuildSettingInfoSubpathsNotes.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = BuildSettingInfoSubpathsNotes.md; sourceTree = "<group>"; };
 		53B3D7EE23F6EB6F0039C5B0 /* PreferencesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreferencesViewController.m; sourceTree = "<group>"; };
 		53B3D7EF23F6EB6F0039C5B0 /* PreferencesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreferencesViewController.h; sourceTree = "<group>"; };
 		53B3D7F423F6EDB70039C5B0 /* FileLayoutPreferencesViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FileLayoutPreferencesViewController.h; sourceTree = "<group>"; };
@@ -191,6 +192,7 @@
 				53719EA719BF4C6D005D3DE0 /* MainMenu.xib */,
 				53719EAA19BF4C6D005D3DE0 /* Assets.xcassets */,
 				538196C41A851BB40033CB65 /* BuildSettingInfoSubpaths.plist */,
+				53B3D1EA256031280071ED64 /* BuildSettingInfoSubpathsNotes.md */,
 				53719E9919BF4C6D005D3DE0 /* Supporting Files */,
 			);
 			path = BuildSettingExtractor;
