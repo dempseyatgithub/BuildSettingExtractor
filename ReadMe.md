@@ -51,6 +51,22 @@ These comments can be turned off in the Preferences window for a more compact fi
 
 ### Version History ###
 
+*Version 1.4.2*  
+*Nov 14, 2020*
+
+– Added native Apple Silicon support.  
+– Updated app icon to follow macOS 11 Big Sur guidelines.  
+– Updated icons in preferences window for macOS 11 Big Sur.  
+– Fixed row spacing issue when building with Xcode 12 and later.  
+– Updated list of build setting description files for Metal compiler and linker.  
+– Updated to extract build settings from Xcode 11.4-compatible project files.  
+– Added documentation for the BuildSettingInfoSubpaths.plist file.  
+– Updated copyright notice.
+– Tested on macOS 10.14.6 Mojave.  
+– Tested on macOS 10.15.7 Catalina.  
+– Tested on macOS 11.0.1 Big Sur, Apple Silicon.  
+– Built with Xcode 12.2 on macOS 10.15.7 Catalina.  
+
 *Version 1.4.1*  
 *Aug 3, 2020*
 
