@@ -3,6 +3,8 @@ BuildSettingExtractor Read Me
 
 This is a utility to extract build configuration settings from an Xcode project into a set of xcconfig files.
 
+The current release, pre-built, code-signed, and notarized is available for download at [https://buildsettingextractor.com](https://buildsettingextractor.com).
+
 If you decide to move Xcode build settings out of your project file and into xcconfig files, this utility can make that initial move easier.  It’s also an easy way for the curious to take a look at the build settings in a project without fear of accidentally changing them.
 
 For each target and the project itself, BuildSettingExtractor will generate one xcconfig file per build configuration plus a shared xcconfig file with all shared build settings for that target.
