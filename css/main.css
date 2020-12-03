@@ -173,6 +173,17 @@ footer a
 	color: #0B82FE;
 }
 
+footer a:hover
+{
+	text-decoration: underline;
+}
+
+.subtle
+{
+	font-size: 1rem;
+	font-weight: normal;
+}
+
 @media (max-width: 680px)
 {
 	.hero { margin: 2.5rem auto 1rem; }
