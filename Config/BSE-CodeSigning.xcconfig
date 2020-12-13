@@ -19,6 +19,7 @@
 // when the private xcconfig file is not found.
 
 #include? "/usr/local/etc/xcconfig-private/CodeSigning.xcconfig"
+#include? "/Users/Shared/git/xcconfig-private/CodeSigning.xcconfig"
 
 
 // Code Sign Style
