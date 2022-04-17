@@ -221,7 +221,9 @@
                 dictionary = [self xcspecFileBuildSettingInfoForPath:fullpath];
             }
             if (dictionary) {
-                [infoStringFile addEntriesFromDictionary:dictionary];
+                // Remove empty string values that may be masking backstop values
+                NSDictionary *processedDictionary = [dictionary tps_dictionaryByRemovingEmptyStringValues];
+                [infoStringFile addEntriesFromDictionary:processedDictionary];
             }
             if (dictionary || foundOne) {
                 foundOne = YES;
