@@ -71,6 +71,16 @@ NSErrorDomain const TPSBuildSettingExtractorErrorDomain = @"TPSBuildSettingExtra
         return foundNonEmptyString;
     }
 
+- (NSDictionary *)tps_dictionaryByRemovingEmptyStringValues {
+    NSMutableDictionary *temp = [[NSMutableDictionary alloc] init];
+    [self enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull value, BOOL * _Nonnull stop) {
+        if (![value isEqualTo:@""]) {
+            [temp setValue:value forKey:key];
+        }
+    }];
+    return temp;
+}
+
 @end
 
 #pragma mark -

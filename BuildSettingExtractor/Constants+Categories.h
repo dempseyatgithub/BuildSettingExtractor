@@ -37,6 +37,10 @@ extern NSErrorDomain const TPSBuildSettingExtractorErrorDomain;
 // Returns NO if all the values in a dictionary are an empty string
 // Raises an exception if used on a dictionary with any non-NSString value
 - (BOOL)containsBuildSettings;
+
+// Returns a new dictionary containing all entries in the receiver except for
+// entries with an empty string value.
+- (NSDictionary *)tps_dictionaryByRemovingEmptyStringValues;
 @end
 
 #pragma mark -
