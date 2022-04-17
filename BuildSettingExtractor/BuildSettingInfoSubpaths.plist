@@ -32,6 +32,10 @@
 		<string>Code will load on this and later versions of watchOS. Framework APIs that are unavailable in earlier versions will be weak-linked; your code should check for null function pointers or specific system versions before calling newer APIs.</string>
 		<key>[WATCHOS_DEPLOYMENT_TARGET]-name</key>
 		<string>watchOS Deployment Target</string>
+        <key>[SWIFT_VERSION]-name</key>
+        <string>Swift Language Version</string>
+        <key>[SWIFT_VERSION]-description</key>
+        <string>Interpret input according to a specific Swift language version number.</string>
 	</dict>
 	<key>deprecatedSubpathsByVersion</key>
 	<dict>
