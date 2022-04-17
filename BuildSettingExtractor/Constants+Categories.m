@@ -56,20 +56,20 @@ NSErrorDomain const TPSBuildSettingExtractorErrorDomain = @"TPSBuildSettingExtra
 
 @implementation NSDictionary (TPS_BuildSettingAdditions)
 
-    - (BOOL)containsBuildSettings {
-        BOOL foundNonEmptyString = NO;
-        for (id value in self.allValues) {
-            if ([value isKindOfClass:[NSString class]]) {
-                if (![(NSString *)value isEqualToString:@""]) {
-                    foundNonEmptyString = YES;
-                    break;
-                }
-            } else {
-                [NSException raise:(NSInternalInconsistencyException) format:@"-containsBuildSetting is expected to be called on a dictionary with NSString values."];
+- (BOOL)tps_containsBuildSettings {
+    BOOL foundNonEmptyString = NO;
+    for (id value in self.allValues) {
+        if ([value isKindOfClass:[NSString class]]) {
+            if (![(NSString *)value isEqualToString:@""]) {
+                foundNonEmptyString = YES;
+                break;
             }
+        } else {
+            [NSException raise:(NSInternalInconsistencyException) format:@"-containsBuildSetting is expected to be called on a dictionary with NSString values."];
         }
-        return foundNonEmptyString;
     }
+    return foundNonEmptyString;
+}
 
 - (NSDictionary *)tps_dictionaryByRemovingEmptyStringValues {
     NSMutableDictionary *temp = [[NSMutableDictionary alloc] init];

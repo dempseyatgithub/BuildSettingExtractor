@@ -175,14 +175,14 @@ static NSSet *XcodeCompatibilityVersionStringSet() {
     self.buildSettingsByTarget[self.validatedProjectConfigName] = projectSettings;
     
     // Begin check that the project file has some settings
-    BOOL projectFileHasSettings = projectSettings.containsBuildSettings;
+    BOOL projectFileHasSettings = projectSettings.tps_containsBuildSettings;
 
     // Add project targets
     for (NSDictionary *target in targets) {
         NSString *targetName = target[@"name"];
         buildConfigurationListID = target[@"buildConfigurationList"];
         NSDictionary *targetSettings = [self buildSettingStringsByConfigurationForBuildConfigurationListID:buildConfigurationListID];
-        if (!projectFileHasSettings) { projectFileHasSettings = targetSettings.containsBuildSettings; }
+        if (!projectFileHasSettings) { projectFileHasSettings = targetSettings.tps_containsBuildSettings; }
 
         self.buildSettingsByTarget[targetName] = targetSettings;
 

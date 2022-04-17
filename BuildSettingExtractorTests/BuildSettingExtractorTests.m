@@ -41,17 +41,17 @@
 - (void)testDictionaryBuildSettingsCategory
 {
     NSDictionary *dictionaryWithBuildSettings = @{ @"Shared": @"COPY_PHASE_STRIP = NO", @"Release": @"COPY_PHASE_STRIP = NO", @"Debug": @"COPY_PHASE_STRIP = NO" };
-    XCTAssertTrue(dictionaryWithBuildSettings.containsBuildSettings);
+    XCTAssertTrue(dictionaryWithBuildSettings.tps_containsBuildSettings);
     
     NSDictionary *dictionaryWithMinimalBuildSettings = @{ @"Shared": @"", @"Release": @"", @"Debug": @"COPY_PHASE_STRIP = NO" };
-    XCTAssertTrue(dictionaryWithMinimalBuildSettings.containsBuildSettings);
+    XCTAssertTrue(dictionaryWithMinimalBuildSettings.tps_containsBuildSettings);
 
     NSDictionary *dictionaryWithoutBuildSettings = @{ @"Shared": @"", @"Release": @"", @"Debug": @"" };
-    XCTAssertFalse(dictionaryWithoutBuildSettings.containsBuildSettings);
+    XCTAssertFalse(dictionaryWithoutBuildSettings.tps_containsBuildSettings);
     
     NSDictionary *badDictionary = @{@"Shared":@"", @"Release":@"", @"Debug":[NSDate date] };
     BOOL result = NO;
-    XCTAssertThrows(result = badDictionary.containsBuildSettings);
+    XCTAssertThrows(result = badDictionary.tps_containsBuildSettings);
 }
 
 - (void)testLoadingBuildSettingInfo
