@@ -57,12 +57,12 @@ These comments can be turned off in the Preferences window for a more compact fi
 *May 7, 2022*
 
 – Updated list of build setting info files for Xcode 13.3 and later.  
-- Add backstop entry for SWIFT_VERSION build setting.  
+– Add backstop entry for SWIFT_VERSION build setting.  
 – Tested on macOS 12.3.1 Monterey, Apple Silicon.  
-– Built with Xcode 12.5.1 on macOS 12.3.1 Monterey.  
+– Built with Xcode 13.3.1 on macOS 12.3.1 Monterey.  
 
 
-*Version 1.4.3*
+*Version 1.4.3*  
 *Oct 21, 2021*
 
 – Updated to extract build settings from Xcode 13.0-compatible project files.  
