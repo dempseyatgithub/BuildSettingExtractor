@@ -14,9 +14,12 @@ typedef NS_ENUM(NSUInteger, BuildSettingExtractorErrorCodes) {
     ProjectSettingsNamingConflict = 102,
     NoSettingsFoundInProjectFile = 103,
     BuildSettingInfoSourceNotFound = 104,
+    BuildSettingInfoFilesNotFound = 105,
+    BuildSettingInfoSubpathNotFound = 106,
 };
 
 extern NSErrorDomain const TPSBuildSettingExtractorErrorDomain;
+extern NSString * TPSMultipleUnderlyingErrorsKey(void);
 
 #pragma mark -
 
@@ -61,6 +64,10 @@ extern NSErrorDomain const TPSBuildSettingExtractorErrorDomain;
 
 // Notify the user the destination folder already contains build config files
 + (NSError *)errorForDestinationContainsBuildConfigFiles;
+
+// Error that one or more expected build setting info files were not found
+// User info includes NSMultipleUnderlyingErrorsKey to report underlying errors
++ (NSError *)errorForSettingInfoFilesNotFound:(NSArray *)subpathErrorStrings;
 
 @end
 

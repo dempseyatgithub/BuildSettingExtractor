@@ -70,7 +70,7 @@
 
 - (NSString *)presentationNameForKey:(NSString *)key {
     if (!self.buildSettingInfoDictionary) {
-        [self loadBuildSettingInfo];
+        [self loadBuildSettingInfo:nil];
     }
 
     NSString *processedKey = [key tps_baseBuildSettingName]; // strip any conditional part of build setting
@@ -81,7 +81,7 @@
 
 - (NSString *)descriptionForKey:(NSString *)key {
     if (!self.buildSettingInfoDictionary) {
-        [self loadBuildSettingInfo];
+        [self loadBuildSettingInfo:nil];
     }
 
     NSString *processedKey = [key tps_baseBuildSettingName]; // strip any conditional part of build setting
@@ -156,9 +156,10 @@
     return processedString;
 }
 
-- (BOOL)loadBuildSettingInfo {
+// Returns an array of error strings describing unread build setting info files
+- (BOOL)loadBuildSettingInfo:(NSError **)error {
 
-    BOOL allSubpathsReadSuccessfully = YES;
+    NSMutableArray *subpathReadingErrorStrings = [[NSMutableArray alloc] init];
 
     NSString *defaultXcodePath = self.infoSource.resolvedURL.path;
     NSInteger xcodeVersion = self.infoSource.resolvedVersion;
@@ -230,20 +231,27 @@
             }
         }
         if (!foundOne) {
+            NSString *errorString = nil;
             if (buildSettingInfoSubpathList.count == 0) {
-                NSLog(@"Empty array of subpaths at index %lu", [buildSettingInfoSubpaths indexOfObject:buildSettingInfoSubpathList]);
+                errorString = [NSString stringWithFormat: @"Empty array of subpaths at index %lu", [buildSettingInfoSubpaths indexOfObject:buildSettingInfoSubpathList]];
             } else if (buildSettingInfoSubpathList.count == 1) {
-                NSLog(@"Could not read settings strings at path: %@", buildSettingInfoSubpathList[0]);
+                errorString = [NSString stringWithFormat:@"Could not read settings strings at path: %@", buildSettingInfoSubpathList[0]];
             } else {
-                NSLog(@"Could not read settings strings at these paths: %@", buildSettingInfoSubpathList);
+                errorString = [NSString stringWithFormat:@"Could not read settings strings at these paths: %@", buildSettingInfoSubpathList];
             }
-            allSubpathsReadSuccessfully = NO;
+            [subpathReadingErrorStrings addObject:errorString];
         }
     }
 
     _buildSettingInfoDictionary = infoStringFile;
+    
+    BOOL success = subpathReadingErrorStrings.count == 0;
+    
+    if (!success && error) {
+        *error = [NSError errorForSettingInfoFilesNotFound:subpathReadingErrorStrings]; 
+    }
 
-    return allSubpathsReadSuccessfully;
+    return success;
 }
 
 - (NSDictionary *)xcspecFileBuildSettingInfoForPath:(NSString *)path {

@@ -64,8 +64,9 @@
     XCTAssertNil(error);
     
     BuildSettingCommentGenerator *commentGenerator = [[BuildSettingCommentGenerator alloc] initWithBuildSettingInfoSource:infoSource];
-    XCTAssertTrue([commentGenerator loadBuildSettingInfo]);
-    
+    BOOL success = [commentGenerator loadBuildSettingInfo:&error];
+    XCTAssertTrue(success);
+    XCTAssertNil(error);    
 }
 
 - (void)testBadProjectURL

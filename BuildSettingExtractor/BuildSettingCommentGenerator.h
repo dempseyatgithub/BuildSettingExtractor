@@ -16,6 +16,6 @@
 
 - (NSString *)commentForBuildSettingWithName:(NSString *)buildSettingName;
 
-- (BOOL)loadBuildSettingInfo; // Primarily for testing
+- (BOOL)loadBuildSettingInfo:(NSError **)error; // In public interface for testing
 
 @end

@@ -134,7 +134,34 @@ NSDictionary *userInfo = @{NSLocalizedDescriptionKey:[NSString stringWithFormat:
     return error;
 }
 
++ (NSError *)errorForSettingInfoFilesNotFound:(NSArray *)subpathErrorStrings {
+    if (subpathErrorStrings.count == 0) {
+        [NSException raise:NSInternalInconsistencyException format:@"Attempt to create BuildSettingInfoSubpathNotFound error with no underlying errors"];
+    }
+    NSMutableArray *underlyingErrors = [[NSMutableArray alloc] init];
+    for (NSString *errorString in subpathErrorStrings) {
+        NSDictionary *subpathErrorUserInfo = @{NSLocalizedDescriptionKey:errorString};
+        NSError *subpathError = [NSError errorWithDomain:TPSBuildSettingExtractorErrorDomain code:BuildSettingInfoSubpathNotFound userInfo:subpathErrorUserInfo];
+        [underlyingErrors addObject:subpathError];
+    }
+    
+    NSDictionary *userInfo = @{NSLocalizedDescriptionKey:@"Some build info files not found.", TPSMultipleUnderlyingErrorsKey():underlyingErrors};
+    
+    NSError *error = [NSError errorWithDomain:TPSBuildSettingExtractorErrorDomain code:BuildSettingInfoFilesNotFound userInfo:userInfo];
+    
+    return error;
+}
+
 @end
+
+// Can remove once deployment target is macOS 11.3 or later
+NSString * TPSMultipleUnderlyingErrorsKey() {
+    if (@available(macOS 11.3, *)) {
+        return NSMultipleUnderlyingErrorsKey;
+    } else {
+        return @"NSMultipleUnderlyingErrorsKey";
+    }
+}
 
 #pragma mark -
 
