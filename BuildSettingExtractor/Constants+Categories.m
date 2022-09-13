@@ -50,6 +50,10 @@ NSErrorDomain const TPSBuildSettingExtractorErrorDomain = @"TPSBuildSettingExtra
     return baseBuildSettingName;
 }
 
+- (BOOL)tps_baseBuildSettingNameIsEqualTo:(NSString *)buildSettingName {
+    return [[self tps_baseBuildSettingName] isEqualToString:[buildSettingName tps_baseBuildSettingName]];
+}
+
 @end
 
 #pragma mark -

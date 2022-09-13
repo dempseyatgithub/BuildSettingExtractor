@@ -31,6 +31,7 @@ extern NSString * TPSMultipleUnderlyingErrorsKey(void);
 
 @interface NSString (TPS_BuildSettingAdditions)
 - (NSString *)tps_baseBuildSettingName; // Removes any conditional section of a build setting
+- (BOOL)tps_baseBuildSettingNameIsEqualTo:(NSString *)buildSettingName; // returns YES if provided build setting name has the same base as the receiver
 @end
 
 #pragma mark -
