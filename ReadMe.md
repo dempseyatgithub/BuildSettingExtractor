@@ -53,11 +53,21 @@ These comments can be turned off in the Preferences window for a more compact fi
 
 ### Version History ###
 
+*Version 1.4.5*  
+*Sep 13, 2022*
+
+– Updated to extract build settings from Xcode 14.0-compatible project files.  
+– Added grouping to conditional build setting generation.  
+- Updated URL in generated files.  
+– Tested on macOS 12.5.1 Monterey, Apple Silicon.  
+– Built with Xcode 14.0 on macOS 12.5.1 Monterey.  
+
+
 *Version 1.4.4*  
 *May 7, 2022*
 
 – Updated list of build setting info files for Xcode 13.3 and later.  
-– Add backstop entry for SWIFT_VERSION build setting.  
+– Added backstop entry for SWIFT_VERSION build setting.  
 – Tested on macOS 12.3.1 Monterey, Apple Silicon.  
 – Built with Xcode 13.3.1 on macOS 12.3.1 Monterey.  
 
