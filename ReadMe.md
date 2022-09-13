@@ -58,7 +58,7 @@ These comments can be turned off in the Preferences window for a more compact fi
 
 – Updated to extract build settings from Xcode 14.0-compatible project files.  
 – Added grouping to conditional build setting generation.  
-- Updated URL in generated files.  
+– Updated URL in generated files.  
 – Tested on macOS 12.5.1 Monterey, Apple Silicon.  
 – Built with Xcode 14.0 on macOS 12.5.1 Monterey.  
 
