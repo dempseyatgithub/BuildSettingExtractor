@@ -346,16 +346,21 @@ static NSSet *XcodeCompatibilityVersionStringSet() {
     }
     
     BOOL firstKey = YES;
+    NSString *previousKey = nil;
     for (NSString *key in sortedKeys) {
         id value = buildSettings[key];
+
+        // If same base setting name as previous key, this is a conditional build setting.
+        // Don't put newlines between them and don't repeat the build setting info comment.
+        BOOL sameBaseSettingName = [previousKey tps_baseBuildSettingNameIsEqualTo:key]; // nil previousKey returns nil aka NO
         
-        if (!firstKey){
+        if (!firstKey && !sameBaseSettingName){
             for (NSInteger i = 0; i < linesBetweenSettings; i++) {
                 [string appendString:@"\n"];
             }
         }
 
-        if (includeBuildSettingInfoComments) {
+        if (includeBuildSettingInfoComments && !sameBaseSettingName) {
             NSString *comment = [buildSettingCommentGenerator commentForBuildSettingWithName:key];
             [string appendString:comment];
         }
@@ -376,6 +381,7 @@ static NSSet *XcodeCompatibilityVersionStringSet() {
             [NSException raise:@"Should not get here!" format:@"Unexpected class: %@ in %s", [value class], __PRETTY_FUNCTION__];
         }
 
+        previousKey = key;
         firstKey = NO;
     }
     
