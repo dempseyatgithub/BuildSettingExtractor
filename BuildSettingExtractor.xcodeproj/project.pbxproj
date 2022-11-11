@@ -83,6 +83,7 @@
 		53BC11301A817447005E2FD2 /* BuildSettingCommentGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuildSettingCommentGenerator.m; sourceTree = "<group>"; };
 		53C7618023F85AE20024B432 /* SampleFileStructureGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SampleFileStructureGenerator.h; sourceTree = "<group>"; };
 		53C7618123F85AE20024B432 /* SampleFileStructureGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SampleFileStructureGenerator.m; sourceTree = "<group>"; };
+		53D8DADE291EAD230092FF3E /* AppConfig.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = AppConfig.xcconfig; sourceTree = "<group>"; };
 		53DCD48924D6440400D512FB /* BuildSettingExtractor.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = BuildSettingExtractor.xctestplan; sourceTree = "<group>"; };
 		53F372EB1A7BC6A7006118CB /* DragFileView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DragFileView.h; sourceTree = "<group>"; };
 		53F372EC1A7BC6A7006118CB /* DragFileView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DragFileView.m; sourceTree = "<group>"; };
@@ -125,6 +126,7 @@
 			isa = PBXGroup;
 			children = (
 				532C57C7234BB32700FA0872 /* BSE-CodeSigning.xcconfig */,
+				53D8DADE291EAD230092FF3E /* AppConfig.xcconfig */,
 			);
 			path = Config;
 			sourceTree = "<group>";
@@ -536,6 +538,7 @@
 		};
 		53719EC119BF4C6D005D3DE0 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 53D8DADE291EAD230092FF3E /* AppConfig.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = BuildSettingExtractor/BuildSettingExtractor.entitlements;
@@ -545,7 +548,6 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = "BuildSettingExtractor/BuildSettingExtractor-Info.plist";
 				MARKETING_VERSION = 1.4.5;
-				PRODUCT_BUNDLE_IDENTIFIER = "net.tapas-software.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -553,6 +555,7 @@
 		};
 		53719EC219BF4C6D005D3DE0 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 53D8DADE291EAD230092FF3E /* AppConfig.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = BuildSettingExtractor/BuildSettingExtractor.entitlements;
@@ -562,7 +565,6 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = "BuildSettingExtractor/BuildSettingExtractor-Info.plist";
 				MARKETING_VERSION = 1.4.5;
-				PRODUCT_BUNDLE_IDENTIFIER = "net.tapas-software.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

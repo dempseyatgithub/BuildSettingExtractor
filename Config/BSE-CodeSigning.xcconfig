@@ -41,3 +41,7 @@ CODE_SIGN_STYLE = Automatic
 // will cause a build error.
 
 CODE_SIGN_IDENTITY = Apple Development
+
+
+// Allows private project config information to be set and overridden for production builds
+#include? "Private/PrivateProjectConfig.xcconfig"
