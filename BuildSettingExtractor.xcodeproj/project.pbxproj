@@ -48,7 +48,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		532C57C7234BB32700FA0872 /* BSE-CodeSigning.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "BSE-CodeSigning.xcconfig"; sourceTree = "<group>"; };
+		532C57C7234BB32700FA0872 /* ProjectConfig.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = ProjectConfig.xcconfig; sourceTree = "<group>"; };
 		5359360E24687FF800445F95 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Preferences.storyboard; sourceTree = "<group>"; };
 		536AA121235293B600A0FE29 /* BuildSettingExtractor.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BuildSettingExtractor.entitlements; sourceTree = "<group>"; };
 		53719E8F19BF4C6D005D3DE0 /* BuildSettingExtractor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BuildSettingExtractor.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -125,7 +125,7 @@
 		532C57C6234BB32700FA0872 /* Config */ = {
 			isa = PBXGroup;
 			children = (
-				532C57C7234BB32700FA0872 /* BSE-CodeSigning.xcconfig */,
+				532C57C7234BB32700FA0872 /* ProjectConfig.xcconfig */,
 				53D8DADE291EAD230092FF3E /* AppConfig.xcconfig */,
 			);
 			path = Config;
@@ -435,7 +435,7 @@
 /* Begin XCBuildConfiguration section */
 		53719EBE19BF4C6D005D3DE0 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 532C57C7234BB32700FA0872 /* BSE-CodeSigning.xcconfig */;
+			baseConfigurationReference = 532C57C7234BB32700FA0872 /* ProjectConfig.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -490,7 +490,7 @@
 		};
 		53719EBF19BF4C6D005D3DE0 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 532C57C7234BB32700FA0872 /* BSE-CodeSigning.xcconfig */;
+			baseConfigurationReference = 532C57C7234BB32700FA0872 /* ProjectConfig.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
