@@ -83,6 +83,7 @@
 		53BC11301A817447005E2FD2 /* BuildSettingCommentGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuildSettingCommentGenerator.m; sourceTree = "<group>"; };
 		53C7618023F85AE20024B432 /* SampleFileStructureGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SampleFileStructureGenerator.h; sourceTree = "<group>"; };
 		53C7618123F85AE20024B432 /* SampleFileStructureGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SampleFileStructureGenerator.m; sourceTree = "<group>"; };
+		53CCCAC62A34B876009C699E /* ci_post_clone.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = ci_post_clone.sh; sourceTree = "<group>"; };
 		53D8DADE291EAD230092FF3E /* AppConfig.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = AppConfig.xcconfig; sourceTree = "<group>"; };
 		53DCD48924D6440400D512FB /* BuildSettingExtractor.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = BuildSettingExtractor.xctestplan; sourceTree = "<group>"; };
 		53F372EB1A7BC6A7006118CB /* DragFileView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DragFileView.h; sourceTree = "<group>"; };
@@ -137,6 +138,7 @@
 				53719E9819BF4C6D005D3DE0 /* BuildSettingExtractor */,
 				53719EB619BF4C6D005D3DE0 /* BuildSettingExtractorTests */,
 				532C57C6234BB32700FA0872 /* Config */,
+				53CCCAC82A34B88B009C699E /* ci_scripts */,
 				53719E9119BF4C6D005D3DE0 /* Frameworks */,
 				53719E9019BF4C6D005D3DE0 /* Products */,
 				5395AF4D1A7C6BB60028BE88 /* ReadMe.md */,
@@ -244,6 +246,14 @@
 				5359360D24687FF800445F95 /* Preferences.storyboard */,
 			);
 			path = Preferences;
+			sourceTree = "<group>";
+		};
+		53CCCAC82A34B88B009C699E /* ci_scripts */ = {
+			isa = PBXGroup;
+			children = (
+				53CCCAC62A34B876009C699E /* ci_post_clone.sh */,
+			);
+			path = ci_scripts;
 			sourceTree = "<group>";
 		};
 		53F372F61A7C3164006118CB /* TestFiles */ = {

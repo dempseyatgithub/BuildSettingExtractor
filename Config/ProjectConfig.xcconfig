@@ -44,4 +44,4 @@ CODE_SIGN_IDENTITY = Apple Development
 
 
 // Allows private project config information to be set and overridden for production builds
-#include? "Private/PrivateProjectConfig.xcconfig"
+#include? "PrivateProjectConfig.xcconfig"

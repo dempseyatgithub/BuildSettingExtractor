@@ -20,5 +20,5 @@ PRODUCT_BUNDLE_IDENTIFIER = net.tapas-software.${PRODUCT_NAME:rfc1034identifier}
 
 
 // Allows private app config information to be set and overridden for production builds
-#include? "Private/PrivateAppConfig.xcconfig"
+#include? "PrivateAppConfig.xcconfig"
 
