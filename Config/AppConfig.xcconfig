@@ -18,7 +18,9 @@
 
 PRODUCT_BUNDLE_IDENTIFIER = net.tapas-software.${PRODUCT_NAME:rfc1034identifier}
 
+// Allows private app config info to be set and overridden for local dev builds
+#include? "/Users/Shared/git/xcconfig-private/CodeSigning.xcconfig"
 
-// Allows private app config information to be set and overridden for production builds
+// Allows private app config information to be set and overridden for CI builds
 #include? "PrivateAppConfig.xcconfig"
 
