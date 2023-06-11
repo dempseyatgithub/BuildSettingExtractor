@@ -63,10 +63,14 @@
     XCTAssertNotNil(infoSource);
     XCTAssertNil(error);
     
-    BuildSettingCommentGenerator *commentGenerator = [[BuildSettingCommentGenerator alloc] initWithBuildSettingInfoSource:infoSource];
-    BOOL success = [commentGenerator loadBuildSettingInfo:&error];
-    XCTAssertTrue(success);
-    XCTAssertNil(error);    
+    NSString *activityName = [NSString stringWithFormat:@"Load build setting info from info source '%@' version '%ld'", infoSource.resolvedURL, (long)infoSource.resolvedVersion];
+    [XCTContext runActivityNamed:activityName block:^(id<XCTActivity>  _Nonnull activity) {
+        NSError *activityError = nil;
+        BuildSettingCommentGenerator *commentGenerator = [[BuildSettingCommentGenerator alloc] initWithBuildSettingInfoSource:infoSource];
+        BOOL success = [commentGenerator loadBuildSettingInfo:&activityError];
+        XCTAssertTrue(success);
+        XCTAssertNil(activityError);
+    }];
 }
 
 - (void)testBadProjectURL
