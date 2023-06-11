@@ -11,7 +11,7 @@
 #import "BuildSettingInfoSource.h"
 #import "Constants+Categories.h"
 
-static NSSet *XcodeCompatibilityVersionStringSet() {
+static NSSet *XcodeCompatibilityVersionStringSet(void) {
     static NSSet *_compatibilityVersionStringSet;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{

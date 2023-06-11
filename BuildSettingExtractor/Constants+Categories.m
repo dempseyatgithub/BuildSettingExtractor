@@ -159,7 +159,7 @@ NSDictionary *userInfo = @{NSLocalizedDescriptionKey:[NSString stringWithFormat:
 @end
 
 // Can remove once deployment target is macOS 11.3 or later
-NSString * TPSMultipleUnderlyingErrorsKey() {
+NSString * TPSMultipleUnderlyingErrorsKey(void) {
     if (@available(macOS 11.3, *)) {
         return NSMultipleUnderlyingErrorsKey;
     } else {
