@@ -53,6 +53,15 @@ These comments can be turned off in the Preferences window for a more compact fi
 
 ### Version History ###
 
+*Version 1.4.6*  
+*Jun 12, 2023*
+
+– Updated to extract build settings from Xcode 15.0-compatible project files.  
+– Updated list of build setting info files.  
+– Tested on macOS 13.4 Ventura, Apple Silicon.  
+– Built with Xcode 14.3 on macOS 12.4 Ventura.  
+
+
 *Version 1.4.5*  
 *Sep 13, 2022*
 
