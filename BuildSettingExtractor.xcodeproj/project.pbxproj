@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2B74A8612A5D77E6001630AE /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B74A8602A5D77E6001630AE /* main.swift */; };
+		2B74A8652A5D7806001630AE /* BuildSettingExtractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 53F372EF1A7C042F006118CB /* BuildSettingExtractor.m */; };
+		2B74A8662A5D781E001630AE /* BuildSettingCommentGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 53BC11301A817447005E2FD2 /* BuildSettingCommentGenerator.m */; };
+		2B74A8672A5D7828001630AE /* BuildSettingInfoSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 539A0206234EFA4300193374 /* BuildSettingInfoSource.m */; };
+		2B74A86E2A5D79F8001630AE /* Constants+Categories.m in Sources */ = {isa = PBXBuildFile; fileRef = 53F372FA1A7C5803006118CB /* Constants+Categories.m */; };
+		2B74A86F2A5D7A09001630AE /* AppConstants+Categories.m in Sources */ = {isa = PBXBuildFile; fileRef = 53FA882723421B9900F51EC3 /* AppConstants+Categories.m */; };
+		2B74A8712A5D7C8D001630AE /* Options.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B74A8702A5D7C8D001630AE /* Options.swift */; };
 		5359360F24687FF800445F95 /* Preferences.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5359360D24687FF800445F95 /* Preferences.storyboard */; };
 		53719E9319BF4C6D005D3DE0 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53719E9219BF4C6D005D3DE0 /* Cocoa.framework */; };
 		53719E9D19BF4C6D005D3DE0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 53719E9B19BF4C6D005D3DE0 /* InfoPlist.strings */; };
@@ -47,7 +54,33 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		2B74A8592A5D77B5001630AE /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2B74A85C2A5D77E6001630AE /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		2B74A85E2A5D77E6001630AE /* BuildSettingExtractorCli */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = BuildSettingExtractorCli; sourceTree = BUILT_PRODUCTS_DIR; };
+		2B74A8602A5D77E6001630AE /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		2B74A86D2A5D78DD001630AE /* Briding-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Briding-Header.h"; sourceTree = "<group>"; };
+		2B74A8702A5D7C8D001630AE /* Options.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Options.swift; sourceTree = "<group>"; };
 		532C57C7234BB32700FA0872 /* ProjectConfig.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = ProjectConfig.xcconfig; sourceTree = "<group>"; };
 		5359360E24687FF800445F95 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Preferences.storyboard; sourceTree = "<group>"; };
 		536AA121235293B600A0FE29 /* BuildSettingExtractor.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BuildSettingExtractor.entitlements; sourceTree = "<group>"; };
@@ -103,6 +136,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		2B74A85B2A5D77E6001630AE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		53719E8C19BF4C6D005D3DE0 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -123,6 +163,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2B74A85F2A5D77E6001630AE /* BuildSettingExtractorCli */ = {
+			isa = PBXGroup;
+			children = (
+				2B74A8702A5D7C8D001630AE /* Options.swift */,
+				2B74A8602A5D77E6001630AE /* main.swift */,
+				2B74A86D2A5D78DD001630AE /* Briding-Header.h */,
+			);
+			path = BuildSettingExtractorCli;
+			sourceTree = "<group>";
+		};
 		532C57C6234BB32700FA0872 /* Config */ = {
 			isa = PBXGroup;
 			children = (
@@ -139,6 +189,7 @@
 				53719EB619BF4C6D005D3DE0 /* BuildSettingExtractorTests */,
 				532C57C6234BB32700FA0872 /* Config */,
 				53CCCAC82A34B88B009C699E /* ci_scripts */,
+				2B74A85F2A5D77E6001630AE /* BuildSettingExtractorCli */,
 				53719E9119BF4C6D005D3DE0 /* Frameworks */,
 				53719E9019BF4C6D005D3DE0 /* Products */,
 				5395AF4D1A7C6BB60028BE88 /* ReadMe.md */,
@@ -150,6 +201,7 @@
 			children = (
 				53719E8F19BF4C6D005D3DE0 /* BuildSettingExtractor.app */,
 				53719EB019BF4C6D005D3DE0 /* BuildSettingExtractorTests.xctest */,
+				2B74A85E2A5D77E6001630AE /* BuildSettingExtractorCli */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -272,6 +324,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		2B74A85D2A5D77E6001630AE /* BuildSettingExtractorCli */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2B74A8622A5D77E6001630AE /* Build configuration list for PBXNativeTarget "BuildSettingExtractorCli" */;
+			buildPhases = (
+				2B74A85A2A5D77E6001630AE /* Sources */,
+				2B74A85B2A5D77E6001630AE /* Frameworks */,
+				2B74A85C2A5D77E6001630AE /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BuildSettingExtractorCli;
+			productName = BuildSettingExtractorCli;
+			productReference = 2B74A85E2A5D77E6001630AE /* BuildSettingExtractorCli */;
+			productType = "com.apple.product-type.tool";
+		};
 		53719E8E19BF4C6D005D3DE0 /* BuildSettingExtractor */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 53719EC019BF4C6D005D3DE0 /* Build configuration list for PBXNativeTarget "BuildSettingExtractor" */;
@@ -279,6 +348,7 @@
 				53719E8B19BF4C6D005D3DE0 /* Sources */,
 				53719E8C19BF4C6D005D3DE0 /* Frameworks */,
 				53719E8D19BF4C6D005D3DE0 /* Resources */,
+				2B74A8592A5D77B5001630AE /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -313,9 +383,13 @@
 		53719E8719BF4C6D005D3DE0 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 1410;
 				LastUpgradeCheck = 1400;
 				ORGANIZATIONNAME = "Tapas Software";
 				TargetAttributes = {
+					2B74A85D2A5D77E6001630AE = {
+						CreatedOnToolsVersion = 14.1;
+					};
 					53719EAF19BF4C6D005D3DE0 = {
 						TestTargetID = 53719E8E19BF4C6D005D3DE0;
 					};
@@ -336,6 +410,7 @@
 			targets = (
 				53719E8E19BF4C6D005D3DE0 /* BuildSettingExtractor */,
 				53719EAF19BF4C6D005D3DE0 /* BuildSettingExtractorTests */,
+				2B74A85D2A5D77E6001630AE /* BuildSettingExtractorCli */,
 			);
 		};
 /* End PBXProject section */
@@ -370,6 +445,20 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		2B74A85A2A5D77E6001630AE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2B74A8652A5D7806001630AE /* BuildSettingExtractor.m in Sources */,
+				2B74A86E2A5D79F8001630AE /* Constants+Categories.m in Sources */,
+				2B74A8612A5D77E6001630AE /* main.swift in Sources */,
+				2B74A8672A5D7828001630AE /* BuildSettingInfoSource.m in Sources */,
+				2B74A8662A5D781E001630AE /* BuildSettingCommentGenerator.m in Sources */,
+				2B74A86F2A5D7A09001630AE /* AppConstants+Categories.m in Sources */,
+				2B74A8712A5D7C8D001630AE /* Options.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		53719E8B19BF4C6D005D3DE0 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -443,6 +532,56 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		2B74A8632A5D77E6001630AE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = H49DBB47YQ;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OBJC_BRIDGING_HEADER = "$(PRODUCT_NAME)/Briding-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		2B74A8642A5D77E6001630AE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEVELOPMENT_TEAM = H49DBB47YQ;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OBJC_BRIDGING_HEADER = "$(PRODUCT_NAME)/Briding-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
 		53719EBE19BF4C6D005D3DE0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 532C57C7234BB32700FA0872 /* ProjectConfig.xcconfig */;
@@ -555,6 +694,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 22;
 				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_TEAM = BGV6QLNJ42;
 				ENABLE_HARDENED_RUNTIME = NO;
 				INFOPLIST_FILE = "BuildSettingExtractor/BuildSettingExtractor-Info.plist";
 				MARKETING_VERSION = 1.4.6;
@@ -572,6 +712,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 22;
 				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_TEAM = BGV6QLNJ42;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = "BuildSettingExtractor/BuildSettingExtractor-Info.plist";
 				MARKETING_VERSION = 1.4.6;
@@ -623,6 +764,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		2B74A8622A5D77E6001630AE /* Build configuration list for PBXNativeTarget "BuildSettingExtractorCli" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2B74A8632A5D77E6001630AE /* Debug */,
+				2B74A8642A5D77E6001630AE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		53719E8A19BF4C6D005D3DE0 /* Build configuration list for PBXProject "BuildSettingExtractor" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
