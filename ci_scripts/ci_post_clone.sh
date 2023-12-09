@@ -12,14 +12,14 @@ if [ $CI_XCODE_CLOUD = "TRUE" ]; then
 privateProjectConfigPath="$CI_PRIMARY_REPOSITORY_PATH/Config/PrivateProjectConfig.xcconfig"
 
 cat > $privateProjectConfigPath <<- EOF
-DEVELOPMENT_TEAM = $TS_DEVELOPMENT_TEAM
+DEVELOPMENT_TEAM = $CI_TEAM_ID
 EOF
 
 # Write private app configuration file
 privateAppConfigPath="$CI_PRIMARY_REPOSITORY_PATH/Config/PrivateAppConfig.xcconfig"
 
 cat > $privateAppConfigPath <<- EOF
-PRODUCT_BUNDLE_IDENTIFIER = $TS_PRODUCT_BUNDLE_IDENTIFIER
+PRODUCT_BUNDLE_IDENTIFIER = $CI_BUNDLE_ID
 EOF
 
 else
