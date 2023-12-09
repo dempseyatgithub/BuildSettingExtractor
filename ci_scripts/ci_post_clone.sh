@@ -6,7 +6,7 @@
 #  Created by James Dempsey on 6/10/23.
 #
 
-if [ $CI = "TRUE" ]; then
+if [ $CI_XCODE_CLOUD = "TRUE" ]; then
 
 # Write private project configuration file
 privateProjectConfigPath="$CI_PRIMARY_REPOSITORY_PATH/Config/PrivateProjectConfig.xcconfig"
@@ -23,5 +23,7 @@ PRODUCT_BUNDLE_IDENTIFIER = $TS_PRODUCT_BUNDLE_IDENTIFIER
 EOF
 
 else
-echo "CI env variable was not TRUE"
+
+echo "CI_XCODE_CLOUD env variable was not TRUE"
+
 fi
