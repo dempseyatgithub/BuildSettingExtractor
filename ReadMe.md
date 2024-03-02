@@ -53,6 +53,14 @@ These comments can be turned off in the Preferences window for a more compact fi
 
 ### Version History ###
 
+*Version 1.4.7*  
+*Mar 2, 2024*
+
+– Updated list of build setting info files for Xcode 15.3.  
+– Tested on macOS 14.3.1 Sonoma, Apple Silicon.  
+– Built with Xcode 15.2 on macOS 14.3.1 Sonoma.  
+
+
 *Version 1.4.6*  
 *Jun 12, 2023*
 
