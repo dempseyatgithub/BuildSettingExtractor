@@ -13,6 +13,8 @@ configFolderPath="/Users/Shared/git/xcconfig-private"
 
 echo $configFolderPath
 
+mkdir -p $configFolderPath
+
 # Write private project configuration file
 privateProjectConfigPath="$configFolderPath/PrivateProjectConfig.xcconfig"
 
