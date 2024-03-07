@@ -9,7 +9,7 @@
 if [ $CI_XCODE_CLOUD = "TRUE" ]; then
 
 # Get path to xcconfig files in project
-configFolderPath="$CI_WORKSPACE_PATH/Shared"
+configFolderPath="/Users/Shared"
 
 echo $configFolderPath
 
