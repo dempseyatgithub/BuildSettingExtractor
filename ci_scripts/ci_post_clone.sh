@@ -9,7 +9,7 @@
 if [ $CI_XCODE_CLOUD = "TRUE" ]; then
 
 # Get path to xcconfig files in project
-configFolderPath = "$CI_PRIMARY_REPOSITORY_PATH/Config"
+configFolderPath="$CI_WORKSPACE/Shared"
 
 # Write private project configuration file
 privateProjectConfigPath="$configFolderPath/PrivateProjectConfig.xcconfig"
