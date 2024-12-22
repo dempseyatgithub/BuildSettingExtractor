@@ -264,6 +264,9 @@ static NSSet *XcodeCompatibilityVersionStringSet(void) {
             // Trim whitespace and newlines
             configFileString = [configFileString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 
+            // Add a newline at end of file
+            configFileString = [configFileString stringByAppendingString:@"\n"];
+
             BOOL isProcessingProjectConfigFiles = [targetName isEqualToString:self.validatedProjectConfigName];
             BOOL currentTargetCanUseFolder = isProcessingProjectConfigFiles ? self.projectFolderEnabled : YES;
             
