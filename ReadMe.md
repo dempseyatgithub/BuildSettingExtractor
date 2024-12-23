@@ -53,6 +53,16 @@ These comments can be turned off in the Preferences window for a more compact fi
 
 ### Version History ###
 
+*Version 1.4.8*  
+*Dec 23, 2024*
+
+– Updated to extract build settings from Xcode 15.3-compatible project files.  
+– Updated to extract build settings from Xcode 16.0-compatible project files.  
+– Added new line to end of generated files.  
+– Tested on macOS 15.1.1 Sequoia, Apple Silicon.  
+– Built with Xcode 16.2 on macOS 15.1.1 Sequoia.  
+
+
 *Version 1.4.7*  
 *Mar 2, 2024*
 
