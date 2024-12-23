@@ -15,9 +15,18 @@ static NSSet *XcodeCompatibilityVersionStringSet(void) {
     static NSSet *_compatibilityVersionStringSet;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        _compatibilityVersionStringSet = [NSSet setWithObjects:@"Xcode 3.2", @"Xcode 6.3", @"Xcode 8.0", @"Xcode 9.3", @"Xcode 10.0", @"Xcode 11.0", @"Xcode 11.4", @"Xcode 12.0", @"Xcode 13.0", @"Xcode 14.0", @"Xcode 15.0", nil];
+        _compatibilityVersionStringSet = [NSSet setWithObjects:@"Xcode 3.2", @"Xcode 6.3", @"Xcode 8.0", @"Xcode 9.3", @"Xcode 10.0", @"Xcode 11.0", @"Xcode 11.4", @"Xcode 12.0", @"Xcode 13.0", @"Xcode 14.0", @"Xcode 15.0", @"Xcode 15.3", @"Xcode 16.0", nil];
     });
     return _compatibilityVersionStringSet;
+}
+
+static NSSet *XcodeObjectVersionStringSet(void) {
+    static NSSet *_objectVersionStringSet;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        _objectVersionStringSet = [NSSet setWithObjects:@"77", @"70", nil];
+    });
+    return _objectVersionStringSet;
 }
 
 @interface BuildSettingExtractor ()
@@ -143,13 +152,17 @@ static NSSet *XcodeCompatibilityVersionStringSet(void) {
         return nil;
     }
             
+    // Get object version
+    NSString *objectVersion = projectPlist[@"objectVersion"];
+
     // Get root object (project)
     self.objects = projectPlist[@"objects"];
     NSDictionary *rootObject = self.objects[projectPlist[@"rootObject"]];
 
     // Check compatibility version
     NSString *compatibilityVersion = rootObject[@"compatibilityVersion"];
-    if (![XcodeCompatibilityVersionStringSet() containsObject:compatibilityVersion]) {
+
+    if (![XcodeCompatibilityVersionStringSet() containsObject:compatibilityVersion] && ![XcodeObjectVersionStringSet() containsObject:objectVersion]){
         if (error) {
             *error = [NSError errorForUnsupportedProjectURL:projectWrapperURL fileVersion:compatibilityVersion];
         }
