@@ -12,6 +12,8 @@
 #import "AppConstants+Categories.h"
 #import "Constants+Categories.h"
 
+@import UniformTypeIdentifiers;
+
 // During development it is useful to turn off the overwrite checking
 #define OVERWRITE_CHECKING_DISABLED 0
 
@@ -49,7 +51,7 @@
     openPanel.allowsMultipleSelection = NO;
     openPanel.canChooseDirectories = NO;
     openPanel.canChooseFiles = YES;
-    openPanel.allowedFileTypes = @[[NSString tps_projectBundleTypeIdentifier]];
+    openPanel.allowedContentTypes = @[[UTType tps_projectBundleType]];
     openPanel.message = @"Choose an Xcode project to extract its build settings.";
     openPanel.prompt = @"Choose";
     
@@ -69,11 +71,10 @@
 }
 
 - (void)processXcodeProjectAtURL:(NSURL *)fileURL {
-    NSString *typeIdentifier = nil;
+    NSString *contentType = nil;
     NSError *error = nil;
-    [fileURL getResourceValue:&typeIdentifier forKey:NSURLTypeIdentifierKey error:&error];
-
-    if (fileURL && [typeIdentifier isEqualToString:[NSString tps_projectBundleTypeIdentifier]]) {
+    [fileURL getResourceValue:&contentType forKey:NSURLContentTypeKey error:&error];
+    if (fileURL && [contentType isEqual:[UTType tps_projectBundleType]]) {
         if ([[NSUserDefaults standardUserDefaults] boolForKey:TPSAutosaveInProjectFolder]) {
             NSURL *baseURL = [fileURL URLByDeletingLastPathComponent];
             NSURL *destinationURL = [self createValidatedDestinationURLForBaseURL:baseURL error:&error];
@@ -96,7 +97,7 @@
     openPanel.allowsMultipleSelection = YES;
     openPanel.canChooseDirectories = YES;
     openPanel.canChooseFiles = NO;
-    openPanel.allowedFileTypes = @[(NSString *)kUTTypeFolder];
+    openPanel.allowedContentTypes = @[UTTypeFolder];
     openPanel.message = [NSString stringWithFormat:@"Choose location to save configuration files.\nConfiguration files for project ‘%@’\nwill be saved in a folder named '%@'.", [fileURL lastPathComponent], [[NSUserDefaults standardUserDefaults] stringForKey:TPSDestinationFolderName]];
     openPanel.prompt = @"Choose";
 

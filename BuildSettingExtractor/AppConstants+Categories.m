@@ -10,6 +10,8 @@
 #import "Constants+Categories.h"
 #import "BuildSettingExtractor.h"
 
+@import UniformTypeIdentifiers;
+
 #pragma mark User Default Keys
 
 NSString *const TPSOpenDirectoryInFinder = @"TPSOpenDirectoryInFinder";
@@ -59,7 +61,7 @@ NSString *const TPSAlignBuildSettingValues = @"TPSAlignBuildSettingValues";
 }
 
 - (NSDictionary *)tps_xcodeProjectReadingOptions {
-    return @{NSPasteboardURLReadingFileURLsOnlyKey: @(YES), NSPasteboardURLReadingContentsConformToTypesKey: @[[NSString tps_projectBundleTypeIdentifier]]};
+    return @{NSPasteboardURLReadingFileURLsOnlyKey: @(YES), NSPasteboardURLReadingContentsConformToTypesKey: @[[UTType tps_projectBundleType].identifier]};
 }
 
 @end

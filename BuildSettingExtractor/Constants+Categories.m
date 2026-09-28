@@ -10,29 +10,14 @@
 
 NSErrorDomain const TPSBuildSettingExtractorErrorDomain = @"TPSBuildSettingExtractorErrorDomain";
 
-@implementation  NSString (TPS_TypeIdentifierAdditions)
+@implementation UTType (TPS_FileTypeAdditions)
 
-+ (NSString *)tps_projectBundleTypeIdentifier {
-    static NSString *projectBundleTypeIdentifier;
-    if (!projectBundleTypeIdentifier) {
-        projectBundleTypeIdentifier = [self tps_preferredTypeIdentifierForFileExtension:@"xcodeproj"];
-//        NSLog(@"Xcode UTI: %@", projectBundleTypeIdentifier);
-    }
-    return projectBundleTypeIdentifier;
++ (UTType *)tps_projectBundleType {
+    return [UTType typeWithTag:@"xcodeproj" tagClass:UTTagClassFilenameExtension conformingToType:nil];
 }
 
-+ (NSString *)tps_buildConfigurationFileTypeIdentifier {
-    static NSString *buildConfigurationFileTypeIdentifier;
-    if (!buildConfigurationFileTypeIdentifier) {
-        buildConfigurationFileTypeIdentifier = [self tps_preferredTypeIdentifierForFileExtension:@"xcconfig"];
-//        NSLog(@"xcconfig UTI: %@", buildConfigurationFileTypeIdentifier);
-    }
-    return buildConfigurationFileTypeIdentifier;
-}
-
-+ (NSString *)tps_preferredTypeIdentifierForFileExtension:(NSString *)string {
-    NSString *identifier = CFBridgingRelease(UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, (__bridge CFStringRef)string, NULL));
-    return identifier;
++ (UTType *)tps_buildConfigurationFileType {
+    return [UTType typeWithTag:@"xcconfig" tagClass:UTTagClassFilenameExtension conformingToType:nil];
 }
 
 @end

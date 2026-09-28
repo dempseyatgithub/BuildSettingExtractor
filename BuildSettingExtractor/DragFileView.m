@@ -10,6 +10,8 @@
 #import "AppConstants+Categories.h"
 #import "Constants+Categories.h"
 
+@import UniformTypeIdentifiers;
+
 
 @interface DragFileView ()
 @property NSURL *fileURL;
@@ -23,7 +25,7 @@
     self.cornerRadius = 20.0;
     self.borderWidth = 0.0;
     [self setHighlight:NO];
-    [self registerForDraggedTypes:@[(NSString *)kUTTypeFileURL]];
+    [self registerForDraggedTypes:@[UTTypeFileURL.identifier]];
 }
 
 - (instancetype)initWithCoder:(NSCoder *)coder {

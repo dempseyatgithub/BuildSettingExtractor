@@ -11,6 +11,8 @@
 #import "BuildSettingInfoSource.h"
 #import "Constants+Categories.h"
 
+@import UniformTypeIdentifiers;
+
 static NSSet *XcodeCompatibilityVersionStringSet(void) {
     static NSSet *_compatibilityVersionStringSet;
     static dispatch_once_t onceToken;
@@ -95,10 +97,10 @@ static NSSet *XcodeObjectVersionStringSet(void) {
             [enumerator skipDescendants];
             continue;
         }
-        NSString *typeIdentifier = nil;
+        UTType *contentType = nil;
         NSError *resourceError = nil;
-        [currentURL getResourceValue:&typeIdentifier forKey:NSURLTypeIdentifierKey error:&resourceError];
-        if ([typeIdentifier isEqualToString:[NSString tps_buildConfigurationFileTypeIdentifier]]) {
+        [currentURL getResourceValue:&contentType forKey:NSURLContentTypeKey error:&resourceError];
+        if ([contentType isEqual:[UTType tps_buildConfigurationFileType]]) {
             foundBuildConfigFile = YES;
             break;
         }

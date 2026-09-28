@@ -7,6 +7,7 @@
 //
 
 @import Foundation;
+@import UniformTypeIdentifiers;
 
 typedef NS_ENUM(NSUInteger, BuildSettingExtractorErrorCodes) {
     UnsupportedXcodeVersion = 100,
@@ -23,15 +24,16 @@ extern NSString * TPSMultipleUnderlyingErrorsKey(void);
 
 #pragma mark -
 
-@interface  NSString (TPS_TypeIdentifierAdditions)
-+ (NSString *)tps_projectBundleTypeIdentifier;
-+ (NSString *)tps_buildConfigurationFileTypeIdentifier;
-+ (NSString *)tps_preferredTypeIdentifierForFileExtension:(NSString *)string;
-@end
-
 @interface NSString (TPS_BuildSettingAdditions)
 - (NSString *)tps_baseBuildSettingName; // Removes any conditional section of a build setting
 - (BOOL)tps_baseBuildSettingNameIsEqualTo:(NSString *)buildSettingName; // returns YES if provided build setting name has the same base as the receiver
+@end
+
+#pragma mark -
+
+@interface UTType (TPS_FileTypeAdditions)
++ (UTType *)tps_projectBundleType;
++ (UTType *)tps_buildConfigurationFileType;
 @end
 
 #pragma mark -
