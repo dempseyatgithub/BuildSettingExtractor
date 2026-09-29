@@ -26,7 +26,7 @@ static NSSet *XcodeObjectVersionStringSet(void) {
     static NSSet *_objectVersionStringSet;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        _objectVersionStringSet = [NSSet setWithObjects:@"77", @"70", nil];
+        _objectVersionStringSet = [NSSet setWithObjects:@"70", @"77", @"90", @"100", nil];
     });
     return _objectVersionStringSet;
 }
@@ -38,6 +38,7 @@ static NSDictionary *XcodeProjectVersionByObjectVersion(void) {
         _projectVersionByObjectVersion = @{
             @"77" : @"Xcode 16.0",
             @"90" : @"Xcode 16.3",
+            @"100" : @"Xcode 26.3"
         };
     });
     return _projectVersionByObjectVersion;
