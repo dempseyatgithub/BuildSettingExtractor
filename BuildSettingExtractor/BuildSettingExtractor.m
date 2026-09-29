@@ -31,6 +31,18 @@ static NSSet *XcodeObjectVersionStringSet(void) {
     return _objectVersionStringSet;
 }
 
+static NSDictionary *XcodeProjectVersionByObjectVersion(void) {
+    static NSDictionary *_projectVersionByObjectVersion;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        _projectVersionByObjectVersion = @{
+            @"77" : @"Xcode 16.0",
+            @"90" : @"Xcode 16.3",
+        };
+    });
+    return _projectVersionByObjectVersion;
+}
+
 @interface BuildSettingExtractor ()
 @property (strong) NSMutableDictionary *buildSettingsByTarget;
 @property (strong) NSDictionary *objects;
@@ -166,7 +178,10 @@ static NSSet *XcodeObjectVersionStringSet(void) {
 
     if (![XcodeCompatibilityVersionStringSet() containsObject:compatibilityVersion] && ![XcodeObjectVersionStringSet() containsObject:objectVersion]){
         if (error) {
-            *error = [NSError errorForUnsupportedProjectURL:projectWrapperURL fileVersion:compatibilityVersion];
+            NSString *versionString = compatibilityVersion;
+            if (!versionString) { versionString = XcodeProjectVersionByObjectVersion()[objectVersion]; }
+            if (!versionString) { versionString = @"Unknown"; }
+            *error = [NSError errorForUnsupportedProjectURL:projectWrapperURL fileVersion:versionString];
         }
         return nil;
     }
